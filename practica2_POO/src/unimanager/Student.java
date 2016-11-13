@@ -19,12 +19,13 @@ public class Student {
     // Attributes: 
     String name;
     int nia;
-    LinkedList<Enrollment> enrollments; 
-    
+    LinkedList<Enrollment> enrollments = new LinkedList<>(); 
+   
     //Contructor:
     public Student(String NAME,int NIA) {
         nia = NIA;
         name = NAME;
+        
     }
     
     // Public methods: 
@@ -49,4 +50,13 @@ public class Student {
     public void addEnrollment(Enrollment e){
         this.enrollments.add(e);
     };
+    public LinkedList<Course> getCourses(){
+        LinkedList<Course> courseList = new LinkedList<>();
+
+        for(Enrollment enroll : this.enrollments){           
+            courseList.add(enroll.getCourse());
+        };
+        return courseList; 
+    };
+
 }
