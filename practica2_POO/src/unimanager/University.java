@@ -59,4 +59,13 @@ public class University {
         };
         return coursesList;
     };
+    public LinkedList<String> studentsOfClassroom(double classroom) {
+        LinkedList<String> studentsList = new LinkedList<>();
+        for(Classroom cl : this.classrooms)
+            if(classroom == cl.getCode())
+                for(Lecture l : cl.getLectures())
+                    for(Enrollment e : l.getCourse().getEnrollments())
+                        studentsList.add(e.getStudent().getName());
+        return studentsList;
+    }
 }
