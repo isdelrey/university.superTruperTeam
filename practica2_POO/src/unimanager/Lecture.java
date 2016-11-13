@@ -20,11 +20,7 @@ public class Lecture {
     private int timeSlot;
     private int type;
     private Classroom classroom;
-<<<<<<< HEAD
     private Course course; 
-=======
-    private Course course;
->>>>>>> origin/master
     
     //Contructor:
     public Lecture(int GROUP, int TIMESLOT, int TYPE, Course COURSE) {
