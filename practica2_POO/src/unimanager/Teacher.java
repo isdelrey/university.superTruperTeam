@@ -43,4 +43,12 @@ public class Teacher {
     public void addAssignment(Assignment a){
         this.assignments.add(a);
     };
+
+    public LinkedList<Course> getCourses() {
+        LinkedList<Course> courseList = new LinkedList<>();
+        for(Assignment assignment : this.assignments){
+            courseList.add(assignment.getCourse());
+        };
+        return courseList;
+    }
 }

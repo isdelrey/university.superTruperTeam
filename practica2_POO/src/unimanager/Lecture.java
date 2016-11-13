@@ -21,16 +21,12 @@ public class Lecture {
     private int type;
     private Classroom classroom;
     private Course course; 
-<<<<<<< HEAD
+
+
 
     
     //Contructor:
-    public Lecture(String GROUP, int TIMESLOT, int TYPE, Course COURSE, Classroom CLASSROOM) {
-=======
-    
-    //Contructor:
-    public Lecture(int GROUP, int TIMESLOT, int TYPE, Course COURSE) {
->>>>>>> origin/master
+   public Lecture(int GROUP, int TIMESLOT, int TYPE, Course COURSE, Classroom CLASSROOM) {
         this.group = GROUP; 
         this.timeSlot = TIMESLOT; 
         this.type = TYPE;
@@ -48,21 +44,14 @@ public class Lecture {
     };
     public int getType(){
         return this.type;
-<<<<<<< HEAD
-    }; 
+    };
     public Course getCourse(){
         return this.course;
-    };
-
-=======
     };
     public int getGeneralGroup(){
         return (this.group < 10)?this.group:((this.group < 100)?this.group/10:this.group/100);
     };
-    public Course getCourse(){
-        return this.course;
-    };
->>>>>>> origin/master
+
    //Adds and setters:
    public void addClassroom(Classroom c){
        this.classroom = c;

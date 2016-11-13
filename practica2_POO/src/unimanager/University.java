@@ -24,6 +24,7 @@ public class University {
         this.teachers = Loader.loadTeachers();
         this.students = Loader.loadStudents();
         this.courses = Loader.loadCourses();
+        this.classrooms = Loader.loadClassrooms();
         Loader.loadLectures(courses, classrooms);
         Loader.loadEnrollments(courses, students);
         Loader.loadAssignments(courses, teachers);
@@ -70,19 +71,23 @@ public class University {
                                 studentsList.add(e.getStudent().getName());
         return studentsList;
     }
-<<<<<<< HEAD
+
     public LinkedList <String> CoursesOfClassroom (double code){
         LinkedList<String> coursesList = new LinkedList<>();
         for(Classroom classroom : this.classrooms){
             if(classroom.getCode() == code){
                 for(Course course : classroom.getCourses()){
-                    coursesList.add(course.getName());
+                    String courseName = course.getName();
+                    if(!coursesList.contains(courseName)){
+                       coursesList.add(course.getName()); 
+                    }               
                 };
+            break;
             };
         };
         return coursesList;
     };
-=======
+
     public String teacherOfClassroom(double classroom, int timeSlot) {
         String teacher = null;
         loop:for(Classroom cl : this.classrooms)
@@ -96,5 +101,19 @@ public class University {
                             }
         return teacher;
     }
->>>>>>> origin/master
+    
+    public LinkedList<String> teachersOfCourse( String teacherName){
+        LinkedList<String> coursesList = new LinkedList<>();
+        for(Teacher teacher : this.teachers){
+            if(teacher.getName().equals(teacherName)){
+                for(Course course : teacher.getCourses()){
+                    coursesList.add(course.getName());
+                }
+                break;
+            }
+            
+        };
+        return coursesList;
+    };
+
 }

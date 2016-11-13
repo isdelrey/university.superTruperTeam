@@ -21,6 +21,8 @@ public class TestUniversity {
         University university = new University();
         System.out.println(university.coursesOfStudent( "Ron Weasley" ) ) ;
         System.out.println(university.getStudents().getFirst().getName());
-        System.out.println(university.CoursesOfClassroom( 11.101 ) ) ;
+        System.out.println(university.CoursesOfClassroom( 11.101 ) + "If the courses are repeated the repeatitions are omited");
+        System.out.println(university.teachersOfCourse( "Filius Flitwick")+  "Filius Flitwick" ) ;
+        
     }
 }
