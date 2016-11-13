@@ -140,5 +140,23 @@ public class University {
         };
         return studentsList; 
     }
-
+    
+    public String classroomOfTeacher(String teacherName, int timeSlot){
+        String classroom = null;
+        for(Teacher teacher : this.teachers){
+            if(teacher.getName().equals(teacherName)){
+                for(Course course : teacher.getCourses()){
+                    for(Lecture lecture: course.getLectures()){
+                        if(lecture.getTimeSlot() == timeSlot){
+                            classroom = String.valueOf(lecture.getClassroomCode());
+                        };
+                    };
+                };
+                break;
+            };
+        };
+        return classroom;
+        
+        
+    }
 }

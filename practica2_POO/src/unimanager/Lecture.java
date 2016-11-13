@@ -45,12 +45,16 @@ public class Lecture {
     public int getType(){
         return this.type;
     };
+    public Classroom getClassroom(){
+        return this.classroom; 
+    }
     public Course getCourse(){
         return this.course;
     };
     public int getGeneralGroup(){
         return (this.group < 10)?this.group:((this.group < 100)?this.group/10:this.group/100);
     };
+    
 
    //Adds and setters:
    public void addClassroom(Classroom c){
@@ -65,6 +69,10 @@ public class Lecture {
    public void setType(int i){
        this.type = i;
    };
+   
+   //Queries
+   
+
    
    
 }
