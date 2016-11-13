@@ -29,6 +29,9 @@ public class Teacher {
     public String getName(){
       return this.name;  
     };
+    public LinkedList<Assignment> getAssignments(){
+      return this.assignments;  
+    };
     public LinkedList<Assignment> assignments(){
         return this.assignments;
     };

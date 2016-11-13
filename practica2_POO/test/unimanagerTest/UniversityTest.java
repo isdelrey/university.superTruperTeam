@@ -114,4 +114,32 @@ public class UniversityTest {
         university.getStudents().getFirst().addEnrollment(e);
         assertTrue(university.getStudents().getFirst().getEnrollments().contains(e));
     }
+    public Boolean XTeachesY(String X, String Y) {
+        Boolean found = false, found2 = false;
+        loop:for(unimanager.Teacher t : university.getTeachers())
+            if(X.equals(t.getName()))
+                for(unimanager.Assignment a : t.getAssignments()) {
+                    found = a.getCourse().getName().equals(Y);
+                    if(found) break loop;
+                }
+        loop2:for(unimanager.Course c : university.getCourses())
+            if(c.getName().equals(Y))
+                for(unimanager.Assignment a : c.getAssignments()) {
+                    found2 = X.equals(a.getTeacher().getName());
+                    if(found2) break loop2;
+                }
+        return (found && found2);
+    }
+    @Test
+    public void SnapeTeachesPotions() {
+        assertTrue(XTeachesY("Severus Snape","Transformations"));
+    }
+    @Test
+    public void AlbusTeachesTransformations() {
+        assertTrue(XTeachesY("Albus Dumbledore","Transformations"));
+    }
+    @Test
+    public void MinervaTeachesTransformations() {
+        assertTrue(XTeachesY("Minerva McGonagall","Transformations"));
+    }
 }

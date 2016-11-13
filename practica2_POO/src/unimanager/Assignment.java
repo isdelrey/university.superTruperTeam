@@ -20,12 +20,14 @@ public class Assignment {
     
     //Attributes:
     private LinkedList<Integer> groups;
-    private List<Teacher> teachers;
+    private Teacher teacher;
     private Course course; 
     
     // Constructor:
-    public Assignment(LinkedList<Integer> GROUPS) {
+    public Assignment(Course COURSE,LinkedList<Integer> GROUPS,Teacher TEACHER) {
+        this.course = COURSE;
         this.groups = GROUPS;
+        this.teacher = TEACHER;
     };
     
     //Public methods:
@@ -33,8 +35,8 @@ public class Assignment {
     public LinkedList<Integer> getGroups(){
         return this.groups;
     };
-    public List<Teacher> getTeachers(){
-        return this.teachers;
+    public Teacher getTeacher(){
+        return this.teacher;
     };
     public Course getCourse(){
         return this.course;
@@ -44,11 +46,11 @@ public class Assignment {
     public  void setAssignment(LinkedList<Integer> groups){
         this.groups = groups;  
     };
-    public  void addTeacher(Teacher t){
-        teachers.add(t);
-    }
     public  void addCourse(Course c){
         this.course = c;   
+    };
+    public  void addGroup(Integer c){
+        this.groups.add(Integer.SIZE);
     };
     
             

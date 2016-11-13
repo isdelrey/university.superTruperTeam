@@ -70,11 +70,11 @@ class Loader {
                     if(c.getName().equals(s[1]))
                         for(Teacher tea : TEACHERS)
                             if(tea.getName().equals(s[0])) {
-                                LinkedList<Integer> groups = new LinkedList<>();
+                                LinkedList<Integer> ggroups = new LinkedList<>();
                                 for(int i = 2;i<s.length;i++) {
-                                    groups.add(Integer.parseInt(s[i]));
+                                    ggroups.add(Integer.parseInt(s[i]));
                                 }
-                                a = new Assignment(groups);
+                                a = new Assignment(c,ggroups,tea);
                                 tea.addAssignment(a);
                                 c.addAssignment(a);
                             }
