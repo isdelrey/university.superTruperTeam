@@ -33,7 +33,7 @@ class Loader {
         }
         public static LinkedList<Course> loadCourses() {
             LinkedList<Course> r = new LinkedList<>();
-            LinkedList< String[] > dcourse = Utility.readXML( "teacher" );
+            LinkedList< String[] > dcourse = Utility.readXML( "course" );
             for(String[] s : dcourse) r.add(new Course(s[0]));
             return r;
         }
@@ -41,11 +41,9 @@ class Loader {
             LinkedList< String[] > dlecture = Utility.readXML( "lecture" );
             for(String[] s : dlecture)
                 for(Course c : COURSES)
-                    if(c.getName() == s[1]) {
+                    if(c.getName().equals(s[1])) {
                         Lecture l = new Lecture(s[4],Integer.parseInt(s[2]),Integer.parseInt(s[3]));
-                        for(Classroom cl : CLASSROOMS)
-                            if(Double.parseDouble(s[0]) == cl.getCode())
-                                l.addClassroom(cl);
+                        l.addClassroom(new Classroom(Double.parseDouble(s[0])));
                         c.addLecture(new Lecture(s[4],Integer.parseInt(s[2]),Integer.parseInt(s[3])));
                     }
         }
@@ -53,24 +51,23 @@ class Loader {
             LinkedList<String[]> denrollment = Utility.readXML( "enrollment" );
             for(String[] s : denrollment)
                 for(Course c : COURSES)
-                    if(c.getName() == s[1])
+                    if(c.getName().equals(s[1]))
                         for(Student st : STUDENTS)
-                            if(s[0] == st.getName())
-                                c.addEnrollment(new Enrollment(s[2],st));
+                            if(st.getName().equals(s[0])) {
+                                c.addEnrollment(new Enrollment(Integer.parseInt(s[2]),st));
+                            }
         }
         public static void loadAssignments(LinkedList<Course> COURSES, LinkedList<Teacher> TEACHERS) {
             LinkedList<String[]> denrollment = Utility.readXML( "assignment" );
             for(String[] s : denrollment)
                 for(Course c : COURSES)
-                    if(c.getName() == s[1])
+                    if(c.getName().equals(s[1]))
                         for(Teacher tea : TEACHERS)
-                            if(s[0] == tea.getName()) {
+                            if(tea.getName().equals(s[0])) {
                                 LinkedList<Integer> groups = new LinkedList<>();
-                                groups.add(Integer.parseInt(s[2]));
-                                groups.add(Integer.parseInt(s[3]));
-                                groups.add(Integer.parseInt(s[4]));
-                                groups.add(Integer.parseInt(s[5]));
-                                groups.add(Integer.parseInt(s[6]));
+                                for(int i = 2;i<s.length;i++) {
+                                    groups.add(Integer.parseInt(s[i]));
+                                }
                                 c.addAssignment(new Assignment(groups));
                             }
         }

@@ -16,32 +16,26 @@ package unimanager;
 public class Enrollment {
     
     // Attributes 
-    private String seminarGroup;
+    private int seminarGroup;
     private Student student;
-    private Course course;
     
     // Constructor:
-    public Enrollment(String SEMINARGROUP, Student STUDENT) {
+    public Enrollment(int SEMINARGROUP, Student STUDENT) {
         seminarGroup = SEMINARGROUP;
+        student = STUDENT;
     };
     
     // Public methods:
     //getters
-    public String getSeminarGroup(){
+    public int getSeminarGroup(){
         return this.seminarGroup; 
     };
     public Student getStudent(){
         return this.student;
     };
-    public Course getCourse(){
-      return this.course;   
-    };
     //Adding, are setters indeed in this case. 
     public void setStudent (Student s){
       this.student = s;  
-    };
-    public void setCourse(Course c){
-      this.course = c;   
     };
     
     

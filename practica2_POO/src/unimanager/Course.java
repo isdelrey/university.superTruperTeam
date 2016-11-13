@@ -22,6 +22,9 @@ public class Course {
     // Contructor:
     public Course(String NAME) {
         name = NAME;
+        lectures = new LinkedList<>();
+        enrollments = new LinkedList<>();
+        assignments = new LinkedList<>();
     }
     
     // Public methods:
