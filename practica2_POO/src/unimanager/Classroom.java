@@ -8,14 +8,36 @@ Ivo Sequeros del Rey, NIA: 183711
 
  */
 package unimanager;
+import java.util.LinkedList;
 
 /**
  *
  * @author ivo
  */
 public class Classroom {
-    int code;
+    
+    // Attributes
+    private int code;
+    private LinkedList<Lecture> lectures;
+    
+    // Constructor
     public Classroom(int CODE) {
         code = CODE;
-    }
+    };
+    
+    //Public methods 
+    //getters
+    public int getCode(){
+        return this.code;
+    };
+    public LinkedList<Lecture> getLectures(){
+        return this.lectures;
+    };
+    //setter and add
+    public void setCode(int i){
+        this.code = i;
+    };
+    public void addLecture(Lecture l){
+        this.lectures.add(l);
+    };
 }
