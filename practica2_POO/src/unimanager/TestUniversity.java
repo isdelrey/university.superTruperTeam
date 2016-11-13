@@ -19,7 +19,7 @@ public class TestUniversity {
      */
     public static void main(String[] args) {
         University university = new University();
-        System.out.println(university.coursesOfStudent( "Ron Weasley" ) ) ;
+        System.out.println(university.coursesOfStudent( "Nymphadora Tonks" ) ) ;
         System.out.println(university.getStudents().getFirst().getName());
     }
 }
