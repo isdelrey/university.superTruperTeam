@@ -49,16 +49,21 @@ class Loader {
                     }
         }
         public static void loadEnrollments(LinkedList<Course> COURSES, LinkedList<Student> STUDENTS) {
+            Enrollment e;
             LinkedList<String[]> denrollment = Utility.readXML( "enrollment" );
             for(String[] s : denrollment)
                 for(Course c : COURSES)
                     if(c.getName().equals(s[1]))
                         for(Student st : STUDENTS)
                             if(st.getName().equals(s[0])) {
-                                c.addEnrollment(new Enrollment(Integer.parseInt(s[2]),st));
+                                e = new Enrollment(Integer.parseInt(s[2]),st,c);
+                                st.addEnrollment(e);
+                                c.addEnrollment(e);
                             }
+            
         }
         public static void loadAssignments(LinkedList<Course> COURSES, LinkedList<Teacher> TEACHERS) {
+            Assignment a;
             LinkedList<String[]> denrollment = Utility.readXML( "assignment" );
             for(String[] s : denrollment)
                 for(Course c : COURSES)
@@ -69,7 +74,9 @@ class Loader {
                                 for(int i = 2;i<s.length;i++) {
                                     groups.add(Integer.parseInt(s[i]));
                                 }
-                                c.addAssignment(new Assignment(groups));
+                                a = new Assignment(groups);
+                                tea.addAssignment(a);
+                                c.addAssignment(a);
                             }
         }
         
