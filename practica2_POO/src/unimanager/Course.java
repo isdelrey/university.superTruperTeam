@@ -17,7 +17,7 @@ public class Course {
     private String name;
     private LinkedList<Enrollment> enrollments; 
     private LinkedList<Assignment> assignments;
-    private LinkedList<Lecture> lectures; 
+    private LinkedList<Lecture> lectures;
     
     // Contructor:
     public Course(String NAME) {

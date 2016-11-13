@@ -19,13 +19,13 @@ public class Student {
     // Attributes: 
     String name;
     int nia;
-    LinkedList<Enrollment> enrollments = new LinkedList<>(); 
+    LinkedList<Enrollment> enrollments; 
    
     //Contructor:
     public Student(String NAME,int NIA) {
         nia = NIA;
         name = NAME;
-        
+        enrollments = new LinkedList<>();
     }
     
     // Public methods: 

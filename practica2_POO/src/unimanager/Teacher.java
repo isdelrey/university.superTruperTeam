@@ -22,6 +22,7 @@ public class Teacher {
     // Contructor:
     public Teacher(String NAME) {
         name = NAME;
+        assignments = new LinkedList<>();
     }
     
     //Public methods: 

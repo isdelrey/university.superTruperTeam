@@ -9,6 +9,8 @@ Ivo Sequeros del Rey, NIA: 183711
  */
 package unimanager;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author ivo
@@ -18,9 +20,10 @@ public class Enrollment {
     // Attributes 
     private int seminarGroup;
     private Student student;
+    private Course course; 
     
     // Constructor:
-    public Enrollment(int SEMINARGROUP, Student STUDENT) {
+    public Enrollment(int SEMINARGROUP, Student STUDENT, Course course) {
         seminarGroup = SEMINARGROUP;
         student = STUDENT;
     };
@@ -32,6 +35,9 @@ public class Enrollment {
     };
     public Student getStudent(){
         return this.student;
+    };
+    public Course getCourse(){
+        return this.course;
     };
     //Adding, are setters indeed in this case. 
     public void setStudent (Student s){
