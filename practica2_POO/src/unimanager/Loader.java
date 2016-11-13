@@ -19,6 +19,12 @@ class Loader {
             for(String[] s : dteachers) r.add(new Teacher(s[0]));
             return r;
         }
+        public static LinkedList<Student> loadStudents() {
+            LinkedList<Student> r = new LinkedList<>();
+            LinkedList<String[]> dstudent = Utility.readXML( "student" );
+            for(String[] s : dstudent) r.add(new Student(s[0],Integer.parseInt(s[1])));
+            return r;
+        }
         public static LinkedList<Classroom> loadClassrooms() {
             LinkedList<Classroom> r = new LinkedList<>();
             LinkedList< String[] > dclassroom = Utility.readXML( "classrooms" );
