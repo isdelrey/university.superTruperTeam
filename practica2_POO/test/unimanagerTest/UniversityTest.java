@@ -71,21 +71,35 @@ public class UniversityTest {
         assertTrue(found);
     }
     @Test
-    public void enrollmentsInPotionsNumberCheck() {
-        for(unimanager.Course c : university.getCourses()) {
-            if("Potions".equals(c.getName())) {
-                assertEquals(10,c.getEnrollments().size());
-                break;
-            }
+    public void teachersNumberCheck() {
+        assertEquals(17,university.getTeachers().size());
+    }
+    @Test
+    public void snapeTeacher() {
+        Boolean found = false;
+        for(unimanager.Teacher t : university.getTeachers()) {
+            found = "Severous Snape".equals(t.getName());
+            if(found) break;
         }
+    }
+    public Boolean XIsEnrolledInY(String X, String Y) {
+        Boolean found = false;
+        for(unimanager.Course c : university.getCourses())
+            if(Y.equals(c.getName()))
+                for(unimanager.Enrollment e : c.getEnrollments()) 
+                    if(found = X.equals(e.getStudent().getName())) break;
+        return found;
     }
     @Test
     public void DracoIsEnrolledInPotions() {
-        Boolean found = false;
-        for(unimanager.Course c : university.getCourses())
-            if("Potions".equals(c.getName()))
-                for(unimanager.Enrollment e : c.getEnrollments()) 
-                    if(found = "Draco Malfoy".equals(e.getStudent().getName())) break;
-        assertTrue(found);
+        assertTrue(XIsEnrolledInY("Draco Malfoy","Potions"));
+    }
+    @Test
+    public void HarryIsEnrolledInPotions() {
+        assertTrue(XIsEnrolledInY("Harry Potter","Potions"));
+    }
+    @Test
+    public void HermioneIsEnrolledInTransformations() {
+        assertTrue(XIsEnrolledInY("Hermione Granger","Transformations"));
     }
 }
