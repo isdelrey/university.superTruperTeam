@@ -40,4 +40,12 @@ public class Classroom {
     public void addLecture(Lecture l){
         this.lectures.add(l);
     };
+
+    public LinkedList<Course> getCourses() {
+        LinkedList<Course> courseList = new LinkedList<>();
+        for (Lecture lecture : this.lectures){
+            courseList.add(lecture.getCourse());
+        }
+       return courseList;
+    };
 }
