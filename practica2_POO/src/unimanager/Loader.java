@@ -27,7 +27,7 @@ class Loader {
         }
         public static LinkedList<Classroom> loadClassrooms() {
             LinkedList<Classroom> r = new LinkedList<>();
-            LinkedList< String[] > dclassroom = Utility.readXML( "classrooms" );
+            LinkedList< String[] > dclassroom = Utility.readXML( "classroom" );
             for(String[] s : dclassroom) r.add(new Classroom(Double.parseDouble(s[0])));
             return r;
         }
@@ -38,7 +38,7 @@ class Loader {
             return r;
         }
         public static void loadLectures(LinkedList<Course> COURSES, LinkedList<Classroom> CLASSROOMS) {
-            LinkedList< String[] > dlecture = Utility.readXML( "lectures" );
+            LinkedList< String[] > dlecture = Utility.readXML( "lecture" );
             for(String[] s : dlecture)
                 for(Course c : COURSES)
                     if(c.getName() == s[1]) {
