@@ -20,7 +20,11 @@ public class Lecture {
     private int timeSlot;
     private int type;
     private Classroom classroom;
+<<<<<<< HEAD
+    private Course course; 
+=======
     private Course course;
+>>>>>>> origin/master
     
     //Contructor:
     public Lecture(int GROUP, int TIMESLOT, int TYPE, Course COURSE) {
@@ -41,12 +45,20 @@ public class Lecture {
     public int getType(){
         return this.type;
     };
+<<<<<<< HEAD
     public int getGeneralGroup(){
         return (this.group < 10)?this.group:((this.group < 100)?this.group/10:this.group/100);
     };
+=======
+<<<<<<< HEAD
+    
+    
+=======
+>>>>>>> origin/master
     public Course getCourse(){
         return this.course;
     };
+>>>>>>> origin/master
    //Adds and setters:
    public void addClassroom(Classroom c){
        this.classroom = c;
