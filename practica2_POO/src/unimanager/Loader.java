@@ -37,13 +37,17 @@ class Loader {
             for(String[] s : dcourse) r.add(new Course(s[0]));
             return r;
         }
-        public static LinkedList<Lecture> loadLectures() {
-            LinkedList<Lecture> r = new LinkedList<>();
-            LinkedList< String[] > dcourse = Utility.readXML( "lectures" );
-            dcourse.forEach((s) -> {
-                r.add(new Lecture(s[4],Integer.parseInt(s[2]),Integer.parseInt(s[3])));
-            });
-            return r;
+        public static void loadLectures(LinkedList<Course> COURSES, LinkedList<Classroom> CLASSROOMS) {
+            LinkedList< String[] > dlecture = Utility.readXML( "lectures" );
+            for(String[] s : dlecture)
+                for(Course c : COURSES)
+                    if(c.getName() == s[1]) {
+                        Lecture l = new Lecture(s[4],Integer.parseInt(s[2]),Integer.parseInt(s[3]));
+                        for(Classroom cl : CLASSROOMS)
+                            if(Double.parseDouble(s[0]) == cl.getCode())
+                                l.addClassroom(cl);
+                        c.addLecture(new Lecture(s[4],Integer.parseInt(s[2]),Integer.parseInt(s[3])));
+                    }
         }
         public static void loadEnrollments(LinkedList<Course> COURSES, LinkedList<Student> STUDENTS) {
             LinkedList<String[]> denrollment = Utility.readXML( "enrollment" );

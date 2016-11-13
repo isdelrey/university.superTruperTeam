@@ -20,7 +20,6 @@ public class Lecture {
     private int timeSlot;
     private int type;
     private Classroom classroom;
-    private Course course;
     
     //Contructor:
     public Lecture(String GROUP, int TIMESLOT, int TYPE) {
@@ -43,9 +42,6 @@ public class Lecture {
    //Adds and setters:
    public void addClassroom(Classroom c){
        this.classroom = c;
-   }; 
-   public void addCourse(Course c){
-       this.course = c;
    };
    public void setGroup( String g){
        this.group = g;

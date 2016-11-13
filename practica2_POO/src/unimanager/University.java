@@ -1,27 +1,25 @@
 /*
-┌──────────────────────────────────────────────────────────────────────────────────┐
-│                  Pràctica 2 - Programació Orientada a Objectes                   │
-└──────────────────────────────────────────────────────────────────────────────────┘
-
-Paula Bassagañas Odena, NIA: 158710
-Ivo Sequeros del Rey, NIA: 183711
-
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package unimanager;
 
 import java.util.LinkedList;
-import unimanager.utilities.Utility;
 
 /**
  *
  * @author ivo
  */
 public class University {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    LinkedList<Teacher> teachers;
+    LinkedList<Student> students;
+    LinkedList<Course> courses;
+    LinkedList<Classroom> classrooms;
+    
+    public University() {
+        teachers = Loader.loadTeachers();
+        students = Loader.loadStudents();
+        courses = Loader.loadCourses();
     }
 }
