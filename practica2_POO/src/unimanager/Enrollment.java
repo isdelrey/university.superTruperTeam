@@ -40,6 +40,9 @@ public class Enrollment {
     public Course getCourse(){
         return this.course;
     };
+    public int getGeneralGroup(){
+        return ((this.seminarGroup%200 == 0)?2:1);
+    };
     //Adding, are setters indeed in this case. 
     public void setStudent (Student s){
       this.student = s;  

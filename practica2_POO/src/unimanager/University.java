@@ -59,13 +59,28 @@ public class University {
         };
         return coursesList;
     };
-    public LinkedList<String> studentsOfClassroom(double classroom) {
+    public LinkedList<String> studentsOfClassroom(double classroom, int timeSlot) {
         LinkedList<String> studentsList = new LinkedList<>();
         for(Classroom cl : this.classrooms)
             if(classroom == cl.getCode())
                 for(Lecture l : cl.getLectures())
-                    for(Enrollment e : l.getCourse().getEnrollments())
-                        studentsList.add(e.getStudent().getName());
+                    if(l.getTimeSlot() == timeSlot)
+                        for(Enrollment e : l.getCourse().getEnrollments())
+                            if(e.getGeneralGroup() == l.getGeneralGroup())
+                                studentsList.add(e.getStudent().getName());
         return studentsList;
+    }
+    public String teacherOfClassroom(double classroom, int timeSlot) {
+        String teacher = null;
+        loop:for(Classroom cl : this.classrooms)
+            if(classroom == cl.getCode())
+                for(Lecture l : cl.getLectures())
+                    for(Assignment e : l.getCourse().getAssignments())
+                        for(Integer i : e.getGroups())
+                            if(i == l.getGroup()) {
+                                teacher = e.getTeacher().getName();
+                                break loop;
+                            }
+        return teacher;
     }
 }

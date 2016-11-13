@@ -43,8 +43,8 @@ class Loader {
             for(String[] s : dlecture)
                 for(Course c : COURSES)
                     if(c.getName().equals(s[1])) {
-                        Lecture l = new Lecture(s[4],Integer.parseInt(s[2]),Integer.parseInt(s[3]),c);
-                        c.addLecture(new Lecture(s[4],Integer.parseInt(s[2]),Integer.parseInt(s[3]),c));
+                        Lecture l = new Lecture(Integer.parseInt(s[4]),Integer.parseInt(s[2]),Integer.parseInt(s[3]),c);
+                        c.addLecture(new Lecture(Integer.parseInt(s[4]),Integer.parseInt(s[2]),Integer.parseInt(s[3]),c));
                         for(Classroom cl : CLASSROOMS)
                             if(cl.getCode() == Double.parseDouble(s[0])) {
                                 l.addClassroom(cl);
