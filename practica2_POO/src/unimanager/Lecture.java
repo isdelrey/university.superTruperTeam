@@ -16,15 +16,21 @@ package unimanager;
 public class Lecture {
     
     //Attributes
-    private String group;
+    private int group;
     private int timeSlot;
     private int type;
     private Classroom classroom;
     private Course course; 
+<<<<<<< HEAD
 
     
     //Contructor:
     public Lecture(String GROUP, int TIMESLOT, int TYPE, Course COURSE, Classroom CLASSROOM) {
+=======
+    
+    //Contructor:
+    public Lecture(int GROUP, int TIMESLOT, int TYPE, Course COURSE) {
+>>>>>>> origin/master
         this.group = GROUP; 
         this.timeSlot = TIMESLOT; 
         this.type = TYPE;
@@ -34,7 +40,7 @@ public class Lecture {
     
     // Public methods:
     //getters
-    public String getGroup(){
+    public int getGroup(){
         return this.group;  
     };
     public int getTimeSlot(){
@@ -42,16 +48,26 @@ public class Lecture {
     };
     public int getType(){
         return this.type;
+<<<<<<< HEAD
     }; 
     public Course getCourse(){
         return this.course;
     };
 
+=======
+    };
+    public int getGeneralGroup(){
+        return (this.group < 10)?this.group:((this.group < 100)?this.group/10:this.group/100);
+    };
+    public Course getCourse(){
+        return this.course;
+    };
+>>>>>>> origin/master
    //Adds and setters:
    public void addClassroom(Classroom c){
        this.classroom = c;
    };
-   public void setGroup( String g){
+   public void setGroup(int g){
        this.group = g;
    };
    public void setTimeSlot( int i){
