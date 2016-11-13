@@ -51,4 +51,24 @@ public class Teacher {
         };
         return courseList;
     }
+    public LinkedList<Student> getStudents(){
+        LinkedList<Student> studentList = new LinkedList<>();
+        for(Course course : this.getCourses()){
+            for (Student student : course.getStudents())
+            {
+                studentList.add(student);
+            };
+        };
+        return studentList;
+    }; 
+    public LinkedList<Integer> getTeacherGroups(){
+        LinkedList<Integer> teacherGroups =  new LinkedList<>();
+        for(Assignment assignment : this.assignments){
+            for(Integer group : assignment.getGroups()){
+                teacherGroups.add(group);
+            };    
+        };
+        return teacherGroups; 
+    }
+    
 }

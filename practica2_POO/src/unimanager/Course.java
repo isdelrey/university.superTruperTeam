@@ -66,5 +66,13 @@ public class Course {
     public void addLecture(Lecture l){
       this.lectures.add(l);
     };
+    //Queries:
+    public LinkedList<Student> getStudents(){
+        LinkedList<Student> studentList = new LinkedList<>();
+        for(Enrollment enrollment : this.enrollments){
+            studentList.add(enrollment.getStudent());
+        };
+        return studentList; 
+    }
    
 }

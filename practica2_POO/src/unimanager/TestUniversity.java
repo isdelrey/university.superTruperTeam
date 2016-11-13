@@ -23,6 +23,8 @@ public class TestUniversity {
         System.out.println(university.getStudents().getFirst().getName());
         System.out.println(university.CoursesOfClassroom( 11.101 ) + "If the courses are repeated the repeatitions are omited");
         System.out.println(university.teachersOfCourse( "Filius Flitwick")+  "Filius Flitwick" ) ;
+        System.out.println(university.studentsOfTeacher( "Horace Slughorn", 12.100)+  "Filius Flitwick" + "11.101" + " " + university.studentsOfTeacher( "Filius Flitwick", 11.101 ).size()) ;
+        
         
     }
 }

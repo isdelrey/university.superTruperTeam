@@ -115,5 +115,30 @@ public class University {
         };
         return coursesList;
     };
+    public LinkedList<String> studentsOfTeacher (String teacherName, double code){
+        LinkedList<String> studentsList = new LinkedList<>();
+        for (Teacher teacher : this.teachers){
+            for(Classroom classroom : this.classrooms){
+                LinkedList<Course> teacherCourses = new LinkedList<>();
+                LinkedList<Course> coursesCourses  = new LinkedList<>();
+                teacherCourses = teacher.getCourses();
+                coursesCourses = classroom.getCourses(); 
+                for (Course coursesT : teacherCourses){
+                    for(Course coursesC : coursesCourses){
+                        if(coursesT == coursesC){
+                            for(Student student : coursesT.getStudents()){
+                                String studentName= student.getName();
+                                if(!studentsList.contains(studentName)){
+                                studentsList.add(studentName); 
+                                }   
+                            };
+                        };
+                    };
+                };
+
+            };
+        };
+        return studentsList; 
+    }
 
 }
