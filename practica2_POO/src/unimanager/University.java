@@ -21,5 +21,8 @@ public class University {
         teachers = Loader.loadTeachers();
         students = Loader.loadStudents();
         courses = Loader.loadCourses();
+        Loader.loadLectures(courses, classrooms);
+        Loader.loadEnrollments(courses, students);
+        Loader.loadAssignments(courses, teachers);
     }
 }
