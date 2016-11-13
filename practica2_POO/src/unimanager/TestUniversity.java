@@ -13,7 +13,7 @@ package unimanager;
  *
  * @author ivo
  */
-public class Run {
+public class TestUniversity {
     /**
      * @param args the command line arguments
      */
