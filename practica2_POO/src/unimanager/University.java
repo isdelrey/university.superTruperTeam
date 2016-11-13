@@ -51,7 +51,7 @@ public class University {
         for(Student s: this.students)
         {
             if(s.getName().equals(student)){
-                for(Course course : s.getCourses() ){
+                for(Course course : s.getCourses()) {
                     coursesList.add(course.getName());
                 }; 
                 break; 

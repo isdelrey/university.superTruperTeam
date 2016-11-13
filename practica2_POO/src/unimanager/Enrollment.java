@@ -23,9 +23,10 @@ public class Enrollment {
     private Course course; 
     
     // Constructor:
-    public Enrollment(int SEMINARGROUP, Student STUDENT, Course course) {
+    public Enrollment(int SEMINARGROUP, Student STUDENT, Course COURSE) {
         seminarGroup = SEMINARGROUP;
         student = STUDENT;
+        course = COURSE;
     };
     
     // Public methods:

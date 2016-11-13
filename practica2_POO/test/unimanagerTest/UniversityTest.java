@@ -83,12 +83,18 @@ public class UniversityTest {
         }
     }
     public Boolean XIsEnrolledInY(String X, String Y) {
-        Boolean found = false;
+        Boolean found = false, found2 = false;
         for(unimanager.Course c : university.getCourses())
             if(Y.equals(c.getName()))
                 for(unimanager.Enrollment e : c.getEnrollments()) 
                     if(found = X.equals(e.getStudent().getName())) break;
-        return found;
+        
+        for(unimanager.Student s : university.getStudents())
+            if(X.equals(s.getName()))
+                for(unimanager.Enrollment e : s.getEnrollments()) 
+                    if(found2 = Y.equals(e.getCourse().getName())) break;
+        
+        return (found && found2);
     }
     @Test
     public void DracoIsEnrolledInPotions() {
@@ -101,5 +107,11 @@ public class UniversityTest {
     @Test
     public void HermioneIsEnrolledInTransformations() {
         assertTrue(XIsEnrolledInY("Hermione Granger","Transformations"));
+    }
+    @Test
+    public void directAddEnrollmentInStudent() {
+        unimanager.Enrollment e =new unimanager.Enrollment(1,university.getStudents().getFirst(),university.getCourses().getFirst());
+        university.getStudents().getFirst().addEnrollment(e);
+        assertTrue(university.getStudents().getFirst().getEnrollments().contains(e));
     }
 }

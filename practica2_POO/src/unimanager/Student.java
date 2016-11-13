@@ -52,8 +52,7 @@ public class Student {
     };
     public LinkedList<Course> getCourses(){
         LinkedList<Course> courseList = new LinkedList<>();
-
-        for(Enrollment enroll : this.enrollments){           
+        for(Enrollment enroll : this.enrollments){
             courseList.add(enroll.getCourse());
         };
         return courseList; 
