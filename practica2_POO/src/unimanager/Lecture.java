@@ -20,12 +20,14 @@ public class Lecture {
     private int timeSlot;
     private int type;
     private Classroom classroom;
+    private Course course;
     
     //Contructor:
-    public Lecture(String GROUP, int TIMESLOT, int TYPE) {
+    public Lecture(String GROUP, int TIMESLOT, int TYPE, Course COURSE) {
         this.group = GROUP; 
         this.timeSlot = TIMESLOT; 
         this.type = TYPE;
+        this.course = COURSE;
     }
     
     // Public methods:
@@ -38,6 +40,9 @@ public class Lecture {
     };
     public int getType(){
         return this.type;
+    };
+    public Course getCourse(){
+        return this.course;
     };
    //Adds and setters:
    public void addClassroom(Classroom c){
