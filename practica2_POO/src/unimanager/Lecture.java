@@ -23,11 +23,12 @@ public class Lecture {
     private Course course; 
     
     //Contructor:
-    public Lecture(int GROUP, int TIMESLOT, int TYPE, Course COURSE) {
+    public Lecture(int GROUP, int TIMESLOT, int TYPE, Course COURSE, Classroom CLASSROOM) {
         this.group = GROUP; 
         this.timeSlot = TIMESLOT; 
         this.type = TYPE;
         this.course = COURSE;
+        this.classroom = CLASSROOM;
     }
     
     // Public methods:

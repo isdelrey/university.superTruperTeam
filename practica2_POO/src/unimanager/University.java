@@ -24,6 +24,7 @@ public class University {
         this.teachers = Loader.loadTeachers();
         this.students = Loader.loadStudents();
         this.courses = Loader.loadCourses();
+        this.classrooms = Loader.loadClassrooms();
         Loader.loadLectures(courses, classrooms);
         Loader.loadEnrollments(courses, students);
         Loader.loadAssignments(courses, teachers);

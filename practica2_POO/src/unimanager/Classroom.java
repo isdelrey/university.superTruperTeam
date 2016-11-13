@@ -23,6 +23,7 @@ public class Classroom {
     // Constructor
     public Classroom(double CODE) {
         code = CODE;
+        lectures = new LinkedList<>();
     };
     
     //Public methods 
