@@ -68,4 +68,15 @@ public class University {
                         studentsList.add(e.getStudent().getName());
         return studentsList;
     }
+    public LinkedList <String> CoursesOfClassroom (double code){
+        LinkedList<String> coursesList = new LinkedList<>();
+        for(Classroom classroom : this.classrooms){
+            if(classroom.getCode() == code){
+                for(Course course : classroom.getCourses()){
+                    coursesList.add(course.getName());
+                };
+            };
+        };
+        return coursesList;
+    };
 }
