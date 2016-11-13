@@ -25,4 +25,16 @@ public class University {
         Loader.loadEnrollments(courses, students);
         Loader.loadAssignments(courses, teachers);
     }
+    public LinkedList<Teacher> getTeachers() {
+        return teachers;
+    }
+    public LinkedList<Student> getStudents() {
+        return students;
+    }
+    public LinkedList<Course> getCourses() {
+        return courses;
+    }
+    public LinkedList<Classroom> getClassrooms() {
+        return classrooms;
+    }
 }
