@@ -17,17 +17,17 @@ import java.util.LinkedList;
 public class Classroom {
     
     // Attributes
-    private int code;
+    private double code;
     private LinkedList<Lecture> lectures;
     
     // Constructor
-    public Classroom(int CODE) {
+    public Classroom(double CODE) {
         code = CODE;
     };
     
     //Public methods 
     //getters
-    public int getCode(){
+    public double getCode(){
         return this.code;
     };
     public LinkedList<Lecture> getLectures(){

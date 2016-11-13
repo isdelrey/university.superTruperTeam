@@ -10,6 +10,7 @@ Ivo Sequeros del Rey, NIA: 183711
 package unimanager;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -18,33 +19,33 @@ import java.util.LinkedList;
 public class Assignment {
     
     //Attributes:
-    private LinkedList<String> groups;
-    private Teacher teacher;
+    private LinkedList<Integer> groups;
+    private List<Teacher> teachers;
     private Course course; 
     
     // Constructor:
-    public Assignment(LinkedList<String> GROUPS) {
+    public Assignment(LinkedList<Integer> GROUPS) {
         this.groups = GROUPS;
     };
     
     //Public methods:
     //getters
-    public LinkedList<String> getGroups(){
+    public LinkedList<Integer> getGroups(){
         return this.groups;
     };
-    public Teacher getTeacher(){
-        return this.teacher;
+    public List<Teacher> getTeachers(){
+        return this.teachers;
     };
     public Course getCourse(){
         return this.course;
     }; 
     
     //Setters/ add
-    public  void setAssignment(LinkedList<String> groups){
+    public  void setAssignment(LinkedList<Integer> groups){
         this.groups = groups;  
     };
     public  void addTeacher(Teacher t){
-        this.teacher = t;
+        teachers.add(t);
     }
     public  void addCourse(Course c){
         this.course = c;   

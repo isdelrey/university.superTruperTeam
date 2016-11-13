@@ -21,7 +21,7 @@ public class Enrollment {
     private Course course;
     
     // Constructor:
-    public Enrollment(String SEMINARGROUP) {
+    public Enrollment(String SEMINARGROUP, Student STUDENT) {
         seminarGroup = SEMINARGROUP;
     };
     

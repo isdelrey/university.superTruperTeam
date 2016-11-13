@@ -9,6 +9,9 @@ Ivo Sequeros del Rey, NIA: 183711
  */
 package unimanager;
 
+import java.util.LinkedList;
+import unimanager.utilities.Utility;
+
 /**
  *
  * @author ivo
@@ -21,5 +24,4 @@ public class University {
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    
 }

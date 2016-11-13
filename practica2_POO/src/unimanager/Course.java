@@ -26,6 +26,9 @@ public class Course {
     
     // Public methods:
     //getters
+     public String getName(){
+        return this.name; 
+    };
     public LinkedList<Enrollment> getEnrollments(){
       return this.enrollments;  
     };
@@ -37,6 +40,9 @@ public class Course {
     };
     
     //setters
+     public void setName(String NAME){
+        this.name =  NAME; 
+    };
     public void setEnrollments(LinkedList<Enrollment> enrollments){
         this.enrollments = enrollments; 
     };
@@ -48,10 +54,10 @@ public class Course {
     };
     
     //Add 1 enrollment, assignment or lecture to the current ones.
-    public void addEnrollments(Enrollment e){
+    public void addEnrollment(Enrollment e){
        this.enrollments.add(e); 
     };
-    public void addAssignments(Assignment a){
+    public void addAssignment(Assignment a){
       this.assignments.add(a);  
     };
     public void addLecture(Lecture l){
