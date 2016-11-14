@@ -5,6 +5,7 @@
  */
 package unimanagerTest;
 
+import java.util.LinkedList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author ivo
  */
-public class UniversityTest {
+public class DataTest {
     unimanager.University university;
-    public UniversityTest() {
+    public DataTest() {
     }
     
     @BeforeClass

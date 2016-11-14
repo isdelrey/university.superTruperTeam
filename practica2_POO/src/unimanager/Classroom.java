@@ -8,6 +8,7 @@ Ivo Sequeros del Rey, NIA: 183711
 
  */
 package unimanager;
+import java.text.DecimalFormat;
 import java.util.LinkedList;
 
 /**
@@ -30,6 +31,10 @@ public class Classroom {
     //getters
     public double getCode(){
         return this.code;
+    };
+    public String getCodeAsString(){
+        DecimalFormat df = new DecimalFormat("#0.000");
+        return df.format(code);
     };
     public LinkedList<Lecture> getLectures(){
         return this.lectures;

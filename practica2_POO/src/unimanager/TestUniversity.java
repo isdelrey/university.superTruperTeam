@@ -19,12 +19,67 @@ public class TestUniversity {
      */
     public static void main(String[] args) {
         University university = new University();
-        System.out.println(university.coursesOfStudent( "Ron Weasley" ) ) ;
+        System.out.println("Only a few quick tests are included here. Run Unit Test UniversityTest.java to get the full test.\n");
+        System.out.println("Ron Weasley's courses:");
+        university.coursesOfStudent( "Ron Weasley" ).forEach((s) -> {
+            System.out.println(s);
+        });
+        System.out.println("-----");
+        
+        System.out.println("Name of the first student on the list:");
         System.out.println(university.getStudents().getFirst().getName());
-        System.out.println(university.CoursesOfClassroom( 11.101 ) + "If the courses are repeated the repeatitions are omited");
-        System.out.println(university.teachersOfCourse( "Filius Flitwick")+  "Filius Flitwick" ) ;
-        System.out.println(university.studentsOfTeacher( "Horace Slughorn", 12.100)+  "Filius Flitwick" + "11.101" + " " + university.studentsOfTeacher( "Filius Flitwick", 11.101 ).size()) ;
-        System.out.println(university.classroomOfTeacher( "Filius Flitwick", 11)) ;
+        System.out.println("-----");
+        System.out.println("Courses of classroom 12.100:");
+        university.coursesOfClassroom( 12.100 ).forEach((s) -> {
+            System.out.println(s);
+        });
+        System.out.println("Albus Dumbledore's courses:");
+        university.coursesOfTeacher("Albus Dumbledore").forEach((s) -> {
+            System.out.println(s);
+        });
+        System.out.println("-----");
+        System.out.println("Courses of classroom 12.100 at time-slot 11:");
+        university.coursesOfClassroom( 12.100,17 ).forEach((s) -> {
+            System.out.println(s);
+        });
+        System.out.println("-----");
+        System.out.println("Teacher of classroom 10.100 at time-slot 0");
+        System.out.println(university.teacherOfClassroom(10.100, 0));
+        
+        System.out.println("-----");
+        System.out.println("Teachers of Potions:");
+        university.teachersOfCourse("Potions").forEach((s) -> {
+            System.out.println(s);
+        });
+        System.out.println("-----");
+        System.out.println("Students of 11.101 at time-slot 7:");
+        university.studentsOfClassroom(11.101, 7).forEach((s) -> {
+            System.out.println(s);
+        });
+        System.out.println("-----");
+        System.out.println("Minerva McGonagall's students:");
+        university.studentsOfTeacher("Minerva McGonagall").forEach((s) -> {
+            System.out.println(s);
+        });
+        System.out.println("-----");
+        
+        System.out.println("Where does Albus Dumbledore lecture at the time-slot 7?");
+        System.out.println(university.classroomOfTeacher( "Albus Dumbledore", 7));
+        
+        System.out.println("-----");
+        
+        System.out.println("Is Harry enrolled in Enchantments?");
+        System.out.println(university.studentIsEnrolledInCourse("Harry Potter", "Enchantments")?"Yes":"No");
+        
+        System.out.println("-----");
+        
+        System.out.println("Is Harry enrolled in Black Magic Defense?");
+        System.out.println(university.studentIsEnrolledInCourse("Harry Potter", "Black Magic Defense")?"Yes":"No");
+        
+        System.out.println("-----");
+        
+        System.out.println("Does Snape teach Potions?");
+        System.out.println(university.teacherTeachesCourse("Severus Snape", "Potions")?"Yes":"No");
         
         
     }
