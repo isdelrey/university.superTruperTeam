@@ -11,8 +11,10 @@ package editor;
  */
 public class Vector extends ObjectCollection {
     private final double[] values;
+    int dim;
     public Vector() {
         super();
+        dim = 0;
         values = new double[maxDimension];
     }
     public Vector(int maxDim) {
@@ -39,9 +41,11 @@ public class Vector extends ObjectCollection {
     }
     public void set(int index, double v) {
         values[index] = v;
+        if(index > dim && v != 0) dim = index;
     }
     public void setZero(int index) {
         values[index] = 0;
+        if(index == dim) dim--;
     }
     public double sumAll() {
         double n = 0;
@@ -49,8 +53,7 @@ public class Vector extends ObjectCollection {
         return n;
     }
     public void sumTo(Vector v) {
-        for(int i = 0;i<v.getDim();i++)
-            v.set(i, get(i)+v.get(i));
+        v.sumFrom(this);
     }
     public void sumFrom(Vector v) {
         for(int i = 0;i<v.getDim();i++)
