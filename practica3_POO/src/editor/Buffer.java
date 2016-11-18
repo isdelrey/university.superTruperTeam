@@ -9,6 +9,6 @@ package editor;
  *
  * @author ivo
  */
-public class Buffer {
+public class Buffer extends Vector{
     
 }

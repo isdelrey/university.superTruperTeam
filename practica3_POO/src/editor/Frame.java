@@ -9,6 +9,6 @@ package editor;
  *
  * @author ivo
  */
-public class Frame {
+public class Frame extends Matrix{
     
 }
