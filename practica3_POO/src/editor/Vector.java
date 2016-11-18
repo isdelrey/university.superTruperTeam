@@ -10,13 +10,18 @@ package editor;
  * @author ivo
  */
 public class Vector extends ObjectCollection {
+    //Attributes
     private final double[] values;
     int dim;
+    
+    //Constructor
     public Vector() {
         super();
         dim = 0;
         values = new double[maxDimension];
     }
+    
+    //Public methods
     public Vector(int maxDim) {
         super(maxDim);
         values = new double[maxDimension];
