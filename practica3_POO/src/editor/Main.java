@@ -24,12 +24,12 @@ public class Main {
 //         matrix.set(0,1,0);
 //         matrix.set(1,0,0);
 //         matrix.set(1,1,1);
-//         matrix.print();
+//         matrix.printMatrix();
         Vector v = new Vector(3);
         v.set3D(1, 0, 0);
         Matrix  m = new Matrix(3,3);
         m.create3DRotationZ(Math.PI / 2);
-        m.print();
+        m.printMatrix();
                  
          
          
