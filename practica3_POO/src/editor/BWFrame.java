@@ -19,4 +19,14 @@ public class BWFrame extends Frame {
     public void changeBrightness(double delta){
         
     };
+    public double get(Integer i, Integer j){
+      return this.getValue(i, j);   
+    };
+    
+    //setter:
+    
+    //To be reviewed
+    public void set(Integer i, Integer val){
+        set(i,i, val);
+    };
 }

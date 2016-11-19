@@ -36,6 +36,12 @@ public class Matrix extends ObjectCollection {
         return this.values; 
     };
     
+    public double getValue(Integer i, Integer j){
+        double ret;
+        ret = this.getColumnVector(j).getPositionValue(i);
+        return ret;
+    }
+    
     // Returns the column vector of the matrix belonging to column c
     public Vector getColumnVector(int c) {
         return this.values[c];
