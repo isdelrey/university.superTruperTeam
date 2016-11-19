@@ -136,5 +136,6 @@ public class Vector extends ObjectCollection {
            vector.set(i, this.values[i]);
         }
          this.values = vector.values;
+         this.dim = this.dim + 1; 
     }
 }
