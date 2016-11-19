@@ -108,7 +108,19 @@ public class Matrix extends ObjectCollection {
         }
         this.values = matrix.values;
     }
-
+    
+    //Adds a void row to the matrix
+    public void addRow(){
+        Matrix matrix = new Matrix(this.rows+1, this.cols);
+        Vector vector; 
+        for(Integer i = 0; i < this.cols; i++){
+            vector = this.getColumnVector(i);
+            vector.addDim();
+            matrix.values[i] = vector;
+        }
+        this.values = matrix.values;
+        this.rows = this.rows + 1;
+    }
 
 }
     

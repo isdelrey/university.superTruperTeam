@@ -31,15 +31,15 @@ public class Main {
         Matrix  m = new Matrix(3,3);
         m.create3DRotationZ(Math.PI / 2);
         m.printMatrix();
-        m.addColumn();
+        m.addRow();
         m.printMatrix();
 
         
-        Vector v = new Vector (3) ;
-        v.set3D(1, 2, 3);
-        v.print();
-        v.addDim();
-        v.print();
+//        Vector v = new Vector (3) ;
+//        v.set3D(1, 2, 3);
+//        v.print();
+//        v.addDim();
+//        v.print();
         
         
         
