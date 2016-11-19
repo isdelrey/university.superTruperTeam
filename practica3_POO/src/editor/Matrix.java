@@ -99,6 +99,15 @@ public class Matrix extends ObjectCollection {
             System.out.println("Matrix dimension doesn't match");
         }
     };
+    
+    //Adds a void column to the matrix
+    public void addColumn(){
+        Matrix matrix = new Matrix(this.rows, this.cols + 1);
+        for(Integer i = 0; i < this.cols; i++){
+            matrix.setColumn(i, this.getColumnVector(i));
+        }
+        this.values = matrix.values;
+    }
 
 
 }
