@@ -109,15 +109,20 @@ public class Vector extends ObjectCollection {
     //Multiplies the current vector by a matrix
     public void multiplyMat(Matrix m){
         Vector tempVec = new Vector (this.dim);
-        for (Integer i = 0; i < this.dim; i++){
-           double value = 0;
-           double[] rowVector; 
-           rowVector = m.getRowVector(i).getArray();
-           for(Integer j = 0; j < rowVector.length; j++){
-               value = value + rowVector[j] * this.values[j];            
-           }
-           tempVec.set(i,value);
+        if(this.dim == 3 && m.getColumnsNumber() ==3 && m.getRowsNumber() == 3){
+            for (Integer i = 0; i < this.dim; i++){
+               double value = 0;
+               double[] rowVector; 
+               rowVector = m.getRowVector(i).getArray();
+               for(Integer j = 0; j < rowVector.length; j++){
+                   value = value + rowVector[j] * this.values[j];            
+               }
+               tempVec.set(i,value);
+            }
+            this.values = tempVec.getArray();
         }
-        this.values = tempVec.getArray();
+        else{
+            System.out.println("Vector length and matrix lenght does not match");
+        }
     }   
 }
