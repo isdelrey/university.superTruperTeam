@@ -54,7 +54,7 @@ public class Vector extends ObjectCollection {
         }
     };
     public void setZero(int index) {
-        values[index] = 0;
+        values[index] = 0.0;
         if(index == dim) dim--;
     };
     
@@ -68,7 +68,7 @@ public class Vector extends ObjectCollection {
     //other methods:
     public void zero() {
         for(Integer i = 0; i < this.values.length; i++ ){
-            this.values[i] = 0;
+            this.values[i] = 0.0;
         };
     };
     public void sumTo(Vector v) {
@@ -115,7 +115,7 @@ public class Vector extends ObjectCollection {
         Vector tempVec = new Vector (this.dim);
         if(this.dim == 3 && m.getColumnsNumber() ==3 && m.getRowsNumber() == 3){
             for (Integer i = 0; i < this.dim; i++){
-               Object value = 0;
+               Object value = 0.0;
                Object[] rowVector; 
                rowVector = m.getRowVector(i).getArray();
                for(Integer j = 0; j < rowVector.length; j++){
