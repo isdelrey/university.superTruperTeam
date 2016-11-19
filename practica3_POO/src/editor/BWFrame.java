@@ -11,4 +11,12 @@ package editor;
  */
 public class BWFrame extends Frame {
     
+    //Contructor:
+    public BWFrame(Integer m, Integer n){
+        super(m, n);
+    }
+    @Override
+    public void changeBrightness(double delta){
+        
+    };
 }

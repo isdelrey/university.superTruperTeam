@@ -11,4 +11,12 @@ package editor;
  */
 public class ColorFrame extends Frame {
     
+    //Constructor
+    public ColorFrame(Integer m, Integer n){
+        super(m,n);
+    }
+    @Override
+    public void changeBrightness(double delta){
+        this.multiplyScalar(delta);
+    };
 }
