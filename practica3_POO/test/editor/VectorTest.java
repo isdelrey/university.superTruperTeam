@@ -200,5 +200,73 @@ public class VectorTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of getPositionValue method, of class Vector.
+     */
+    @Test
+    public void testGetPositionValue() {
+        System.out.println("getPositionValue");
+        int index = 0;
+        Vector instance = null;
+        double expResult = 0.0;
+        double result = instance.getPositionValue(index);
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of multiply method, of class Vector.
+     */
+    @Test
+    public void testMultiply() {
+        System.out.println("multiply");
+        Integer integer = null;
+        Vector instance = null;
+        instance.multiply(integer);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of set3D method, of class Vector.
+     */
+    @Test
+    public void testSet3D() {
+        System.out.println("set3D");
+        Object i = null;
+        Object j = null;
+        Object k = null;
+        Vector instance = null;
+        instance.set3D(i, j, k);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of multiplyMat method, of class Vector.
+     */
+    @Test
+    public void testMultiplyMat() {
+        System.out.println("multiplyMat");
+        Matrix m = null;
+        Vector instance = null;
+        instance.multiplyMat(m);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of addDim method, of class Vector.
+     */
+    @Test
+    public void testAddDim() {
+        System.out.println("addDim");
+        Vector instance = null;
+        instance.addDim();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
