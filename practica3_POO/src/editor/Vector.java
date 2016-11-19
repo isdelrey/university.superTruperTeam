@@ -12,13 +12,13 @@ package editor;
 public class Vector extends ObjectCollection {
     
     //Attributes
-    private double[] values;
+    private Object[] values;
     private int dim;
     
     //Constructor
     public Vector(Integer dim) {
         this.dim = dim;
-        this.values = new double[dim];
+        this.values = new Object[dim];
         this.zero();
         
     };
@@ -38,21 +38,21 @@ public class Vector extends ObjectCollection {
     public int getDim() {
         int dim = 0;
         for(int i = maxDimension-1;i >= 0;i--)
-            if(getPositionValue(i) != 0) {
+            if(this.getPositionValue(i) != 0) {
                 dim = i;
                 break;
             }
         return dim;
     };
-    public double[] getArray() {
+    public Object[] getArray() {
         return this.values;
     };
     public double getPositionValue(int index) {
-        return values[index];
+        return (double)values[index];
     };
-    public void set(int index, double v) {
+    public void set(int index, Object v) {
         this.values[index] = v;
-        if(index > this.dim && v != 0){
+        if(index > this.dim && (double)v != 0){
             dim = index;
         }
     };
@@ -60,43 +60,45 @@ public class Vector extends ObjectCollection {
         values[index] = 0;
         if(index == dim) dim--;
     };
-    public double sumAll() {
-        double n = 0;
-        for(double v : values) n += v;
-        return n;
-    };
+    
+    //To review
+//    public Object sumAll() {
+//        double n = 0;
+//        for(Object v : values) n += v;
+//        return n;
+//    };
     public void sumTo(Vector v) {
         v.sumFrom(this);
     };
     public void sumFrom(Vector v) {
         for(int i = 0;i<v.getDim();i++)
-            set(i, getPositionValue(i)+v.getPositionValue(i));
+            set(i, v.getPositionValue(i)+ v.getPositionValue(i));
     };
     public Vector sumWith(Vector v) {
         Vector s = new Vector(3);
         for(int i = 0;i<v.getDim();i++)
-            s.set(i, getPositionValue(i)+v.getPositionValue(i));
+            s.set(i, (double)getPositionValue(i)+(double)v.getPositionValue(i));
         return s;
     };
     public Vector multiplyWith(Vector v) {
         Vector m = new Vector(2);
         for(int i = 0;i<v.getDim();i++)
-            m.set(i, getPositionValue(i)*v.getPositionValue(i));
+            m.set(i, (double)getPositionValue(i)*(double)v.getPositionValue(i));
         return m;
     };
     public void multiply(Integer integer) {
         for(int i = 0; i<this.values.length; i++){
-            this.values[i] = this.values[i] * integer; 
+            this.set(i, (double)this.values[i] * integer); 
         }
     };
     
     public void print() {
-        for(double value :this.getArray()){
+        for(Object value :this.getArray()){
             System.out.println(value);    
          }
         
     };
-    public void set3D (double i, double j, double k){
+    public void set3D (Object i, Object j, Object k){
         if(this.dim == 3){
             this.values[0] = i;
             this.values[1] = j;
@@ -111,11 +113,11 @@ public class Vector extends ObjectCollection {
         Vector tempVec = new Vector (this.dim);
         if(this.dim == 3 && m.getColumnsNumber() ==3 && m.getRowsNumber() == 3){
             for (Integer i = 0; i < this.dim; i++){
-               double value = 0;
-               double[] rowVector; 
+               Object value = 0;
+               Object[] rowVector; 
                rowVector = m.getRowVector(i).getArray();
                for(Integer j = 0; j < rowVector.length; j++){
-                   value = value + rowVector[j] * this.values[j];            
+                   value = (double)value + (double)rowVector[j] * (double)this.values[j];            
                }
                tempVec.set(i,value);
             }
