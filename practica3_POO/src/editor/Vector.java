@@ -30,11 +30,7 @@ public class Vector extends ObjectCollection {
 //    };
     
     //Public methods
-    public void zero() {
-        for(Integer i = 0; i < this.values.length; i++ ){
-            this.values[i] = 0;
-        };
-    };
+    //getters:
     public int getDim() {
         int dim = 0;
         for(int i = maxDimension-1;i >= 0;i--)
@@ -50,6 +46,7 @@ public class Vector extends ObjectCollection {
     public double getPositionValue(int index) {
         return (double)values[index];
     };
+    //setters
     public void set(int index, Object v) {
         this.values[index] = v;
         if(index > this.dim && (double)v != 0){
@@ -67,6 +64,13 @@ public class Vector extends ObjectCollection {
 //        for(Object v : values) n += v;
 //        return n;
 //    };
+    
+    //other methods:
+    public void zero() {
+        for(Integer i = 0; i < this.values.length; i++ ){
+            this.values[i] = 0;
+        };
+    };
     public void sumTo(Vector v) {
         v.sumFrom(this);
     };
@@ -91,12 +95,10 @@ public class Vector extends ObjectCollection {
             this.set(i, (double)this.values[i] * integer); 
         }
     };
-    
     public void print() {
         for(Object value :this.getArray()){
             System.out.println(value);    
-         }
-        
+         }        
     };
     public void set3D (Object i, Object j, Object k){
         if(this.dim == 3){
@@ -126,5 +128,13 @@ public class Vector extends ObjectCollection {
         else{
             System.out.println("Vector length and matrix lenght does not match");
         }
-    }   
+    } 
+    // Add a row to a vector with value 0
+    public void addDim(){
+        Vector vector = new Vector(this.dim + 1);
+        for(Integer i = 0; i < this.values.length; i++){
+           vector.set(i, this.values[i]);
+        }
+         this.values = vector.values;
+    }
 }
