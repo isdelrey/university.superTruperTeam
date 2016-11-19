@@ -33,6 +33,8 @@ public class Main {
         m.printMatrix();
         m.addRow();
         m.printMatrix();
+        m.multiplyScalar(40);
+        m.printMatrix();
 
         
 //        Vector v = new Vector (3) ;
