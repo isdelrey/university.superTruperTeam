@@ -28,16 +28,19 @@ public class Main {
 //        Vector v = new Vector(3);
 //        v.set3D(1, 0, 0);
 //        v.print();
-//        Matrix  m = new Matrix(3,3);
-//        m.create3DRotationZ(Math.PI / 2);
-//        m.printMatrix();
-//        v.multiplyMat(m);
-//        v.print();
+        Matrix  m = new Matrix(3,3);
+        m.create3DRotationZ(Math.PI / 2);
+        m.printMatrix();
+        m.addColumn();
+        m.printMatrix();
+
         
-        Vector v = new Vector (2) ;
-        Matrix m = new Matrix (3,3) ;
-        m.create3DRotationZ( Math . PI / 2 ) ;
-        v.multiplyMat( m ) ;
+        Vector v = new Vector (3) ;
+        v.set3D(1, 2, 3);
+        v.print();
+        v.addDim();
+        v.print();
+        
         
         
         
