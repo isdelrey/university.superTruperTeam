@@ -9,6 +9,22 @@ package editor;
  *
  * @author ivo
  */
-public class AudioBuffer extends Buffer {
+public class AudioBuffer extends Vector {
+    
+    //Contructor:
+
+    /**
+     *
+     * @param d
+     */
+    public AudioBuffer(Integer d){
+        super(d);
+    }; 
+    
+    
+    //public methods: 
+    public void changeVolume(double delta){
+        this.multiply(delta);
+    };
     
 }
