@@ -89,11 +89,11 @@ public class Matrix extends ObjectCollection {
     //Creates a rotation matrix of angle alpha, it also checks the matrix dimensions
     public void create3DRotationZ(double alpha){
         if(this.cols == 3 && this.rows ==3){
-            this.values[0].set(0, Math.cos(alpha));
-            this.values[1].set(0, -Math.sin(alpha));
-            this.values[0].set(1, Math.sin(alpha));
-            this.values[1].set(1, Math.cos(alpha));
-            this.values[2].set(2, 1);  
+            this.values[0].set(0, (double)Math.cos(alpha));
+            this.values[1].set(0, -(double)Math.sin(alpha));
+            this.values[0].set(1, (double)Math.sin(alpha));
+            this.values[1].set(1, (double)Math.cos(alpha));
+            this.values[2].set(2, (double)1);  
         }
         else{
             System.out.println("Matrix dimension doesn't match");
@@ -121,7 +121,13 @@ public class Matrix extends ObjectCollection {
         this.values = matrix.values;
         this.rows = this.rows + 1;
     }
-
+    
+    //Multiplies each value of the matrix by a given scalar 
+    public void multiplyScalar(double scalar){
+        for(Vector vector: this.values){
+            vector.multiply(scalar);
+        }
+    }
 }
     
     
