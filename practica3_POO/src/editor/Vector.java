@@ -90,9 +90,9 @@ public class Vector extends ObjectCollection {
             m.set(i, (double)getPositionValue(i)*(double)v.getPositionValue(i));
         return m;
     };
-    public void multiply(Integer integer) {
+    public void multiply(double d) {
         for(int i = 0; i<this.values.length; i++){
-            this.set(i, (double)this.values[i] * integer); 
+            this.set(i, (double)this.values[i] * d); 
         }
     };
     public void print() {
