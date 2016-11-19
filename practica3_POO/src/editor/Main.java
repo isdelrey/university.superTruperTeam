@@ -25,11 +25,22 @@ public class Main {
 //         matrix.set(1,0,0);
 //         matrix.set(1,1,1);
 //         matrix.printMatrix();
-        Vector v = new Vector(3);
-        v.set3D(1, 0, 0);
-        Matrix  m = new Matrix(3,3);
-        m.create3DRotationZ(Math.PI / 2);
-        m.printMatrix();
+//        Vector v = new Vector(3);
+//        v.set3D(1, 0, 0);
+//        v.print();
+//        Matrix  m = new Matrix(3,3);
+//        m.create3DRotationZ(Math.PI / 2);
+//        m.printMatrix();
+//        v.multiplyMat(m);
+//        v.print();
+        
+        Vector v = new Vector (2) ;
+        Matrix m = new Matrix (3,3) ;
+        m.create3DRotationZ( Math . PI / 2 ) ;
+        v.multiplyMat( m ) ;
+        
+        
+        
                  
          
          
