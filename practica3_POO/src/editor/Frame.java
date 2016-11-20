@@ -9,6 +9,14 @@ package editor;
  *
  * @author ivo
  */
-public class Frame {
+abstract class Frame extends Matrix{
+    
+    //Contructor
+    public Frame(Integer m, Integer n){
+        super(m, n);
+    }
+    abstract void changeBrightness(double delta);
+    
+    
     
 }

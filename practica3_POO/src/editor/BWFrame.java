@@ -11,4 +11,22 @@ package editor;
  */
 public class BWFrame extends Frame {
     
+    //Contructor:
+    public BWFrame(Integer m, Integer n){
+        super(m, n);
+    }
+    @Override
+    public void changeBrightness(double delta){
+        
+    };
+    public double get(Integer i, Integer j){
+      return this.getValue(i, j);   
+    };
+    
+    //setter:
+    
+    //To be reviewed
+    public void set(Integer i, Integer val){
+        set(i,i, val);
+    };
 }
