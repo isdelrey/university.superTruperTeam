@@ -22,7 +22,16 @@ public class Vector extends ObjectCollection {
         values = new double[maxDimension];
     }
     public void zero() {
-        for(double v : values) v = (double)0;
+        for(double v : values) v = 0;
+    }
+    public Boolean isZero() {
+        Boolean is = true;
+        for(double v : values)
+            if(v != 0) {
+                is = false;
+                break;
+            }
+        return is;
     }
     public int getDim() {
         int dim = 0;

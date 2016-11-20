@@ -25,6 +25,10 @@ public class Matrix extends ObjectCollection {
     }
     public void setRow(int r, Vector v) {
         values[r] = v;
+        if(v.isZero()) {
+            if(rows == r) r--;
+            else if(r>rows) rows = r;
+        }
     }
     public void setColumn(int c, Vector v) {
         for(int i=0;i<rows;i++) values[i].set(c,v.get(i));
@@ -33,12 +37,12 @@ public class Matrix extends ObjectCollection {
         for(Vector v : values) v.zero();
     }
     public int rows() {
-        
+        return rows;
     }
     public int columns() {
-        
+        return cols;
     }
     public void addColumn(Vector v) {
-        
+        values.setColumn(cols, v);
     }
 }
