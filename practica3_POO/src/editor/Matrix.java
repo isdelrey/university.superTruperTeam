@@ -39,7 +39,7 @@ public class Matrix extends ObjectCollection {
         return this.values; 
     }
     
-    public double get(Integer i, Integer j){
+    public double getValue(Integer i, Integer j){
         return this.values[i].get(j);
     }
     
@@ -73,7 +73,7 @@ public class Matrix extends ObjectCollection {
     };
     //sets in a matrix column c a given vector v
     public void setColumn(int c, Vector vv) {
-        if(!vv.isZero() && vv.getDim() < c) c = vv.getDim();
+        if(!vv.isZero() && vv.getDim() < c) cols = vv.getDim();
         for(int i = 0; i < vv.getDim();i++) {
             Vector v = this.values[i];
             v.set(c, vv.get(c));
@@ -112,12 +112,6 @@ public class Matrix extends ObjectCollection {
             Exception e = new Exception("Matrix dimension doesn't match");
             throw e;
         }
-    }
-    
-    //Adds a void column to the matrix
-    public void addColumn(){
-        for(Vector v : this.values)
-            v.addDim();
     }
     
     //Adds a void row to the matrix
