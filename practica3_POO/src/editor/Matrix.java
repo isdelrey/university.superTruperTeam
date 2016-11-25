@@ -16,95 +16,91 @@ public class Matrix extends ObjectCollection {
     private int rows, cols;
     
     //Constructor
-    public Matrix(Integer m, Integer n) {
-        this.cols = n;
-        this.rows = m;
-       this.values = new Vector[n];        
-        for(Integer i= 0; i<n; i++){
-            this.values[i] = new Vector(m);
-        }      
-    };
+    public Matrix(int maxRows, int maxCols) {
+        this.cols = 0;
+        this.rows = 0;
+       this.values = new Vector[maxRows];
+    }
+    public Matrix() {
+        this.cols = 0;
+        this.rows = 0;
+        this.values = new Vector[maxDimension];
+    }
+    
     //Public methods:
     //getters
-    public int getRowsNumber() {
+    public int countRows() {
         return this.rows;
-    };
-    public int getColumnsNumber() {
+    }
+    public int countCols() {
         return this.cols;
-    };
-    public Vector[] getMatrix (){
+    }
+    public Vector[] getMatrix() {
         return this.values; 
-    };
+    }
     
-    public double getValue(Integer i, Integer j){
-        double ret;
-        ret = this.getColumnVector(j).getPositionValue(i);
-        return ret;
+    public double get(Integer i, Integer j){
+        return this.values[i].get(j);
     }
     
     // Returns the column vector of the matrix belonging to column c
-    public Vector getColumnVector(int c) {
+    public Vector getRow(int c) {
         return this.values[c];
-    };
+    }
     
     // Returns the Row vector of the matrix belonging to row r
-    public Vector getRowVector(int r) {
+    public Vector getColumn(int r) {
         Vector v = new Vector(this.cols);
-        for(int i=0;i<this.rows;i++) {
-            v.set(i,values[i].getPositionValue(r));
-        }
+        for(int i=0;i<this.rows;i++)
+            v.set(i,values[i].get(r));
         return v;
-<<<<<<< HEAD
     }
+    //sets in a matrix row r a given vector v
     public void setRow(int r, Vector v) {
         values[r] = v;
         if(v.isZero()) {
             if(rows == r) r--;
-            else if(r>rows) rows = r;
         }
+        else if(r>rows) rows = r;
     }
-=======
-    };
     
     //setters: 
     // sets in a matrix position (m row and n column) a given value
-    public void set (int m, int n, double value){
+    public void set(int m, int n, double value){
         Vector vector = this.values[n];
         vector.set(m, value);
  
     };
     //sets in a matrix column c a given vector v
->>>>>>> origin/master
-    public void setColumn(int c, Vector v) {
-        this.values[c] = v;
-    };
-    //sets in a matrix row r a given vector v
-    public void setRow(int r, Vector v) {
-        for(int i=0;i<this.rows;i++){
-            this.values[i].set(r,v.getPositionValue(i));
+    public void setColumn(int c, Vector vv) {
+        if(!vv.isZero() && vv.getDim() < c) c = vv.getDim();
+        for(int i = 0; i < vv.getDim();i++) {
+            Vector v = this.values[i];
+            v.set(c, vv.get(c));
+            if(vv.get(c) != 0 && i > rows) {
+                rows = i;
+            }
         }
-    };
+    }
+    
     //sets all values in a matrix to zero
     public void zero() {
-        for(Vector v : this.values) {
-            v.zero();
-        }
-    };
+        for(Vector v : this.values) v.zero();
+    }
     
     //Prints the matrix
-    public void printMatrix(){
-        System.out.println();
-        for(Integer m = 0; m < this.rows; m++){
-            for(Vector v : this.values){  
-                System.out.print(v.getArray()[m] + " ");      
+    public void print(){
+        for(Vector v1 : this.values){
+            for(Object v2 : v1.getArray()){  
+                System.out.print((double)v2 + " ");      
             }
-            System.out.println();
+            System.out.println();  
         }
-    };
+    }
     
     // 3D 
     //Creates a rotation matrix of angle alpha, it also checks the matrix dimensions
-    public void create3DRotationZ(double alpha){
+    public void create3DRotationZ(double alpha) throws Exception {
         if(this.cols == 3 && this.rows ==3){
             this.values[0].set(0, (double)Math.cos(alpha));
             this.values[1].set(0, -(double)Math.sin(alpha));
@@ -113,48 +109,26 @@ public class Matrix extends ObjectCollection {
             this.values[2].set(2, (double)1);  
         }
         else{
-            System.out.println("Matrix dimension doesn't match");
+            Exception e = new Exception("Matrix dimension doesn't match");
+            throw e;
         }
-    };
+    }
     
     //Adds a void column to the matrix
     public void addColumn(){
-        Matrix matrix = new Matrix(this.rows, this.cols + 1);
-        for(Integer i = 0; i < this.cols; i++){
-            matrix.setColumn(i, this.getColumnVector(i));
-        }
-        this.values = matrix.values;
+        for(Vector v : this.values)
+            v.addDim();
     }
-<<<<<<< HEAD
-    public int rows() {
-        return rows;
-    }
-    public int columns() {
-        return cols;
-    }
-    public void addColumn(Vector v) {
-        values.setColumn(cols, v);
-=======
     
     //Adds a void row to the matrix
     public void addRow(){
-        Matrix matrix = new Matrix(this.rows+1, this.cols);
-        Vector vector; 
-        for(Integer i = 0; i < this.cols; i++){
-            vector = this.getColumnVector(i);
-            vector.addDim();
-            matrix.values[i] = vector;
-        }
-        this.values = matrix.values;
-        this.rows = this.rows + 1;
+        rows++;
     }
     
     //Multiplies each value of the matrix by a given scalar 
     public void multiplyScalar(double scalar){
-        for(Vector vector: this.values){
+        for(Vector vector : this.values)
             vector.multiply(scalar);
-        }
->>>>>>> origin/master
     }
 }
     
