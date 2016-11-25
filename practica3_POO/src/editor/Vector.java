@@ -9,6 +9,7 @@ package editor;
  *
  * @author ivo
  */
+//Paula test
 public class Vector extends ObjectCollection {
     
     //Attributes

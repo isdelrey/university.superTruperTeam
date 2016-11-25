@@ -40,6 +40,7 @@ public class Matrix extends ObjectCollection {
         double ret;
         ret = this.getColumnVector(j).getPositionValue(i);
         return ret;
+
     }
     
     // Returns the column vector of the matrix belonging to column c
@@ -64,6 +65,7 @@ public class Matrix extends ObjectCollection {
  
     };
     //sets in a matrix column c a given vector v
+
     public void setColumn(int c, Vector v) {
         this.values[c] = v;
     };
@@ -71,6 +73,7 @@ public class Matrix extends ObjectCollection {
     public void setRow(int r, Vector v) {
         for(int i=0;i<this.rows;i++){
             this.values[i].set(r,v.getPositionValue(i));
+
         }
     };
     //sets all values in a matrix to zero
@@ -106,6 +109,7 @@ public class Matrix extends ObjectCollection {
         }
     };
     
+
     //Adds a void column to the matrix
     public void addColumn(){
         Matrix matrix = new Matrix(this.rows, this.cols + 1);
@@ -115,6 +119,7 @@ public class Matrix extends ObjectCollection {
         this.values = matrix.values;
     }
     
+
     //Adds a void row to the matrix
     public void addRow(){
         Matrix matrix = new Matrix(this.rows+1, this.cols);
