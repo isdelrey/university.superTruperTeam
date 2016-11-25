@@ -54,16 +54,6 @@ public class Matrix extends ObjectCollection {
             v.set(i,values[i].getPositionValue(r));
         }
         return v;
-<<<<<<< HEAD
-    }
-    public void setRow(int r, Vector v) {
-        values[r] = v;
-        if(v.isZero()) {
-            if(rows == r) r--;
-            else if(r>rows) rows = r;
-        }
-    }
-=======
     };
     
     //setters: 
@@ -74,7 +64,6 @@ public class Matrix extends ObjectCollection {
  
     };
     //sets in a matrix column c a given vector v
->>>>>>> origin/master
     public void setColumn(int c, Vector v) {
         this.values[c] = v;
     };
@@ -125,16 +114,6 @@ public class Matrix extends ObjectCollection {
         }
         this.values = matrix.values;
     }
-<<<<<<< HEAD
-    public int rows() {
-        return rows;
-    }
-    public int columns() {
-        return cols;
-    }
-    public void addColumn(Vector v) {
-        values.setColumn(cols, v);
-=======
     
     //Adds a void row to the matrix
     public void addRow(){
@@ -154,7 +133,6 @@ public class Matrix extends ObjectCollection {
         for(Vector vector: this.values){
             vector.multiply(scalar);
         }
->>>>>>> origin/master
     }
 }
     

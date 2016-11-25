@@ -11,17 +11,26 @@ package editor;
  * @param <T>
  */
 public class ObjectCollection {
+    
+    //Attributes
+
+    /**
+     *
+     */
     protected static int maxDimension;
+    
+    //Constructor
     public ObjectCollection() {
         maxDimension = 100;
     }
     public ObjectCollection(int maxDim) {
         maxDimension = maxDim;
     }
+    //Public methods
     public int getMaxDimension() {
         return maxDimension;
-    }
+    };
     public void setMaxDimension(int dim) {
         maxDimension = dim;
-    }
+    };
 }

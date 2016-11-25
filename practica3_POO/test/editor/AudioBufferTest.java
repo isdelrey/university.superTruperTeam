@@ -42,5 +42,18 @@ public class AudioBufferTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of changeVolume method, of class AudioBuffer.
+     */
+    @Test
+    public void testChangeVolume() {
+        System.out.println("changeVolume");
+        double delta = 0.0;
+        AudioBuffer instance = null;
+        instance.changeVolume(delta);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

@@ -10,31 +10,6 @@ package editor;
  * @author ivo
  */
 public class Vector extends ObjectCollection {
-<<<<<<< HEAD
-    private final double[] values;
-    int dim;
-    public Vector() {
-        super();
-        dim = 0;
-        values = new double[maxDimension];
-    }
-    public Vector(int maxDim) {
-        super(maxDim);
-        values = new double[maxDimension];
-    }
-    public void zero() {
-        for(double v : values) v = 0;
-    }
-    public Boolean isZero() {
-        Boolean is = true;
-        for(double v : values)
-            if(v != 0) {
-                is = false;
-                break;
-            }
-        return is;
-    }
-=======
     
     //Attributes
     private Object[] values;
@@ -56,7 +31,6 @@ public class Vector extends ObjectCollection {
     
     //Public methods
     //getters:
->>>>>>> origin/master
     public int getDim() {
         int dim = 0;
         for(int i = maxDimension-1;i >= 0;i--)
