@@ -10,7 +10,7 @@ package editor;
  * @author bassagap
  */
 public class Main {
-     public static void main(String[] args) throws Exception {
+     public static void main(String[] args) {
 //         Vector vector = new Vector(3);
 //         vector.set(2, 2.5);   
 //         for(double value :vector.getArray()){
@@ -28,13 +28,13 @@ public class Main {
 //        Vector v = new Vector(3);
 //        v.set3D(1, 0, 0);
 //        v.print();
-        Matrix  m = new Matrix();
+        Matrix  m = new Matrix(3,3);
         m.create3DRotationZ(Math.PI / 2);
-        m.print();
+        m.printMatrix();
         m.addRow();
-        m.print();
+        m.printMatrix();
         m.multiplyScalar(40);
-        m.print();
+        m.printMatrix();
 
         
 //        Vector v = new Vector (3) ;
