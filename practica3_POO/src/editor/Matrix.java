@@ -7,7 +7,9 @@ package editor;
 
 /**
  *
- * @author ivo
+ * @author ivo & bassagap
+ * Class that represents a Matrix as an array of vectors, where each column is represented as a Vector
+ * 
  */
 public class Matrix extends ObjectCollection {
     
@@ -17,71 +19,70 @@ public class Matrix extends ObjectCollection {
     
     //Constructor
     public Matrix(Integer m, Integer n) {
+        super();
         this.cols = n;
         this.rows = m;
-       this.values = new Vector[n];        
-        for(Integer i= 0; i<n; i++){
-            this.values[i] = new Vector(m);
+        this.values = new Vector[this.maxDimension];        
+        for(Integer i= 0; i<this.maxDimension; i++){
+            this.values[i] = new Vector(this.maxDimension);
         }      
-    };
+    }
+    
     //Public methods:
     //getters
-    public int getRowsNumber() {
+    public int getRows() {
         return this.rows;
-    };
-    public int getColumnsNumber() {
-        return this.cols;
-    };
-    public Vector[] getMatrix (){
-        return this.values; 
-    };
+    }
     
-    public double getValue(Integer i, Integer j){
+    public int getColumns() {
+        return this.cols;
+    } 
+    
+    public double getValue(Integer i, Integer j) throws Exception{
         double ret;
-        ret = this.getColumnVector(j).getPositionValue(i);
-        return ret;
-
+        if(i <= this.rows && j <= this.cols){
+            ret = this.getColumnVector(j).getPositionValue(i);
+        }
+        else {
+            throw new Exception("Values are outside Matrix dimensions");
+        }
+        return ret; 
     }
     
     // Returns the column vector of the matrix belonging to column c
-    public Vector getColumnVector(int c) {
+    public Vector getColumnVector(int c) throws Exception{
+        if(c <= this.cols) {
+            throw new Exception("Values are outside Matrix dimensions");
+        }
         return this.values[c];
-    };
+    }
     
     // Returns the Row vector of the matrix belonging to row r
-    public Vector getRowVector(int r) {
-        Vector v = new Vector(this.cols);
-        for(int i=0;i<this.rows;i++) {
-            v.set(i,values[i].getPositionValue(r));
+    public Vector getRowVector(int r)throws Exception {
+        Vector v;
+        if(r <= this.rows){
+            v = new Vector(this.cols);
+            for(int i=0;i<this.rows;i++) {
+                v.set(i,values[i].getPositionValue(r));
+            }            
+        }
+        else {
+            throw new Exception("Values are outside Matrix dimensions");
         }
         return v;
-    };
+    } 
     
     //setters: 
     // sets in a matrix position (m row and n column) a given value
-    public void set (int m, int n, double value){
-        Vector vector = this.values[n];
-        vector.set(m, value);
- 
-    };
-    //sets in a matrix column c a given vector v
-
-    public void setColumn(int c, Vector v) {
-        this.values[c] = v;
-    };
-    //sets in a matrix row r a given vector v
-    public void setRow(int r, Vector v) {
-        for(int i=0;i<this.rows;i++){
-            this.values[i].set(r,v.getPositionValue(i));
-
+    public void set (int m, int n, double value)throws Exception{
+        if(m <= this.rows && n <= this.cols){
+            Vector vector = this.values[n];
+            vector.set(m, value);   
+        }       
+        else {
+            throw new Exception("Values are outside Matrix dimensions");
         }
-    };
-    //sets all values in a matrix to zero
-    public void zero() {
-        for(Vector v : this.values) {
-            v.zero();
-        }
-    };
+    }
     
     //Prints the matrix
     public void printMatrix(){
@@ -92,11 +93,11 @@ public class Matrix extends ObjectCollection {
             }
             System.out.println();
         }
-    };
+    }
     
     // 3D 
     //Creates a rotation matrix of angle alpha, it also checks the matrix dimensions
-    public void create3DRotationZ(double alpha){
+    public void create3DRotationZ(double alpha) throws Exception {
         if(this.cols == 3 && this.rows ==3){
             this.values[0].set(0, (double)Math.cos(alpha));
             this.values[1].set(0, -(double)Math.sin(alpha));
@@ -105,42 +106,24 @@ public class Matrix extends ObjectCollection {
             this.values[2].set(2, (double)1);  
         }
         else{
-            System.out.println("Matrix dimension doesn't match");
+            throw new Exception("Matrix dimension doesn't match");
         }
-    };
-    
-
-    //Adds a void column to the matrix
-    public void addColumn(){
-        Matrix matrix = new Matrix(this.rows, this.cols + 1);
-        for(Integer i = 0; i < this.cols; i++){
-            matrix.setColumn(i, this.getColumnVector(i));
-        }
-        this.values = matrix.values;
     }
     
-
+    //Adds a void column to the matrix
+    public void addColumn(){
+        this.cols++; 
+    }
+    
     //Adds a void row to the matrix
     public void addRow(){
-        Matrix matrix = new Matrix(this.rows+1, this.cols);
-        Vector vector; 
-        for(Integer i = 0; i < this.cols; i++){
-            vector = this.getColumnVector(i);
-            vector.addDim();
-            matrix.values[i] = vector;
-        }
-        this.values = matrix.values;
-        this.rows = this.rows + 1;
+        this.rows++;
     }
     
     //Multiplies each value of the matrix by a given scalar 
     public void multiplyScalar(double scalar){
-        for(Vector vector: this.values){
-            vector.multiply(scalar);
+        for(Integer i = 0; i < this.cols; i++){
+            this.values[i].multiply(scalar);
         }
     }
 }
-    
-    
-    
-

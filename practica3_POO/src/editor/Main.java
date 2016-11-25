@@ -29,7 +29,13 @@ public class Main {
 //        v.set3D(1, 0, 0);
 //        v.print();
         Matrix  m = new Matrix(3,3);
-        m.create3DRotationZ(Math.PI / 2);
+        try{
+            m.create3DRotationZ(Math.PI / 2);    
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
         m.printMatrix();
         m.addRow();
         m.printMatrix();

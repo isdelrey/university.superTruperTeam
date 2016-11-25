@@ -23,9 +23,7 @@ public class ObjectCollection {
     public ObjectCollection() {
         maxDimension = 100;
     }
-    public ObjectCollection(int maxDim) {
-        maxDimension = maxDim;
-    }
+
     //Public methods
     public int getMaxDimension() {
         return maxDimension;

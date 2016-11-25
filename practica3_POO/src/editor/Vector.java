@@ -21,14 +21,12 @@ public class Vector extends ObjectCollection {
         this.dim = dim;
         this.values = new Object[dim];
         this.zero();
-        
     };
-    
-
-//    public Vector(int maxDim) {
-//        super(maxDim);
-//        values = new double[maxDimension];
-//    };
+  
+    public Vector() {
+        super();
+        values = new Object[this.maxDimension];
+    };
     
     //Public methods
     //getters:
@@ -112,23 +110,27 @@ public class Vector extends ObjectCollection {
         }
     };
     //Multiplies the current vector by a matrix
-    public void multiplyMat(Matrix m){
-        Vector tempVec = new Vector (this.dim);
-        if(this.dim == 3 && m.getColumnsNumber() ==3 && m.getRowsNumber() == 3){
-            for (Integer i = 0; i < this.dim; i++){
-               Object value = 0.0;
-               Object[] rowVector; 
-               rowVector = m.getRowVector(i).getArray();
-               for(Integer j = 0; j < rowVector.length; j++){
-                   value = (double)value + (double)rowVector[j] * (double)this.values[j];            
-               }
-               tempVec.set(i,value);
-            }
-            this.values = tempVec.getArray();
+    public void multiplyMat(Matrix m) throws Exception{
+        try{
+            Vector tempVec = new Vector (this.dim);
+            if(this.dim == 3 && m.getColumns() ==3 && m.getRows() == 3){
+                for (Integer i = 0; i < this.dim; i++){
+                   Object value = 0.0;
+                   Object[] rowVector; 
+                   rowVector = m.getRowVector(i).getArray();
+                   for(Integer j = 0; j < rowVector.length; j++){
+                       value = (double)value + (double)rowVector[j] * (double)this.values[j];            
+                   }
+                   tempVec.set(i,value);
+                }
+                this.values = tempVec.getArray();
+            }            
         }
-        else{
-            System.out.println("Vector length and matrix lenght does not match");
+        catch(Exception e){
+            throw new Exception("Matrix dimensions not correct");
         }
+        
+
     } 
     // Add a row to a vector with value 0
     public void addDim(){
