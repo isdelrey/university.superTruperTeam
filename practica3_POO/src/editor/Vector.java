@@ -10,122 +10,86 @@ package editor;
  * @author ivo
  */
 public class Vector extends ObjectCollection {
-<<<<<<< HEAD
-    private final double[] values;
+    private final Object[] values;
     int dim;
     public Vector() {
         super();
         dim = 0;
-        values = new double[maxDimension];
+        values = new Object[maxDimension];
+        zero();
     }
     public Vector(int maxDim) {
         super(maxDim);
-        values = new double[maxDimension];
+        values = new Object[maxDimension];
+        zero();
     }
     public void zero() {
-        for(double v : values) v = 0;
+        for(Object v : values) v = 0;
     }
     public Boolean isZero() {
         Boolean is = true;
-        for(double v : values)
-            if(v != 0) {
+        for(Object v : values)
+            if((double)v != 0) {
                 is = false;
                 break;
             }
         return is;
     }
-=======
-    
-    //Attributes
-    private Object[] values;
-    private int dim;
-    
-    //Constructor
-    public Vector(Integer dim) {
-        this.dim = dim;
-        this.values = new Object[dim];
-        this.zero();
-        
-    };
-    
-
-//    public Vector(int maxDim) {
-//        super(maxDim);
-//        values = new double[maxDimension];
-//    };
-    
-    //Public methods
-    //getters:
->>>>>>> origin/master
     public int getDim() {
-        int dim = 0;
-        for(int i = maxDimension-1;i >= 0;i--)
-            if(this.getPositionValue(i) != 0) {
-                dim = i;
-                break;
-            }
         return dim;
-    };
+    }
     public Object[] getArray() {
         return this.values;
-    };
-    public double getPositionValue(int index) {
+    }
+    public double get(int index) {
         return (double)values[index];
-    };
+    }
     //setters
     public void set(int index, Object v) {
-        this.values[index] = v;
+        values[index] = v;
         if(index > this.dim && (double)v != 0){
             dim = index;
         }
-    };
+    }
     public void setZero(int index) {
-        values[index] = 0.0;
+        values[index] = 0;
         if(index == dim) dim--;
-    };
+    }
     
-    //To review
-//    public Object sumAll() {
-//        double n = 0;
-//        for(Object v : values) n += v;
-//        return n;
-//    };
-    
-    //other methods:
-    public void zero() {
-        for(Integer i = 0; i < this.values.length; i++ ){
-            this.values[i] = 0.0;
-        };
-    };
+    public Object sumAll() {
+        double n = 0;
+        for(Object v : values) n += (double)v;
+        return n;
+    }
     public void sumTo(Vector v) {
         v.sumFrom(this);
-    };
+    }
     public void sumFrom(Vector v) {
         for(int i = 0;i<v.getDim();i++)
-            set(i, v.getPositionValue(i)+ v.getPositionValue(i));
-    };
+            set(i, v.get(i)+ v.get(i));
+    }
     public Vector sumWith(Vector v) {
-        Vector s = new Vector(3);
+        Vector s = new Vector((this.getMaxDimension()>v.getMaxDimension())?this.getMaxDimension():v.getMaxDimension());
         for(int i = 0;i<v.getDim();i++)
-            s.set(i, (double)getPositionValue(i)+(double)v.getPositionValue(i));
+            s.set(i, (double)get(i)+(double)v.get(i));
         return s;
-    };
+    }
     public Vector multiplyWith(Vector v) {
-        Vector m = new Vector(2);
+        Vector m = new Vector((this.getMaxDimension()>v.getMaxDimension())?this.getMaxDimension():v.getMaxDimension());
         for(int i = 0;i<v.getDim();i++)
-            m.set(i, (double)getPositionValue(i)*(double)v.getPositionValue(i));
+            m.set(i, (double)get(i)*(double)v.get(i));
         return m;
-    };
+    }
     public void multiply(double d) {
         for(int i = 0; i<this.values.length; i++){
             this.set(i, (double)this.values[i] * d); 
         }
-    };
+    }
     public void print() {
         for(Object value :this.getArray()){
             System.out.println(value);    
          }        
-    };
+    }
     public void set3D (Object i, Object j, Object k){
         if(this.dim == 3){
             this.values[0] = i;
@@ -135,8 +99,9 @@ public class Vector extends ObjectCollection {
         else{
             System.out.println("Vector size does not match");
         }
-    };
-    //Multiplies the current vector by a matrix
+    }
+    /*
+    Multiplies the current vector by a matrix
     public void multiplyMat(Matrix m){
         Vector tempVec = new Vector (this.dim);
         if(this.dim == 3 && m.getColumnsNumber() ==3 && m.getRowsNumber() == 3){
@@ -149,19 +114,14 @@ public class Vector extends ObjectCollection {
                }
                tempVec.set(i,value);
             }
-            this.values = tempVec.getArray();
+            values = tempVec.getArray();
         }
         else{
             System.out.println("Vector length and matrix lenght does not match");
         }
-    } 
-    // Add a row to a vector with value 0
+    }
+    */
     public void addDim(){
-        Vector vector = new Vector(this.dim + 1);
-        for(Integer i = 0; i < this.values.length; i++){
-           vector.set(i, this.values[i]);
-        }
-         this.values = vector.values;
-         this.dim = this.dim + 1; 
+        dim++;
     }
 }
