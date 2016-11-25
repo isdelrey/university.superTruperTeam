@@ -44,9 +44,9 @@ public class VectorTest {
     public void testZero() {
         System.out.println("zero");
         Vector instance = new Vector();
-        instance.set(1, 2);
         instance.zero();
-        assertEquals(0,instance.get(1));
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -56,9 +56,11 @@ public class VectorTest {
     public void testGetDim() {
         System.out.println("getDim");
         Vector instance = new Vector();
-        instance.set(8,9);
+        int expResult = 0;
         int result = instance.getDim();
-        assertEquals(8, result);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
