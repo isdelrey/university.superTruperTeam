@@ -72,6 +72,10 @@ public class Matrix extends ObjectCollection {
         return v;
     } 
     
+    //
+    public Vector[] getMatrixValues(){
+        return this.values;
+    }
     //setters: 
     // sets in a matrix position (m row and n column) a given value
     public void set (int m, int n, double value)throws Exception{

@@ -46,7 +46,8 @@ public class ColorFrame extends Frame {
     };
     
     public void changeRGB(Integer dR, Integer dG, Integer dB){
-        
+        double ret = RGBToVal(dR, dG, dB);
+        this.multiplyScalar(ret);
     };
     
     //Private methods:
