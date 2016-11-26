@@ -7,7 +7,7 @@ package editor;
 
 /**
  *
- * @author ivo & bassagap
+ * @author ivo and bassagap
  */
 public class Main {
      public static void main(String[] args) {

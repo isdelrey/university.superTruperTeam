@@ -7,8 +7,8 @@ package editor;
 
 /**
  *
- * @author ivo * @author ivo & bassagap
- * @param <T>
+ * @author ivo * @author ivo and bassagap
+ * 
  */
 public class ObjectCollection {
     
