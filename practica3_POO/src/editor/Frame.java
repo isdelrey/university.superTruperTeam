@@ -7,7 +7,7 @@ package editor;
 
 /**
  *
- * @author ivo
+ * @author ivo & bassagap
  */
 abstract class Frame extends Matrix{
     

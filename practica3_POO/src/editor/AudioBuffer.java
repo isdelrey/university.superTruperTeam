@@ -7,7 +7,7 @@ package editor;
 
 /**
  *
- * @author ivo
+ * @author ivo & bassagap
  */
 public class AudioBuffer extends Vector {
     

@@ -7,7 +7,7 @@ package editor;
 
 /**
  *
- * @author ivo
+ * @author ivo & bassagap
  */
 public class ColorFrame extends Frame {
     
@@ -17,15 +17,27 @@ public class ColorFrame extends Frame {
     }
     //getters:
     public int[] get(Integer i, Integer j){
-        double ret = getValue(i, j);
-        int[] value = this.valToRGB(ret); 
-        return value; 
-    };
+        int[] value = null;
+        try{
+            double ret = getValue(i, j);
+            value = this.valToRGB(ret); 
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return value;         
+    }
     
     //setter:
     public void set(Integer i, Integer j, Integer r, Integer g, Integer b){
         double ret = RGBToVal(r, g, b);
-        set(i, j, ret); 
+        try{
+            set(i, j, ret); 
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        
     };
     
     @Override

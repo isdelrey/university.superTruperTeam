@@ -7,7 +7,7 @@ package editor;
 
 /**
  *
- * @author ivo
+ * @author ivo & bassagap
  */
 public class BWFrame extends Frame {
     
@@ -18,15 +18,25 @@ public class BWFrame extends Frame {
     @Override
     public void changeBrightness(double delta){
         
-    };
-    public double get(Integer i, Integer j){
-      return this.getValue(i, j);   
-    };
+    }
+    public double get(Integer i, Integer j) throws Exception{
+        try{
+           return this.getValue(i, j);   
+        }
+        catch(Exception e){
+            throw e; 
+        }
+    }
     
     //setter:
     
     //To be reviewed
     public void set(Integer i, Integer val){
-        set(i,i, val);
-    };
+        try{
+            set(i,i, val);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }       
+    }
 }
