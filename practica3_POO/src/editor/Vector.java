@@ -36,7 +36,7 @@ public class Vector extends ObjectCollection {
         this.dim = dim;
         this.values = new Object[Vector.maxDimension];
         this.zero();
-    };
+    }
     
     /**
      * Returns the dimension of the vector
@@ -100,7 +100,6 @@ public class Vector extends ObjectCollection {
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-
     }
     
     /**
@@ -215,9 +214,7 @@ public class Vector extends ObjectCollection {
         catch(Exception e){
             // throw new Exception("Matrix dimensions not correct, multiplyMat");
             throw e;
-        }
-        
-
+        }       
     } 
     
     /**
@@ -230,9 +227,10 @@ public class Vector extends ObjectCollection {
     /**
      * Sets to zero all values on a vector
      */
-   public void zero() {
+    @SuppressWarnings("empty-statement")
+   public final void zero() {
         for(Integer i = 0; i < this.values.length; i++ ){
             this.values[i] = 0.0;
-        };
+        }
     }      
 }

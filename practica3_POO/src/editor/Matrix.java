@@ -193,7 +193,9 @@ public class Matrix extends ObjectCollection {
             this.values[i].multiply(scalar);
         }
     }
-
+    /**
+     * Sets all values to zero
+     */
     public void zero() {
        for ( Integer m = 0; m < this.cols; m++){
            this.values[m].zero();

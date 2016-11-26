@@ -42,5 +42,28 @@ public class FrameTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of changeBrightness method, of class Frame.
+     */
+    @Test
+    public void testChangeBrightness() {
+        System.out.println("changeBrightness");
+        double delta = 0.0;
+        Frame instance = null;
+        instance.changeBrightness(delta);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    public class FrameImpl extends Frame {
+
+        public FrameImpl() {
+            super(null, null);
+        }
+
+        public void changeBrightness(double delta) {
+        }
+    }
     
 }

@@ -17,7 +17,7 @@ import org.junit.runners.Suite;
  * @author bassagap
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({editor.AudioBufferTest.class, editor.VectorTest.class, editor.ObjectCollectionTest.class, editor.MatrixTest.class, editor.FrameTest.class, editor.ColorFrameTest.class, editor.BWFrameTest.class, editor.BufferTest.class, editor.EditorTest.class})
+@Suite.SuiteClasses({AudioBufferTest.class, VectorTest.class, ObjectCollectionTest.class, MatrixTest.class, FrameTest.class, MainTest.class, ColorFrameTest.class, BWFrameTest.class, EditorTest.class})
 public class EditorSuite {
 
     @BeforeClass
