@@ -16,7 +16,7 @@ package editor;
 public class AudioBuffer extends Vector {
 
     /**
-     *
+     * Constructor
      * @param d
      */
     public AudioBuffer(Integer d){
@@ -24,8 +24,8 @@ public class AudioBuffer extends Vector {
     }; 
         
     /**
-     * 
-     * @param delta 
+     * Increases or decreases the volume by a delta factor 
+     * @param delta : delta factor
      */
     public void changeVolume(double delta){
         this.multiply(delta);
