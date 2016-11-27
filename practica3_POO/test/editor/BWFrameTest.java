@@ -5,6 +5,8 @@
  */
 package editor;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,23 +39,22 @@ public class BWFrameTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
      * Test of changeBrightness method, of class BWFrame.
      */
     @Test
     public void testChangeBrightness() {
         System.out.println("changeBrightness");
-        double delta = 0.0;
-        BWFrame instance = null;
-        instance.changeBrightness(delta);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        double delta = 2.0;
+        BWFrame instance = new BWFrame(2,2);
+        try {
+            instance.set(1, 1, delta);
+            instance.changeBrightness(delta);
+            double current = instance.get(1, 1);
+            assertEquals(4.0, current, 0.0);
+        } catch (Exception ex) {
+            fail("Failed test");
+        }
     }
 
     /**
@@ -62,14 +63,13 @@ public class BWFrameTest {
     @Test
     public void testGet() throws Exception {
         System.out.println("get");
-        Integer i = null;
-        Integer j = null;
-        BWFrame instance = null;
-        double expResult = 0.0;
+        Integer i = 1;
+        Integer j = 1;
+        BWFrame instance = new BWFrame(2,2);
+        instance.set(i, j, 2.0);
+        double expResult = 2.0;
         double result = instance.get(i, j);
         assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -78,12 +78,19 @@ public class BWFrameTest {
     @Test
     public void testSet() {
         System.out.println("set");
-        Integer i = null;
-        Integer val = null;
-        BWFrame instance = null;
-        instance.set(i, val);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Integer i  = 1;
+        Integer j = 1; 
+        double val = 1.0;
+        BWFrame instance = new BWFrame(2,2);
+        try {
+            instance.set(i, j, val);
+            double result = instance.get(i, j);
+            assertEquals(val, result, 0.0);
+        } catch (Exception ex) {
+            fail("Failed test");
+        }
+        
+        
     }
     
 }

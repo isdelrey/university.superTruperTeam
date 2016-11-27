@@ -17,7 +17,7 @@ public class BWFrame extends Frame {
     }
     @Override
     public void changeBrightness(double delta){
-        
+        this.multiplyScalar(delta);
     }
     public double get(Integer i, Integer j) throws Exception{
         try{
