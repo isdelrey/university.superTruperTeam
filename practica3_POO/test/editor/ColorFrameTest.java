@@ -37,10 +37,61 @@ public class ColorFrameTest {
     public void tearDown() {
     }
 
+    /**
+     * Test of set and get method, of class ColorFrame.
+     */
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testSetGet() throws Exception {
+        System.out.println("set");
+        ColorFrame c = new ColorFrame(2,2);
+        c.set(1, 1, 1, 0, 0);
+        assertEquals(1,c.get(1, 1)[0],0);
+        Boolean catched = false;
+        try {
+            c.set(8, 2, 0);
+        }
+        catch(Exception e) {
+            catched = true;
+        }
+        assertTrue(catched);
+        catched = false;
+        try {
+            c.get(8, 8);
+        }
+        catch(Exception e) {
+            catched = true;
+        }
+        assertTrue(catched);
+    }
+
+    /**
+     * Test of changeBrightness method, of class ColorFrame.
+     */
+    @Test
+    public void testChangeBrightness() throws Exception {
+        System.out.println("changeBrightness");
+        // Black
+        Integer dR = 0;
+        Integer dG = 0;
+        Integer dB = 0;
+        ColorFrame instance = new ColorFrame(2,2);
+        instance.changeBrightness(0);
+        assertEquals(0,instance.get(1, 1)[0],0);
+    }
+
+    /**
+     * Test of changeRGB method, of class ColorFrame.
+     */
+    @Test
+    public void testChangeRGB() throws Exception {
+        System.out.println("changeRGB");
+        // Black
+        Integer dR = 0;
+        Integer dG = 0;
+        Integer dB = 0;
+        ColorFrame instance = new ColorFrame(2,2);
+        instance.changeRGB(0, 0, 0);
+        instance.get(1, 1);
     }
     
 }

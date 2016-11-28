@@ -7,26 +7,38 @@ package editor;
 
 /**
  *
- * @author ivo
+ * @author ivo and bassagap
  */
 public class BWFrame extends Frame {
     
-    //Contructor:
+    //Constructor:
+    
     public BWFrame(Integer m, Integer n){
         super(m, n);
     }
+    
     @Override
     public void changeBrightness(double delta){
-        
-    };
-    public double get(Integer i, Integer j){
-      return this.getValue(i, j);   
-    };
+        this.multiplyScalar(delta);
+    }
+    
+    public double get(Integer i, Integer j) throws Exception{
+        try{
+           return this.getValue(i, j);   
+        }
+        catch(Exception e){
+            throw e; 
+        }
+    }
     
     //setter:
-    
-    //To be reviewed
-    public void set(Integer i, Integer val){
-        set(i,i, val);
-    };
+
+    /**
+     * Sets vector of the frame to val
+     * @param i
+     * @param val
+     */
+    public void set(int i, int val) throws Exception {
+        set(i,i, val);  
+    }
 }

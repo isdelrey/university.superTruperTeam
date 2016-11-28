@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Editor&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">editor</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package editor;
+
+/**
+ *
+ * @author ivo and bassagap
+ */
+<span class="nc" id="L12">public class Main {</span>
+     public static void main(String[] args) throws Exception {
+         
+<span class="nc" id="L15">        System.out.println(&quot;--------------------------------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L16">        System.out.println(&quot;EXERCICI 1 : Vector constructor &amp;&amp; set Method&quot;);</span>
+<span class="nc" id="L17">        System.out.println(&quot;1.1. Now we print a column vector:  v = [1 2 3] &quot;);</span>
+<span class="nc" id="L18">        Vector v = new Vector ( 3 ) ;</span>
+        try{
+<span class="nc" id="L20">            v.set(0, 1);</span>
+<span class="nc" id="L21">            v.set(1, 2);</span>
+<span class="nc" id="L22">            v.set(2, 3);</span>
+        }
+<span class="nc" id="L24">        catch(Exception e){</span>
+<span class="nc" id="L25">            System.out.println(&quot;Exception on EXERCICI 1 &quot; + e.getMessage());</span>
+<span class="nc" id="L26">        }  </span>
+<span class="nc" id="L27">        System.out.println(&quot;OUTPUT: The vector printed after initializing it and setting values is:&quot;);</span>
+<span class="nc" id="L28">        System.out.println();</span>
+<span class="nc" id="L29">        v.print();</span>
+<span class="nc" id="L30">        System.out.println();</span>
+<span class="nc" id="L31">        System.out.println(&quot;1.2. Now we print a zero column vector:  v = [0 0 0] using zero() method&quot;); </span>
+<span class="nc" id="L32">        System.out.println(&quot;OUTPUT: The vector printed after using zero() method is:&quot;);</span>
+<span class="nc" id="L33">        System.out.println();</span>
+<span class="nc" id="L34">        v.zero();</span>
+<span class="nc" id="L35">        v.print();</span>
+         
+<span class="nc" id="L37">        System.out.println(&quot;--------------------------------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L38">        System.out.println(&quot;EXERCICI 2: Matrix constructor &amp;&amp; set Method&quot;); </span>
+<span class="nc" id="L39">        System.out.println(&quot;2.1. Now we print a 2x2  matrix&quot;);</span>
+<span class="nc" id="L40">        Matrix m = new Matrix(2, 2); </span>
+        try{
+<span class="nc" id="L42">            m.set(0, 0, 1);</span>
+<span class="nc" id="L43">            m.set(0, 1, 0); </span>
+<span class="nc" id="L44">            m.set(1, 0, 0);</span>
+<span class="nc" id="L45">            m.set(1, 1, 1);</span>
+        }
+<span class="nc" id="L47">        catch(Exception e){</span>
+<span class="nc" id="L48">            System.out.println(e.getMessage());</span>
+<span class="nc" id="L49">        }</span>
+<span class="nc" id="L50">        System.out.println(&quot;OUTPUT: The matrix printed after initializing it and setting values is:&quot;);</span>
+<span class="nc" id="L51">        m.printMatrix();</span>
+<span class="nc" id="L52">        System.out.println();</span>
+<span class="nc" id="L53">        System.out.println(&quot;2.2. Now we print a zero matrix by applying zero() method to the previous matrix&quot;);</span>
+<span class="nc" id="L54">        System.out.println(&quot;OUTPUT: The matrix printed after initializing it and setting values is:&quot;);</span>
+<span class="nc" id="L55">        m.zero();</span>
+<span class="nc" id="L56">        m.printMatrix();</span>
+        
+<span class="nc" id="L58">        System.out.println(&quot;--------------------------------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L59">        System.out.println(&quot;EXERCICI 3: Rotation matrices&quot;);</span>
+<span class="nc" id="L60">        System.out.println(&quot;3.1. Now we print a 3D rotation matrix and a rotation vector  &quot;);</span>
+<span class="nc" id="L61">        Matrix  matrix = new Matrix(3,3);</span>
+<span class="nc" id="L62">        Vector vector = new Vector(3);</span>
+        try{
+<span class="nc" id="L64">            matrix.create3DRotationZ(Math.PI / 2);    </span>
+        }
+<span class="nc" id="L66">        catch(Exception e){</span>
+<span class="nc" id="L67">            System.out.println(e.getMessage());</span>
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">        System.out.println(&quot;OUTPUT: The matrix printed after initializing it and setting values is:&quot;);</span>
+<span class="nc" id="L70">        matrix.printMatrix();</span>
+<span class="nc" id="L71">        vector.set3D(1.0, 0.0, 0.0);</span>
+<span class="nc" id="L72">        System.out.println();</span>
+<span class="nc" id="L73">        vector.print();</span>
+<span class="nc" id="L74">        System.out.println();</span>
+<span class="nc" id="L75">        System.out.println(&quot;3.2. Now we will rotate the vector using the 3D rotation matrix&quot;);</span>
+        try{
+<span class="nc" id="L77">            vector.multiplyMat(matrix);</span>
+        }
+<span class="nc" id="L79">        catch(Exception e){</span>
+<span class="nc" id="L80">            System.out.println(e.getMessage());</span>
+<span class="nc" id="L81">        }</span>
+<span class="nc" id="L82">        System.out.println(&quot;OUTPUT: The rotated vector is:&quot;);</span>
+<span class="nc" id="L83">        System.out.println();</span>
+<span class="nc" id="L84">        vector.print();</span>
+        
+<span class="nc" id="L86">        System.out.println(&quot;--------------------------------------------------------------------------------------&quot;);</span>
+<span class="nc" id="L87">        System.out.println(&quot; EXERCICI 4: Adding rows and columns&quot;);</span>
+<span class="nc" id="L88">        System.out.println(&quot;4.1. We will add a row and a column to the following matrix&quot;);</span>
+<span class="nc" id="L89">        matrix.printMatrix();</span>
+<span class="nc" id="L90">        System.out.println();</span>
+<span class="nc" id="L91">        System.out.println(&quot;OUTPUT: The matrix with the added row is:&quot;);</span>
+<span class="nc" id="L92">        matrix.addRow();</span>
+<span class="nc" id="L93">        matrix.printMatrix();</span>
+<span class="nc" id="L94">        System.out.println();</span>
+<span class="nc" id="L95">        System.out.println(&quot;OUTPUT: The matrix with the added column is:&quot;); </span>
+<span class="nc" id="L96">        matrix.addColumn();</span>
+<span class="nc" id="L97">        matrix.printMatrix();</span>
+        
+
+
+<span class="nc" id="L101">        matrix.multiplyScalar(40);</span>
+<span class="nc" id="L102">        matrix.printMatrix();</span>
+
+//         Vector vector = new Vector(3);
+//         vector.set(2, 2.5);   
+//         for(double value :vector.getArray()){
+//            System.out.println(value);    
+//         }
+//         vector.multiply(3);
+//         vector.print();
+//         
+//         Matrix matrix = new Matrix(2, 2);
+//         matrix.set(0,0,1);
+//         matrix.set(0,1,0);
+//         matrix.set(1,0,0);
+//         matrix.set(1,1,1);
+//         matrix.printMatrix();
+
+       
+
+        
+//        Vector v = new Vector (3) ;
+//        v.set3D(1, 2, 3);
+//        v.print();
+//        v.addDim();
+//        v.print();
+        
+        
+        
+        
+                 
+         
+         
+         
+         
+    
+<span class="nc" id="L137">     }</span>
+
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

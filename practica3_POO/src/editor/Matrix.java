@@ -6,97 +6,152 @@
 package editor;
 
 /**
- *
- * @author ivo
+ *<h1>MATRIX</h1>
+ * Class that represents a Matrix as an array of vectors, where each column is 
+ * represented as a Vector
+ * <b>Note:</b> Matrix inherits from Object collection and it is generated as a "template" 
+ * so it has a max dimension, and then by passing the number of rows and columns 
+ * by its constructor we define its real dimensions
+ * @author ivo and bassagap
  */
 public class Matrix extends ObjectCollection {
     
-    //Attributes
-    private Vector[] values, transposed;
-    private int rows, cols;
+    /**
+     * Attributes: the matrix has as parameters the values of the matrix, 
+     * its rows and its columns
+     */
+    private final Vector[] values;
+    private int rows, cols;   
     
-    //Constructor
-    public Matrix(Integer m, Integer n) {
+    /**
+     * Constructor: receives as parameters the number of rows and columns of the 
+     * matrix, and sets the actual size of the matrix to the maxDimensions defined 
+     * by the objectCollection
+     * @param m : rows 
+     * @param n : columns
+     * @throws java.lang.Exception
+     */
+    public Matrix(int m, int n) {
+        super();
         this.cols = n;
         this.rows = m;
-       this.values = new Vector[n];        
-        for(Integer i= 0; i<n; i++){
+        this.values = new Vector[Matrix.maxDimension];        
+        for(int i = 0; i< Matrix.maxDimension; i++)
             this.values[i] = new Vector(m);
-        }      
-    };
-    //Public methods:
-    //getters
-    public int getRowsNumber() {
-        return this.rows;
-    };
-    public int getColumnsNumber() {
-        return this.cols;
-    };
-    public Vector[] getMatrix (){
-        return this.values; 
-    };
-    
-    public double getValue(Integer i, Integer j){
-        double ret;
-        ret = this.getColumnVector(j).getPositionValue(i);
-        return ret;
-
     }
     
-    // Returns the column vector of the matrix belonging to column c
-    public Vector getColumnVector(int c) {
-        return this.values[c];
-    };
+    /**
+     * Returns the number of rows of the matrix
+     * @return integer (number of rows)
+     */
+    public int getRows() {
+        return this.rows;
+    }
     
-    // Returns the Row vector of the matrix belonging to row r
-    public Vector getRowVector(int r) {
-        Vector v = new Vector(this.cols);
-        for(int i=0;i<this.rows;i++) {
-            v.set(i,values[i].getPositionValue(r));
+    /**
+     * Returns the number of columns of the matrix 
+     * @return integer (number of columns)
+     */
+    public int getColumns() {
+        return this.cols;
+    } 
+    
+    /**
+     * Returns the value of a matrix in a given position (i, j)
+     * @param i: row position
+     * @param j: column position
+     * @return  the value of the matrix at the given position
+     * @throws Exception 
+     */
+    public double getValue(Integer i, Integer j) throws Exception{
+        double ret;
+        if(i < this.rows && j < this.cols){
+            ret = this.getColumnVector(j).getPositionValue(i);
+        }
+        else {
+            throw new Exception("Values are outside Matrix dimensions");
+        }
+        return ret; 
+    }
+    
+    /**
+     * Returns the column vector of the matrix belonging to column c
+     * @param c
+     * @return
+     * @throws Exception 
+     */
+    public Vector getColumnVector(int c) throws Exception{
+        if(c > this.cols) {
+            throw new Exception("Values are outside Matrix dimensions, getColumnVector");
+        }
+        return this.values[c];
+    }
+    
+    /**
+     * Returns the Row vector of the matrix belonging to row r 
+     * @param r row position of the returned row vector
+     * @return Vector
+     * @throws Exception 
+     */
+    public Vector getRowVector(int r) throws Exception {
+        Vector v = new Vector(cols);
+        if(r <= this.rows){
+            for(int i=0;i<this.cols;i++) {
+                v.set(i,values[i].getPositionValue(r));
+            }            
+        }
+        else {
+            throw new Exception("Values are outside Matrix dimensions, getRowVector");
         }
         return v;
-    };
+    } 
     
-    //setters: 
-    // sets in a matrix position (m row and n column) a given value
-    public void set (int m, int n, double value){
-        Vector vector = this.values[n];
-        vector.set(m, value);
- 
-    };
-    //sets in a matrix column c a given vector v
+    /**
+     * Return the array of Values representing the matrix
+     * @return Vector array 
+     */
+    public Vector[] getMatrixValues(){
+        return this.values;
+    }
 
-    public void setColumn(int c, Vector v) {
-        this.values[c] = v;
-    };
-    //sets in a matrix row r a given vector v
-    public void setRow(int r, Vector v) {
-        for(int i=0;i<this.rows;i++){
-            this.values[i].set(r,v.getPositionValue(i));
-
+    /**
+     * Sets in a matrix position (m row and n column) a given value
+     * @param m rows
+     * @param n columns
+     * @param value value that is going to be set on the position m, n
+     * @throws Exception 
+     */
+    public void set (int m, int n, double value) throws Exception {
+        if(m < this.rows && n < this.cols){
+            Vector vector = this.values[n];
+            vector.set(m, value);
+        }       
+        else {
+            throw new Exception("Values are outside Matrix dimensions, set");
         }
-    };
-    //sets all values in a matrix to zero
-    public void zero() {
-        for(Vector v : this.values) {
-            v.zero();
-        }
-    };
+    }
     
-    //Prints the matrix
-    public void printMatrix(){
+    /**
+     * Prints the matrix
+     */
+    public void printMatrix() throws Exception {
         System.out.println();
         for(Integer m = 0; m < this.rows; m++){
-            for(Vector v : this.values){  
-                System.out.print(v.getArray()[m] + " ");      
+            for(Integer n = 0; n < this.cols; n++){
+                    double d = (double)this.getValue(m, n); 
+                    d = Math.round(d);
+                    System.out.print(d + " ");
             }
             System.out.println();
         }
-    };
-    
-    // 3D 
-    //Creates a rotation matrix of angle alpha, it also checks the matrix dimensions
-    public void create3DRotationZ(double alpha){
+    }
+
+    /**
+     * Creates a rotation matrix of angle alpha, it also checks the matrix dimensions
+     * @param alpha rotation angle
+     * @throws Exception 
+     */
+    public void create3DRotationZ(double alpha) throws Exception {
         if(this.cols == 3 && this.rows ==3){
             this.values[0].set(0, (double)Math.cos(alpha));
             this.values[1].set(0, -(double)Math.sin(alpha));
@@ -105,42 +160,88 @@ public class Matrix extends ObjectCollection {
             this.values[2].set(2, (double)1);  
         }
         else{
-            System.out.println("Matrix dimension doesn't match");
+            throw new Exception("Matrix dimension doesn't match, create3DRotationZ");
         }
-    };
-    
-
-    //Adds a void column to the matrix
-    public void addColumn(){
-        Matrix matrix = new Matrix(this.rows, this.cols + 1);
-        for(Integer i = 0; i < this.cols; i++){
-            matrix.setColumn(i, this.getColumnVector(i));
-        }
-        this.values = matrix.values;
     }
     
-
-    //Adds a void row to the matrix
-    public void addRow(){
-        Matrix matrix = new Matrix(this.rows+1, this.cols);
-        Vector vector; 
-        for(Integer i = 0; i < this.cols; i++){
-            vector = this.getColumnVector(i);
-            vector.addDim();
-            matrix.values[i] = vector;
-        }
-        this.values = matrix.values;
-        this.rows = this.rows + 1;
+    /**
+     * Adds a void column to the matrix
+     */
+    public void addColumn() throws Exception {
+        this.cols++;
+        for(Vector v : this.values) v.addDim();
+    }
+    /**
+     * Sets cols, rows to new values and resizes Matrix
+     */
+    public void newSize(int r, int c) throws Exception {
+        int cDiff = c-cols;
+        int rDiff = r-rows;
+        
+        if(cDiff != 0)
+           if(cDiff > 0)
+               for(int i = 0;i < cDiff;i++)
+                   addColumn();
+           else
+               for(int i = 0;i < -cDiff;i++)
+                   removeColumn();
+        
+        if(rDiff != 0)
+           if(rDiff > 0)
+               for(int i = 0;i < rDiff;i++)
+                   addRow();
+           else
+               for(int i = 0;i < -rDiff;i++)
+                   removeRow();
+    }
+    /**
+     * Adds a void row to the matrix
+     */
+    public void addRow() throws Exception {
+        this.rows++;
+        for(Vector v : this.values) v.addDim();
+    }
+    /**
+     * Removes row from the matrix
+     */
+    public void removeRow() throws Exception{
+        int r = --this.rows;
+        for(Vector v : this.values) v.removeDim();
+        
+        
+    }
+    /**
+     * Removes column from the matrix
+     */
+    public void removeColumn() throws Exception{
+        int c = --this.cols;
+        this.values[c] = new Vector(this.rows);
+        
     }
     
-    //Multiplies each value of the matrix by a given scalar 
+    /**
+     * Multiplies each value of the matrix by a given scalar 
+     * @param scalar scalar value that multiplies each matrix value
+     */
     public void multiplyScalar(double scalar){
-        for(Vector vector: this.values){
-            vector.multiply(scalar);
+        for(Integer i = 0; i < this.cols; i++){
+            this.values[i].multiply(scalar);
         }
     }
+    /**
+     * Sets all values to zero
+     */
+    public void zero() {
+       for ( Integer m = 0; m < this.cols; m++){
+           this.values[m].zero();
+       }
+    }
+    public Boolean isZero() throws Exception {
+        Boolean is = true;
+        for(Object o : values) {
+            is = ((Vector)o).isZero();
+            if(!is) break;
+        }
+        return is;
+    } 
 }
-    
-    
-    
-
