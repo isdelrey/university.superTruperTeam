@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ColorFrame.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Editor&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">editor</a> &gt; <span class="el_source">ColorFrame.java</span></div><h1>ColorFrame.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package editor;
+
+/**
+ *
+ * @author ivo and bassagap
+ */
+public class ColorFrame extends Frame {
+    
+    //Constructor
+    public ColorFrame(Integer m, Integer n) {
+<span class="fc" id="L16">        super(m,n);</span>
+<span class="fc" id="L17">    }</span>
+    //getters:
+    public int[] get(Integer i, Integer j) throws Exception {
+<span class="fc" id="L20">        int[] value = null;</span>
+<span class="fc" id="L21">        double ret = this.getValue(i, j);</span>
+<span class="fc" id="L22">        value = this.valToRGB(ret);</span>
+<span class="fc" id="L23">        return value;         </span>
+    }
+    
+    //setter:
+    public void set(Integer i, Integer j, Integer r, Integer g, Integer b) throws Exception {
+<span class="fc" id="L28">        double ret = RGBToVal(r, g, b);</span>
+<span class="fc" id="L29">        set(i, j, ret);</span>
+        
+<span class="fc" id="L31">    };</span>
+    public void changeRGB(Integer dR, Integer dG, Integer dB) {
+<span class="fc" id="L33">        double ret = RGBToVal(dR, dG, dB);</span>
+<span class="fc" id="L34">        this.multiplyScalar(ret);</span>
+<span class="fc" id="L35">    }</span>
+    
+    //Private methods:
+    
+    private int[] valToRGB(double rgb ) {
+<span class="fc" id="L40">        int[]ret = new int [ 3 ] ;</span>
+<span class="fc" id="L41">        ret[0]= ((int) rgb &gt;&gt; 16) &amp; 255;</span>
+<span class="fc" id="L42">        ret[1]= ((int) rgb &gt;&gt; 8) &amp; 255;</span>
+<span class="fc" id="L43">        ret[2]= ((int) rgb ) &amp; 255;</span>
+<span class="fc" id="L44">        return ret ;</span>
+    }
+    private double RGBToVal(Integer r, Integer g, Integer b){
+<span class="fc" id="L47">        double ret =(r&lt;&lt;16) | (g &lt;&lt; 8) | b;</span>
+<span class="fc" id="L48">        return ret;</span>
+    }
+
+    @Override
+    void changeBrightness(double delta) {
+<span class="fc" id="L53">        this.multiplyScalar(delta);</span>
+<span class="fc" id="L54">    }</span>
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
