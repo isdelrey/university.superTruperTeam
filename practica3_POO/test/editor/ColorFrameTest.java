@@ -37,71 +37,61 @@ public class ColorFrameTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     /**
-     * Test of get method, of class ColorFrame.
+     * Test of set and get method, of class ColorFrame.
      */
     @Test
-    public void testGet() {
-        System.out.println("get");
-        Integer i = null;
-        Integer j = null;
-        ColorFrame instance = null;
-        int[] expResult = null;
-        int[] result = instance.get(i, j);
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of set method, of class ColorFrame.
-     */
-    @Test
-    public void testSet() {
+    public void testSetGet() throws Exception {
         System.out.println("set");
-        Integer i = null;
-        Integer j = null;
-        Integer r = null;
-        Integer g = null;
-        Integer b = null;
-        ColorFrame instance = null;
-        instance.set(i, j, r, g, b);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ColorFrame c = new ColorFrame(2,2);
+        c.set(1, 1, 1, 0, 0);
+        assertEquals(1,c.get(1, 1)[0],0);
+        Boolean catched = false;
+        try {
+            c.set(8, 2, 0);
+        }
+        catch(Exception e) {
+            catched = true;
+        }
+        assertTrue(catched);
+        catched = false;
+        try {
+            c.get(8, 8);
+        }
+        catch(Exception e) {
+            catched = true;
+        }
+        assertTrue(catched);
     }
 
     /**
      * Test of changeBrightness method, of class ColorFrame.
      */
     @Test
-    public void testChangeBrightness() {
+    public void testChangeBrightness() throws Exception {
         System.out.println("changeBrightness");
-        double delta = 0.0;
-        ColorFrame instance = null;
-        instance.changeBrightness(delta);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // Black
+        Integer dR = 0;
+        Integer dG = 0;
+        Integer dB = 0;
+        ColorFrame instance = new ColorFrame(2,2);
+        instance.changeBrightness(0);
+        assertEquals(0,instance.get(1, 1)[0],0);
     }
 
     /**
      * Test of changeRGB method, of class ColorFrame.
      */
     @Test
-    public void testChangeRGB() {
+    public void testChangeRGB() throws Exception {
         System.out.println("changeRGB");
-        Integer dR = null;
-        Integer dG = null;
-        Integer dB = null;
-        ColorFrame instance = null;
-        instance.changeRGB(dR, dG, dB);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // Black
+        Integer dR = 0;
+        Integer dG = 0;
+        Integer dB = 0;
+        ColorFrame instance = new ColorFrame(2,2);
+        instance.changeRGB(0, 0, 0);
+        instance.get(1, 1);
     }
     
 }

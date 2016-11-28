@@ -78,7 +78,7 @@ public class Vector extends ObjectCollection {
      * @param v value that is going to be set on the index position of the vector
      * @throws Exception 
      */
-    public void set(int index, Object v) throws Exception {       
+    public void set(int index, double v) throws Exception {       
         if(index < this.dim ){
             this.values[index] = v;
         }
@@ -222,7 +222,10 @@ public class Vector extends ObjectCollection {
      * Increases dim by 1
      * @throws Exception 
      */
-    public void addDim(){
+    public void addDim() throws Exception {
+       if(this.getMaxDimension() == this.dim) {
+           throw new Exception("Cannot increase Vector size: Maximum dimension reached.");
+       }
        this.dim++;
     }
     /**
@@ -231,6 +234,9 @@ public class Vector extends ObjectCollection {
      * @throws Exception 
      */
     public void newDim(int d) throws Exception {
+       if(this.getMaxDimension() < d) {
+           throw new Exception("Cannot increase Vector size: Maximum dimension reached.");
+       }
        int diff = d - this.dim;
        if(diff != 0)
            if(diff > 0)
@@ -247,7 +253,11 @@ public class Vector extends ObjectCollection {
      * @throws Exception 
      */
     public void removeDim() throws Exception {
-       this.set(--this.dim, 0);
+        int d = this.dim-1;
+        if(d > 0) {
+            this.set(d, 0);
+            this.dim--;
+        }
     }
     /**
      * Sets to zero all values on a vector
@@ -284,5 +294,9 @@ public class Vector extends ObjectCollection {
             return e;
         }
         
+    }
+
+    Vector multiplyWith(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

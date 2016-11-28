@@ -65,7 +65,7 @@ public class Matrix extends ObjectCollection {
      */
     public double getValue(Integer i, Integer j) throws Exception{
         double ret;
-        if(i <= this.rows && j <= this.cols){
+        if(i < this.rows && j < this.cols){
             ret = this.getColumnVector(j).getPositionValue(i);
         }
         else {
@@ -122,7 +122,7 @@ public class Matrix extends ObjectCollection {
      * @throws Exception 
      */
     public void set (int m, int n, double value) throws Exception {
-        if(m <= this.rows && n <= this.cols){
+        if(m < this.rows && n < this.cols){
             Vector vector = this.values[n];
             vector.set(m, value);
         }       
@@ -134,18 +134,13 @@ public class Matrix extends ObjectCollection {
     /**
      * Prints the matrix
      */
-    public void printMatrix(){
+    public void printMatrix() throws Exception {
         System.out.println();
         for(Integer m = 0; m < this.rows; m++){
-            for(Integer n = 0; n < this.cols; n++){ 
-                try{
+            for(Integer n = 0; n < this.cols; n++){
                     double d = (double)this.getValue(m, n); 
                     d = Math.round(d);
-                    System.out.print(d + " ");                     
-                }
-                catch(Exception e){
-                    System.out.println(e.getMessage());
-                }    
+                    System.out.print(d + " ");
             }
             System.out.println();
         }
@@ -172,7 +167,7 @@ public class Matrix extends ObjectCollection {
     /**
      * Adds a void column to the matrix
      */
-    public void addColumn(){
+    public void addColumn() throws Exception {
         this.cols++;
         for(Vector v : this.values) v.addDim();
     }
@@ -202,7 +197,7 @@ public class Matrix extends ObjectCollection {
     /**
      * Adds a void row to the matrix
      */
-    public void addRow(){
+    public void addRow() throws Exception {
         this.rows++;
         for(Vector v : this.values) v.addDim();
     }
@@ -211,8 +206,8 @@ public class Matrix extends ObjectCollection {
      */
     public void removeRow() throws Exception{
         int r = --this.rows;
-        for(int i = 0;i < this.cols;i++)
-            this.set(i, r, 0);
+        for(Vector v : this.values) v.removeDim();
+        
         
     }
     /**

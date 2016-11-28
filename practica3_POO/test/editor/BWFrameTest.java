@@ -66,10 +66,18 @@ public class BWFrameTest {
         Integer i = 1;
         Integer j = 1;
         BWFrame instance = new BWFrame(2,2);
-        instance.set(i, j, 2.0);
-        double expResult = 2.0;
+        instance.set(i, j, 2);
+        double expResult = 2;
         double result = instance.get(i, j);
-        assertEquals(expResult, result, 0.0);
+        assertEquals(expResult, result,0);
+        Boolean catched = false;
+        try {
+            instance.get(2, 1);
+        }
+        catch(Exception e) {
+            catched = true;
+        }
+        assertTrue(catched);
     }
 
     /**

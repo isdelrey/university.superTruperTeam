@@ -11,14 +11,17 @@ package editor;
  */
 public class BWFrame extends Frame {
     
-    //Contructor:
+    //Constructor:
+    
     public BWFrame(Integer m, Integer n){
         super(m, n);
     }
+    
     @Override
     public void changeBrightness(double delta){
         this.multiplyScalar(delta);
     }
+    
     public double get(Integer i, Integer j) throws Exception{
         try{
            return this.getValue(i, j);   
@@ -29,14 +32,13 @@ public class BWFrame extends Frame {
     }
     
     //setter:
-    
-    //To be reviewed
-    public void set(Integer i, Integer val){
-        try{
-            set(i,i, val);
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }       
+
+    /**
+     * Sets vector of the frame to val
+     * @param i
+     * @param val
+     */
+    public void set(int i, int val) throws Exception {
+        set(i,i, val);  
     }
 }

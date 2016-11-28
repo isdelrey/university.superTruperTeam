@@ -12,43 +12,27 @@ package editor;
 public class ColorFrame extends Frame {
     
     //Constructor
-    public ColorFrame(Integer m, Integer n){
+    public ColorFrame(Integer m, Integer n) {
         super(m,n);
     }
     //getters:
-    public int[] get(Integer i, Integer j){
+    public int[] get(Integer i, Integer j) throws Exception {
         int[] value = null;
-        try{
-            double ret = getValue(i, j);
-            value = this.valToRGB(ret); 
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+        double ret = this.getValue(i, j);
+        value = this.valToRGB(ret);
         return value;         
     }
     
     //setter:
-    public void set(Integer i, Integer j, Integer r, Integer g, Integer b){
+    public void set(Integer i, Integer j, Integer r, Integer g, Integer b) throws Exception {
         double ret = RGBToVal(r, g, b);
-        try{
-            set(i, j, ret); 
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
+        set(i, j, ret);
         
     };
-    
-    @Override
-    public void changeBrightness(double delta){
-        this.multiplyScalar(delta);
-    };
-    
-    public void changeRGB(Integer dR, Integer dG, Integer dB){
+    public void changeRGB(Integer dR, Integer dG, Integer dB) {
         double ret = RGBToVal(dR, dG, dB);
         this.multiplyScalar(ret);
-    };
+    }
     
     //Private methods:
     
@@ -58,10 +42,15 @@ public class ColorFrame extends Frame {
         ret[1]= ((int) rgb >> 8) & 255;
         ret[2]= ((int) rgb ) & 255;
         return ret ;
-    };
+    }
     private double RGBToVal(Integer r, Integer g, Integer b){
         double ret =(r<<16) | (g << 8) | b;
         return ret;
-    };
+    }
+
+    @Override
+    void changeBrightness(double delta) {
+        this.multiplyScalar(delta);
+    }
     
 }

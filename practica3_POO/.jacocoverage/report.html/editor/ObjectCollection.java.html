@@ -26,13 +26,16 @@ public class ObjectCollection {
 <span class="fc" id="L26">    public ObjectCollection() {</span>
 <span class="fc" id="L27">        maxDimension = 100;</span>
 <span class="fc" id="L28">    }</span>
+<span class="fc" id="L29">    public ObjectCollection(int maxDim) {</span>
+<span class="fc" id="L30">        maxDimension = maxDim;</span>
+<span class="fc" id="L31">    }</span>
 
     /**
      * Returns the maximum dimension that a matrix or vector is going to have
      * @return maxDimension
      */  
     public int getMaxDimension() {
-<span class="fc" id="L35">        return maxDimension;</span>
+<span class="fc" id="L38">        return maxDimension;</span>
     };
     
     /**
@@ -40,7 +43,7 @@ public class ObjectCollection {
      * @param dim max dimension
      */
     public void setMaxDimension(int dim) {
-<span class="fc" id="L43">        maxDimension = dim;</span>
-<span class="fc" id="L44">    };</span>
+<span class="fc" id="L46">        maxDimension = dim;</span>
+<span class="fc" id="L47">    };</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

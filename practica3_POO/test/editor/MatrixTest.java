@@ -130,6 +130,75 @@ public class MatrixTest {
         assertTrue(catched);
     }
     @Test
+    public void testprint() throws Exception {
+        Matrix m = new Matrix(2,2);
+        m.printMatrix();
+    }
+    @Test
+    public void testgetValueError() throws Exception {
+        Boolean catched = false;
+        Matrix m = new Matrix(2,2);
+        try {
+            m.getValue(8, 2);
+        }
+        catch(Exception e) {
+                catched = true;
+        }
+        assertTrue(catched);
+    }
+    @Test
+    public void testgetColumnVectorError() throws Exception {
+        Boolean catched = false;
+        Matrix m = new Matrix(2,2);
+        try {
+            m.getColumnVector(8);
+        }
+        catch(Exception e) {
+                catched = true;
+        }
+        assertTrue(catched);
+    }
+    @Test
+    public void test3DRotation() throws Exception {
+        Boolean catched = false;
+        Matrix m = new Matrix(2,2);
+        m.set(0, 0, 1);
+        m.set(0, 1, 1);
+        try {
+            m.create3DRotationZ(0);
+        }
+        catch(Exception e) {
+                catched = true;
+        }
+        assertTrue(catched);
+        
+        m.addColumn();
+        catched = false;
+        try {
+            m.create3DRotationZ(0);
+        }
+        catch(Exception e) {
+                catched = true;
+        }
+        assertTrue(catched);
+        
+        m.addRow();
+        m.removeColumn();
+        catched = false;
+        try {
+            m.create3DRotationZ(0);
+        }
+        catch(Exception e) {
+                catched = true;
+        }
+        assertTrue(catched);
+        
+        m.addColumn();
+        m.create3DRotationZ(0);
+        assertTrue((double)-Math.sin(0)==(double)m.getValue(0, 1));
+        assertTrue((double)Math.cos(0)==(double)m.getValue(0, 0));
+    }
+    @Test
     public void testsetError() throws Exception {
         Boolean catched = false;
         Random r = new Random();
@@ -137,7 +206,23 @@ public class MatrixTest {
         int cols = r.nextInt(95)+1;
         Matrix instance = new Matrix(rows,cols);
         try {
-            instance.set(rows+1, cols+1, 2);
+            instance.set(rows, cols, 2);
+        }
+        catch(Exception e) {
+                catched = true;
+        }
+        assertTrue(catched);
+        catched = false;
+        try {
+            instance.set(rows-1, cols, 2);
+        }
+        catch(Exception e) {
+                catched = true;
+        }
+        assertTrue(catched);
+        catched = false;
+        try {
+            instance.set(rows, cols-1, 2);
         }
         catch(Exception e) {
                 catched = true;
@@ -149,9 +234,44 @@ public class MatrixTest {
      * Test of columns method, of class Matrix.¡
      */
     @Test
-    public void testColumns() {
+    public void testdim() throws Exception {
+        Matrix m = new Matrix(2,2);
+        m.set(0, 0, 1);
+        m.set(0, 1, 1);
+        assertEquals(2,m.getColumns());
+        m.removeColumn();
+        assertEquals(1,m.getColumns());
+        m.removeRow();
+        assertEquals(1,m.getRows());
+        Boolean catched = false;
+        try {
+            m.getValue(0, 1);
+        }
+        catch(Exception e) {
+                catched = true;
+        }
+        assertTrue(catched);
+        m.newSize(8, 8);
+        m.newSize(6, 6);
+        m.newSize(8, 6);
+        m.newSize(6, 8);
+        m.newSize(6, 8);
+        assertEquals(8,m.getColumns());
+        assertEquals(6,m.getRows());
     }
-
+    /**
+     * Test of multiplyScalar methods, of class Matrix.
+     */
+    @Test
+    public void testmultiplyScalar() throws Exception {
+        Random r = new Random();
+        Matrix m = new Matrix(2,2);
+        m.multiplyScalar(8);
+        assertTrue(m.isZero());
+        m.set(0, 1, 2);
+        m.multiplyScalar(8);
+        assertTrue((double)m.getValue(0, 1) == (double)16);
+    }
     /**
      * Test of addColumn method, of class Matrix.
      */

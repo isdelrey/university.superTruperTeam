@@ -43,12 +43,10 @@ public class ObjectCollectionTest {
     @Test
     public void testGetMaxDimension() {
         System.out.println("getMaxDimension");
-        ObjectCollection instance = new ObjectCollection();
         int expResult = 0;
+        ObjectCollection instance = new ObjectCollection(0);
         int result = instance.getMaxDimension();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -57,11 +55,10 @@ public class ObjectCollectionTest {
     @Test
     public void testSetMaxDimension() {
         System.out.println("setMaxDimension");
-        int dim = 0;
+        int dim = 2;
         ObjectCollection instance = new ObjectCollection();
         instance.setMaxDimension(dim);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(dim, instance.getMaxDimension());
     }
     
 }

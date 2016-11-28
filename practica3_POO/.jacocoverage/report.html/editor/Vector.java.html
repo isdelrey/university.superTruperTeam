@@ -43,7 +43,7 @@ public class Vector extends ObjectCollection {
      * @return Integer
      */
     public int getDim() {
-<span class="nc" id="L46">        return this.dim;</span>
+<span class="fc" id="L46">        return this.dim;</span>
     }
     
     
@@ -78,7 +78,7 @@ public class Vector extends ObjectCollection {
      * @param v value that is going to be set on the index position of the vector
      * @throws Exception 
      */
-    public void set(int index, Object v) throws Exception {       
+    public void set(int index, double v) throws Exception {       
 <span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if(index &lt; this.dim ){</span>
 <span class="fc" id="L83">            this.values[index] = v;</span>
         }
@@ -94,14 +94,14 @@ public class Vector extends ObjectCollection {
      */
     public void sumFrom(Vector v) {
         try{
-<span class="nc bnc" id="L97" title="All 2 branches missed.">            for(int i = 0;i&lt;v.getDim();i++){</span>
-<span class="nc" id="L98">                set(i, v.getPositionValue(i)+ v.getPositionValue(i));                </span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">            for(int i = 0;i&lt;v.getDim();i++){</span>
+<span class="fc" id="L98">                set(i, v.getPositionValue(i)+ v.getPositionValue(i));                </span>
             }
         }
 <span class="nc" id="L101">        catch(Exception e){</span>
 <span class="nc" id="L102">            System.out.println(e.getMessage());</span>
-<span class="nc" id="L103">        }</span>
-<span class="nc" id="L104">    }</span>
+<span class="fc" id="L103">        }</span>
+<span class="fc" id="L104">    }</span>
     
     /**
      * Sums the current vector with an other vector and returns the output vector
@@ -110,20 +110,20 @@ public class Vector extends ObjectCollection {
      * @throws Exception 
      */
     public Vector sumWith(Vector v) throws Exception {
-<span class="nc" id="L113">        Vector s = new Vector(this.dim);</span>
-<span class="nc bnc" id="L114" title="All 2 branches missed.">        if( v.getDim() == this.dim){           </span>
+<span class="fc" id="L113">        Vector s = new Vector(this.dim);</span>
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        if( v.getDim() == this.dim){           </span>
             try{
-<span class="nc bnc" id="L116" title="All 2 branches missed.">                for(int i = 0;i&lt;v.getDim();i++)</span>
-<span class="nc" id="L117">                    s.set(i, (double)getPositionValue(i)+(double)v.getPositionValue(i));</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">                for(int i = 0;i&lt;v.getDim();i++)</span>
+<span class="fc" id="L117">                    s.set(i, (double)getPositionValue(i)+(double)v.getPositionValue(i));</span>
             }
 <span class="nc" id="L119">            catch(Exception e){</span>
 <span class="nc" id="L120">                System.out.println(e.getMessage());</span>
-<span class="nc" id="L121">            }</span>
+<span class="pc" id="L121">            }</span>
         }
         else {
 <span class="nc" id="L124">            throw new Exception(&quot;Vector indices are not equals, sumWith&quot;);            </span>
         }
-<span class="nc" id="L126">        return s;</span>
+<span class="fc" id="L126">        return s;</span>
     }
     
     /**
@@ -133,21 +133,21 @@ public class Vector extends ObjectCollection {
      * @throws Exception 
      */
     public Vector multiplyWith(Vector v) throws Exception{
-<span class="nc" id="L136">        Vector m = new Vector(this.dim);</span>
-<span class="nc bnc" id="L137" title="All 2 branches missed.">        if( v.getDim() == this.dim){ </span>
+<span class="fc" id="L136">        Vector m = new Vector(this.dim);</span>
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">        if( v.getDim() == this.dim){ </span>
             try{
-<span class="nc bnc" id="L139" title="All 2 branches missed.">                for(int i = 0;i&lt;v.getDim();i++){</span>
-<span class="nc" id="L140">                    m.set(i, (double)getPositionValue(i)*(double)v.getPositionValue(i));</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">                for(int i = 0;i&lt;v.getDim();i++){</span>
+<span class="fc" id="L140">                    m.set(i, (double)getPositionValue(i)*(double)v.getPositionValue(i));</span>
                 }
             }
 <span class="nc" id="L143">            catch(Exception e){</span>
 <span class="nc" id="L144">                System.out.println(e.getMessage());</span>
-<span class="nc" id="L145">            }</span>
+<span class="pc" id="L145">            }</span>
         }
         else {
 <span class="nc" id="L148">            throw new Exception(&quot;Vector indices are not equals, multiplyWith&quot;);</span>
         }
-<span class="nc" id="L150">        return m;</span>
+<span class="fc" id="L150">        return m;</span>
     }
     
     /**
@@ -156,14 +156,14 @@ public class Vector extends ObjectCollection {
      */
     public void multiply(double d) {
         try{
-<span class="nc bnc" id="L159" title="All 2 branches missed.">            for(int i = 0; i&lt;this.dim; i++){</span>
-<span class="nc" id="L160">                this.set(i, (double)this.values[i] * d); </span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">            for(int i = 0; i&lt;this.dim; i++){</span>
+<span class="fc" id="L160">                this.set(i, (double)this.values[i] * d); </span>
             }            
         }
 <span class="nc" id="L163">        catch(Exception e){</span>
 <span class="nc" id="L164">            System.out.println(e.getMessage());</span>
-<span class="nc" id="L165">        }</span>
-<span class="nc" id="L166">    }</span>
+<span class="fc" id="L165">        }</span>
+<span class="fc" id="L166">    }</span>
     
     /**
      * Prints  the vector values
@@ -199,91 +199,105 @@ public class Vector extends ObjectCollection {
     public void multiplyMat(Matrix m) throws Exception{
         Vector rowVector;
         try{
-<span class="nc" id="L202">            Vector tempVec = new Vector (this.dim);</span>
-<span class="nc bnc" id="L203" title="All 6 branches missed.">            if(this.dim == 3 &amp;&amp; m.getColumns() == 3 &amp;&amp; m.getRows() == 3){</span>
-<span class="nc bnc" id="L204" title="All 2 branches missed.">                for (Integer i = 0; i &lt; this.dim; i++){</span>
-<span class="nc" id="L205">                   double value = 0.0; </span>
-<span class="nc" id="L206">                   rowVector = m.getRowVector(i);</span>
-<span class="nc bnc" id="L207" title="All 2 branches missed.">                   for(Integer j = 0; j &lt; m.getRows(); j++){</span>
-<span class="nc" id="L208">                       value = value + (double)rowVector.getArray()[j] * (double)this.values[j];            </span>
+<span class="fc" id="L202">            Vector tempVec = new Vector (this.dim);</span>
+<span class="pc bpc" id="L203" title="3 of 6 branches missed.">            if(this.dim == 3 &amp;&amp; m.getColumns() == 3 &amp;&amp; m.getRows() == 3){</span>
+<span class="fc bfc" id="L204" title="All 2 branches covered.">                for (Integer i = 0; i &lt; this.dim; i++){</span>
+<span class="fc" id="L205">                   double value = 0.0; </span>
+<span class="fc" id="L206">                   rowVector = m.getRowVector(i);</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">                   for(Integer j = 0; j &lt; m.getRows(); j++){</span>
+<span class="fc" id="L208">                       value = value + (double)rowVector.getArray()[j] * (double)this.values[j];            </span>
                    }
-<span class="nc" id="L210">                   tempVec.set(i,value);</span>
+<span class="fc" id="L210">                   tempVec.set(i,value);</span>
                 }
-<span class="nc" id="L212">                this.values = tempVec.getArray();</span>
+<span class="fc" id="L212">                this.values = tempVec.getArray();</span>
             }            
         }
 <span class="nc" id="L215">        catch(Exception e){</span>
             // throw new Exception(&quot;Matrix dimensions not correct, multiplyMat&quot;);
 <span class="nc" id="L217">            throw e;</span>
-<span class="nc" id="L218">        }       </span>
-<span class="nc" id="L219">    } </span>
+<span class="fc" id="L218">        }       </span>
+<span class="fc" id="L219">    } </span>
     
     /**
      * Increases dim by 1
      * @throws Exception 
      */
-    public void addDim(){
-<span class="nc" id="L226">       this.dim++;</span>
-<span class="nc" id="L227">    }</span>
+    public void addDim() throws Exception {
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">       if(this.getMaxDimension() == this.dim) {</span>
+<span class="nc" id="L227">           throw new Exception(&quot;Cannot increase Vector size: Maximum dimension reached.&quot;);</span>
+       }
+<span class="fc" id="L229">       this.dim++;</span>
+<span class="fc" id="L230">    }</span>
     /**
      * Sets dim to d
      * @param m will be the new dim
      * @throws Exception 
      */
     public void newDim(int d) throws Exception {
-<span class="nc" id="L234">       int diff = d - this.dim;</span>
-<span class="nc bnc" id="L235" title="All 2 branches missed.">       if(diff != 0)</span>
-<span class="nc bnc" id="L236" title="All 2 branches missed.">           if(diff &gt; 0)</span>
-<span class="nc bnc" id="L237" title="All 2 branches missed.">               for(int i = 0;i &lt; diff;i++)</span>
-<span class="nc" id="L238">                   addDim();</span>
+<span class="fc bfc" id="L237" title="All 2 branches covered.">       if(this.getMaxDimension() &lt; d) {</span>
+<span class="fc" id="L238">           throw new Exception(&quot;Cannot increase Vector size: Maximum dimension reached.&quot;);</span>
+       }
+<span class="fc" id="L240">       int diff = d - this.dim;</span>
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">       if(diff != 0)</span>
+<span class="pc bpc" id="L242" title="1 of 2 branches missed.">           if(diff &gt; 0)</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">               for(int i = 0;i &lt; diff;i++)</span>
+<span class="fc" id="L244">                   addDim();</span>
            else
-<span class="nc bnc" id="L240" title="All 2 branches missed.">               for(int i = 0;i &lt; -diff;i++)</span>
-<span class="nc" id="L241">                   removeDim();</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">               for(int i = 0;i &lt; -diff;i++)</span>
+<span class="nc" id="L247">                   removeDim();</span>
            
-<span class="nc" id="L243">    }</span>
+<span class="fc" id="L249">    }</span>
     
     /**
      * Decreases dim by 1 and sets the current dim position to 0
      * @throws Exception 
      */
     public void removeDim() throws Exception {
-<span class="nc" id="L250">       this.set(--this.dim, 0);</span>
-<span class="nc" id="L251">    }</span>
+<span class="fc" id="L256">        int d = this.dim-1;</span>
+<span class="pc bpc" id="L257" title="1 of 2 branches missed.">        if(d &gt; 0) {</span>
+<span class="fc" id="L258">            this.set(d, 0);</span>
+<span class="fc" id="L259">            this.dim--;</span>
+        }
+<span class="fc" id="L261">    }</span>
     /**
      * Sets to zero all values on a vector
      */
    public final void zero() {
-<span class="fc bfc" id="L256" title="All 2 branches covered.">        for(Integer i = 0; i &lt; this.values.length; i++ ){</span>
-<span class="fc" id="L257">            this.values[i] = 0.0;</span>
+<span class="fc bfc" id="L266" title="All 2 branches covered.">        for(Integer i = 0; i &lt; this.values.length; i++ ){</span>
+<span class="fc" id="L267">            this.values[i] = 0.0;</span>
         }
-<span class="fc" id="L259">    }</span>
+<span class="fc" id="L269">    }</span>
     public Boolean isZero() throws Exception {
-<span class="fc" id="L261">        Boolean is = true;</span>
-<span class="fc bfc" id="L262" title="All 2 branches covered.">        for(Object o : this.values ) {</span>
-<span class="fc bfc" id="L263" title="All 2 branches covered.">            is = ((double)o == 0);</span>
-<span class="fc bfc" id="L264" title="All 2 branches covered.">            if(!is) break;</span>
+<span class="fc" id="L271">        Boolean is = true;</span>
+<span class="fc bfc" id="L272" title="All 2 branches covered.">        for(Object o : this.values ) {</span>
+<span class="fc bfc" id="L273" title="All 2 branches covered.">            is = ((double)o == 0);</span>
+<span class="fc bfc" id="L274" title="All 2 branches covered.">            if(!is) break;</span>
         }
-<span class="fc" id="L266">        return is;</span>
+<span class="fc" id="L276">        return is;</span>
     }
     public Boolean doubleEquals(Vector v) {
-<span class="pc bpc" id="L269" title="1 of 2 branches missed.">        if(this.dim != v.dim) {</span>
-<span class="nc" id="L270">            System.out.println(&quot;doubleEquals: size diference&quot;);</span>
-<span class="nc" id="L271">            return false;</span>
+<span class="pc bpc" id="L279" title="1 of 2 branches missed.">        if(this.dim != v.dim) {</span>
+<span class="nc" id="L280">            System.out.println(&quot;doubleEquals: size diference&quot;);</span>
+<span class="nc" id="L281">            return false;</span>
         }
         else {
-<span class="fc" id="L274">            Boolean e = true;</span>
-<span class="fc" id="L275">            Object[] o1 = v.getArray();</span>
-<span class="fc" id="L276">            Object[] o2 = this.getArray();</span>
-<span class="fc bfc" id="L277" title="All 2 branches covered.">            for(int i = 0;i &lt; v.dim;i++) {</span>
-<span class="pc bpc" id="L278" title="1 of 2 branches missed.">                if((double)o1[i] != (double)o2[i]) {</span>
-<span class="nc" id="L279">                    e = false;</span>
-<span class="nc" id="L280">                    System.out.println(&quot;doubleEquals: one element differs&quot;);</span>
-<span class="nc" id="L281">                    break;</span>
+<span class="fc" id="L284">            Boolean e = true;</span>
+<span class="fc" id="L285">            Object[] o1 = v.getArray();</span>
+<span class="fc" id="L286">            Object[] o2 = this.getArray();</span>
+<span class="fc bfc" id="L287" title="All 2 branches covered.">            for(int i = 0;i &lt; v.dim;i++) {</span>
+<span class="pc bpc" id="L288" title="1 of 2 branches missed.">                if((double)o1[i] != (double)o2[i]) {</span>
+<span class="nc" id="L289">                    e = false;</span>
+<span class="nc" id="L290">                    System.out.println(&quot;doubleEquals: one element differs&quot;);</span>
+<span class="nc" id="L291">                    break;</span>
                 }
             }
-<span class="fc" id="L284">            return e;</span>
+<span class="fc" id="L294">            return e;</span>
         }
         
+    }
+
+    Vector multiplyWith(int i) {
+<span class="nc" id="L300">        throw new UnsupportedOperationException(&quot;Not supported yet.&quot;); //To change body of generated methods, choose Tools | Templates.</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

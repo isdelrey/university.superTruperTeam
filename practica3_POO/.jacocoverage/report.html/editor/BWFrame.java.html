@@ -11,33 +11,35 @@ package editor;
  */
 public class BWFrame extends Frame {
     
-    //Contructor:
+    //Constructor:
+    
     public BWFrame(Integer m, Integer n){
-<span class="nc" id="L16">        super(m, n);</span>
-<span class="nc" id="L17">    }</span>
+<span class="fc" id="L17">        super(m, n);</span>
+<span class="fc" id="L18">    }</span>
+    
     @Override
     public void changeBrightness(double delta){
-        
-<span class="nc" id="L21">    }</span>
+<span class="fc" id="L22">        this.multiplyScalar(delta);</span>
+<span class="fc" id="L23">    }</span>
+    
     public double get(Integer i, Integer j) throws Exception{
         try{
-<span class="nc" id="L24">           return this.getValue(i, j);   </span>
+<span class="fc" id="L27">           return this.getValue(i, j);   </span>
         }
-<span class="nc" id="L26">        catch(Exception e){</span>
-<span class="nc" id="L27">            throw e; </span>
+<span class="fc" id="L29">        catch(Exception e){</span>
+<span class="fc" id="L30">            throw e; </span>
         }
     }
     
     //setter:
-    
-    //To be reviewed
-    public void set(Integer i, Integer val){
-        try{
-<span class="nc" id="L36">            set(i,i, val);</span>
-        }
-<span class="nc" id="L38">        catch(Exception e){</span>
-<span class="nc" id="L39">            System.out.println(e.getMessage());</span>
-<span class="nc" id="L40">        }       </span>
-<span class="nc" id="L41">    }</span>
+
+    /**
+     * Sets vector of the frame to val
+     * @param i
+     * @param val
+     */
+    public void set(int i, int val) throws Exception {
+<span class="nc" id="L42">        set(i,i, val);  </span>
+<span class="nc" id="L43">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

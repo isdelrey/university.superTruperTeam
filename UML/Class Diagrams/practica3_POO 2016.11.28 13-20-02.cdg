@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="practica3_POO">
+  <ClassDiagramComponents>
+    <Class name="AudioBuffer" package="editor" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Integer" name="d"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="changeVolume" returnType="void" visibility="public">
+          <Argument type="double" name="delta"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="BWFrame" package="editor" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Integer" name="m"/>
+          <Argument type="Integer" name="n"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="changeBrightness" returnType="void" visibility="public">
+          <Argument type="double" name="delta"/>
+        </Method>
+        <Method name="get" returnType="double" visibility="public">
+          <Argument type="Integer" name="i"/>
+          <Argument type="Integer" name="j"/>
+        </Method>
+        <Method name="set" returnType="void" visibility="public">
+          <Argument type="int" name="i"/>
+          <Argument type="int" name="val"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ColorFrame" package="editor" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Integer" name="m"/>
+          <Argument type="Integer" name="n"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="get" returnType="int[]" visibility="public">
+          <Argument type="Integer" name="i"/>
+          <Argument type="Integer" name="j"/>
+        </Method>
+        <Method name="set" returnType="void" visibility="public">
+          <Argument type="Integer" name="i"/>
+          <Argument type="Integer" name="j"/>
+          <Argument type="Integer" name="r"/>
+          <Argument type="Integer" name="g"/>
+          <Argument type="Integer" name="b"/>
+        </Method>
+        <Method name="changeRGB" returnType="void" visibility="public">
+          <Argument type="Integer" name="dR"/>
+          <Argument type="Integer" name="dG"/>
+          <Argument type="Integer" name="dB"/>
+        </Method>
+        <Method name="valToRGB" returnType="int[]" visibility="private">
+          <Argument type="double" name="rgb"/>
+        </Method>
+        <Method name="RGBToVal" returnType="double" visibility="private">
+          <Argument type="Integer" name="r"/>
+          <Argument type="Integer" name="g"/>
+          <Argument type="Integer" name="b"/>
+        </Method>
+        <Method name="changeBrightness" returnType="void" visibility="package">
+          <Argument type="double" name="delta"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Frame" package="editor" visibility="public" isAbstract="true" xPosition="920.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Integer" name="m"/>
+          <Argument type="Integer" name="n"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="changeBrightness" returnType="void" visibility="package" isAbstract="true">
+          <Argument type="double" name="delta"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Main" package="editor" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Matrix" package="editor" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="values" type="Vector[]" visibility="private" isFinal="true"/>
+        <Field name="rows" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="m"/>
+          <Argument type="int" name="n"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getRows" returnType="int" visibility="public"/>
+        <Method name="getColumns" returnType="int" visibility="public"/>
+        <Method name="getValue" returnType="double" visibility="public">
+          <Argument type="Integer" name="i"/>
+          <Argument type="Integer" name="j"/>
+        </Method>
+        <Method name="getColumnVector" returnType="Vector" visibility="public">
+          <Argument type="int" name="c"/>
+        </Method>
+        <Method name="getRowVector" returnType="Vector" visibility="public">
+          <Argument type="int" name="r"/>
+        </Method>
+        <Method name="getMatrixValues" returnType="Vector[]" visibility="public"/>
+        <Method name="set" returnType="void" visibility="public">
+          <Argument type="int" name="m"/>
+          <Argument type="int" name="n"/>
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="printMatrix" returnType="void" visibility="public"/>
+        <Method name="create3DRotationZ" returnType="void" visibility="public">
+          <Argument type="double" name="alpha"/>
+        </Method>
+        <Method name="addColumn" returnType="void" visibility="public"/>
+        <Method name="newSize" returnType="void" visibility="public">
+          <Argument type="int" name="r"/>
+          <Argument type="int" name="c"/>
+        </Method>
+        <Method name="addRow" returnType="void" visibility="public"/>
+        <Method name="removeRow" returnType="void" visibility="public"/>
+        <Method name="removeColumn" returnType="void" visibility="public"/>
+        <Method name="multiplyScalar" returnType="void" visibility="public">
+          <Argument type="double" name="scalar"/>
+        </Method>
+        <Method name="zero" returnType="void" visibility="public"/>
+        <Method name="isZero" returnType="Boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ObjectCollection" package="editor" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="maxDimension" type="int" visibility="protected" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="maxDim"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMaxDimension" returnType="int" visibility="public"/>
+        <Method name="setMaxDimension" returnType="void" visibility="public">
+          <Argument type="int" name="dim"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Vector" package="editor" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="values" type="Object[]" visibility="private"/>
+        <Field name="dim" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="dim"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDim" returnType="int" visibility="public"/>
+        <Method name="getArray" returnType="Object[]" visibility="public"/>
+        <Method name="getPositionValue" returnType="double" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="set" returnType="void" visibility="public">
+          <Argument type="int" name="index"/>
+          <Argument type="double" name="v"/>
+        </Method>
+        <Method name="sumFrom" returnType="void" visibility="public">
+          <Argument type="Vector" name="v"/>
+        </Method>
+        <Method name="sumWith" returnType="Vector" visibility="public">
+          <Argument type="Vector" name="v"/>
+        </Method>
+        <Method name="multiplyWith" returnType="Vector" visibility="public">
+          <Argument type="Vector" name="v"/>
+        </Method>
+        <Method name="multiply" returnType="void" visibility="public">
+          <Argument type="double" name="d"/>
+        </Method>
+        <Method name="print" returnType="void" visibility="public"/>
+        <Method name="set3D" returnType="void" visibility="public">
+          <Argument type="Object" name="i"/>
+          <Argument type="Object" name="j"/>
+          <Argument type="Object" name="k"/>
+        </Method>
+        <Method name="multiplyMat" returnType="void" visibility="public">
+          <Argument type="Matrix" name="m"/>
+        </Method>
+        <Method name="addDim" returnType="void" visibility="public"/>
+        <Method name="newDim" returnType="void" visibility="public">
+          <Argument type="int" name="d"/>
+        </Method>
+        <Method name="removeDim" returnType="void" visibility="public"/>
+        <Method name="zero" returnType="void" visibility="public" isFinal="true"/>
+        <Method name="isZero" returnType="Boolean" visibility="public"/>
+        <Method name="doubleEquals" returnType="Boolean" visibility="public">
+          <Argument type="Vector" name="v"/>
+        </Method>
+        <Method name="multiplyWith" returnType="Vector" visibility="package">
+          <Argument type="int" name="i"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="editor.Vector" target="editor.ObjectCollection"/>
+    <UseRelation source="editor.Vector" target="editor.Vector" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="editor.BWFrame" target="editor.Frame"/>
+    <IsRelation name="is" source="editor.ColorFrame" target="editor.Frame"/>
+    <IsRelation name="is" source="editor.Frame" target="editor.Matrix"/>
+    <IsRelation name="is" source="editor.AudioBuffer" target="editor.Vector"/>
+    <UseRelation source="editor.Vector" target="editor.Matrix" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="editor.Matrix" target="editor.Vector" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="editor.Matrix" target="editor.ObjectCollection"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

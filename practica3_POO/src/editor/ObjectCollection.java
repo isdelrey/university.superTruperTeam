@@ -26,6 +26,9 @@ public class ObjectCollection {
     public ObjectCollection() {
         maxDimension = 100;
     }
+    public ObjectCollection(int maxDim) {
+        maxDimension = maxDim;
+    }
 
     /**
      * Returns the maximum dimension that a matrix or vector is going to have

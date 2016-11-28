@@ -13,7 +13,7 @@ package editor;
  * class of two different kind of frames, the BWFrame and the ColorFrame. 
  * @author ivo and bassagap
  */
-abstract class Frame extends Matrix{
+abstract class Frame extends Matrix {
     
     /**
      * The constructor, as in Matrix class, takes as input the dimensions of the matrix. 
