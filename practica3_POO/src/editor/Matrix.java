@@ -29,15 +29,15 @@ public class Matrix extends ObjectCollection {
      * by the objectCollection
      * @param m : rows 
      * @param n : columns
+     * @throws java.lang.Exception
      */
-    public Matrix(Integer m, Integer n) {
+    public Matrix(int m, int n) {
         super();
         this.cols = n;
         this.rows = m;
         this.values = new Vector[Matrix.maxDimension];        
-        for(Integer i= 0; i< Matrix.maxDimension; i++){
-            this.values[i] = new Vector(Matrix.maxDimension);
-        }      
+        for(int i = 0; i< Matrix.maxDimension; i++)
+            this.values[i] = new Vector(m);
     }
     
     /**
@@ -93,11 +93,10 @@ public class Matrix extends ObjectCollection {
      * @return Vector
      * @throws Exception 
      */
-    public Vector getRowVector(int r)throws Exception {
-        Vector v;
+    public Vector getRowVector(int r) throws Exception {
+        Vector v = new Vector(cols);
         if(r <= this.rows){
-            v = new Vector(this.cols);
-            for(int i=0;i<this.rows;i++) {
+            for(int i=0;i<this.cols;i++) {
                 v.set(i,values[i].getPositionValue(r));
             }            
         }
@@ -122,10 +121,10 @@ public class Matrix extends ObjectCollection {
      * @param value value that is going to be set on the position m, n
      * @throws Exception 
      */
-    public void set (int m, int n, double value)throws Exception{
+    public void set (int m, int n, double value) throws Exception {
         if(m <= this.rows && n <= this.cols){
             Vector vector = this.values[n];
-            vector.set(m, value);   
+            vector.set(m, value);
         }       
         else {
             throw new Exception("Values are outside Matrix dimensions, set");
@@ -174,14 +173,55 @@ public class Matrix extends ObjectCollection {
      * Adds a void column to the matrix
      */
     public void addColumn(){
-        this.cols++; 
+        this.cols++;
+        for(Vector v : this.values) v.addDim();
     }
-    
+    /**
+     * Sets cols, rows to new values and resizes Matrix
+     */
+    public void newSize(int r, int c) throws Exception {
+        int cDiff = c-cols;
+        int rDiff = r-rows;
+        
+        if(cDiff != 0)
+           if(cDiff > 0)
+               for(int i = 0;i < cDiff;i++)
+                   addColumn();
+           else
+               for(int i = 0;i < -cDiff;i++)
+                   removeColumn();
+        
+        if(rDiff != 0)
+           if(rDiff > 0)
+               for(int i = 0;i < rDiff;i++)
+                   addRow();
+           else
+               for(int i = 0;i < -rDiff;i++)
+                   removeRow();
+    }
     /**
      * Adds a void row to the matrix
      */
     public void addRow(){
         this.rows++;
+        for(Vector v : this.values) v.addDim();
+    }
+    /**
+     * Removes row from the matrix
+     */
+    public void removeRow() throws Exception{
+        int r = --this.rows;
+        for(int i = 0;i < this.cols;i++)
+            this.set(i, r, 0);
+        
+    }
+    /**
+     * Removes column from the matrix
+     */
+    public void removeColumn() throws Exception{
+        int c = --this.cols;
+        this.values[c] = new Vector(this.rows);
+        
     }
     
     /**
@@ -201,4 +241,12 @@ public class Matrix extends ObjectCollection {
            this.values[m].zero();
        }
     }
+    public Boolean isZero() throws Exception {
+        Boolean is = true;
+        for(Object o : values) {
+            is = ((Vector)o).isZero();
+            if(!is) break;
+        }
+        return is;
+    } 
 }

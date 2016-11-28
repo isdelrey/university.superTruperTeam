@@ -31,7 +31,7 @@ public class Vector extends ObjectCollection {
      * a property inherited from the ObjectCollection parent class
      * @param dim dimension
      */
-    public Vector(Integer dim) {
+    public Vector(int dim) {
         super();
         this.dim = dim;
         this.values = new Object[Vector.maxDimension];
@@ -45,6 +45,7 @@ public class Vector extends ObjectCollection {
     public int getDim() {
         return this.dim;
     }
+    
     
     /**
      * Returns the array of values of the Vector
@@ -62,7 +63,7 @@ public class Vector extends ObjectCollection {
      */
     public double getPositionValue(int index) throws Exception{
         double ret;
-        if( index <=  this.dim){
+        if( index <  this.dim){
            ret = (double)values[index]; 
         }
         else{
@@ -78,11 +79,11 @@ public class Vector extends ObjectCollection {
      * @throws Exception 
      */
     public void set(int index, Object v) throws Exception {       
-        if(index <= this.dim ){
+        if(index < this.dim ){
             this.values[index] = v;
         }
         else {
-            throw new Exception("Index is outside vector dimensions, set");
+            throw new Exception("Index is outside vector dimensions, set:" + index + " and max:" + dim);
         }
     }
     
@@ -218,19 +219,70 @@ public class Vector extends ObjectCollection {
     } 
     
     /**
-     * Add a row to a vector with value 0
+     * Increases dim by 1
+     * @throws Exception 
      */
     public void addDim(){
        this.dim++;
     }
+    /**
+     * Sets dim to d
+     * @param m will be the new dim
+     * @throws Exception 
+     */
+    public void newDim(int d) throws Exception {
+       int diff = d - this.dim;
+       if(diff != 0)
+           if(diff > 0)
+               for(int i = 0;i < diff;i++)
+                   addDim();
+           else
+               for(int i = 0;i < -diff;i++)
+                   removeDim();
+           
+    }
     
+    /**
+     * Decreases dim by 1 and sets the current dim position to 0
+     * @throws Exception 
+     */
+    public void removeDim() throws Exception {
+       this.set(--this.dim, 0);
+    }
     /**
      * Sets to zero all values on a vector
      */
-    @SuppressWarnings("empty-statement")
    public final void zero() {
         for(Integer i = 0; i < this.values.length; i++ ){
             this.values[i] = 0.0;
         }
-    }      
+    }
+    public Boolean isZero() throws Exception {
+        Boolean is = true;
+        for(Object o : this.values ) {
+            is = ((double)o == 0);
+            if(!is) break;
+        }
+        return is;
+    }
+    public Boolean doubleEquals(Vector v) {
+        if(this.dim != v.dim) {
+            System.out.println("doubleEquals: size diference");
+            return false;
+        }
+        else {
+            Boolean e = true;
+            Object[] o1 = v.getArray();
+            Object[] o2 = this.getArray();
+            for(int i = 0;i < v.dim;i++) {
+                if((double)o1[i] != (double)o2[i]) {
+                    e = false;
+                    System.out.println("doubleEquals: one element differs");
+                    break;
+                }
+            }
+            return e;
+        }
+        
+    }
 }

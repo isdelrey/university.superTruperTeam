@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Vector.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Editor&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">editor</a> &gt; <span class="el_source">Vector.java</span></div><h1>Vector.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package editor;
+
+/**
+ *&lt;h1&gt;VECTOR&lt;/h1&gt;
+ * Class that represents a Vector as an array of doubles.
+ * &lt;b&gt;Note:&lt;/b&gt; Vector inherits from Object collection and it is generated as a &quot;template&quot; 
+ * so it has a max dimension, and then by passing the desired dimension 
+ * by its constructor we define its real dimensions
+ * @author ivo and bassagap
+ */
+
+public class Vector extends ObjectCollection {
+    
+    //Attributes
+    /**
+     * Attributes
+     * Object[] values the array of doubles that represents the vector
+     * int dim the chosen dimension of the vector settled on the constructor.
+     */
+    private Object[] values;
+    private int dim;
+
+    /**
+     * Vector constructor takes a dimension and initializes the dim attribute to 
+     * this dimension. After that it creates a &quot;template&quot; vector of maxDimensions
+     * a property inherited from the ObjectCollection parent class
+     * @param dim dimension
+     */
+    public Vector(int dim) {
+<span class="fc" id="L35">        super();</span>
+<span class="fc" id="L36">        this.dim = dim;</span>
+<span class="fc" id="L37">        this.values = new Object[Vector.maxDimension];</span>
+<span class="fc" id="L38">        this.zero();</span>
+<span class="fc" id="L39">    }</span>
+    
+    /**
+     * Returns the dimension of the vector
+     * @return Integer
+     */
+    public int getDim() {
+<span class="nc" id="L46">        return this.dim;</span>
+    }
+    
+    
+    /**
+     * Returns the array of values of the Vector
+     * @return Object[] of doubles
+     */
+    public Object[] getArray() {
+<span class="fc" id="L55">        return this.values;</span>
+    }
+    
+    /**
+     * Returns the value of a given position 
+     * @param index the position from which the vector value is going to be returned.
+     * @return returns the value of a vector in the index position 
+     * @throws Exception 
+     */
+    public double getPositionValue(int index) throws Exception{
+        double ret;
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">        if( index &lt;  this.dim){</span>
+<span class="fc" id="L67">           ret = (double)values[index]; </span>
+        }
+        else{
+<span class="nc" id="L70">            throw new Exception(&quot;Index is outside vector dimensions, getPositionValue&quot;);</span>
+        }
+<span class="fc" id="L72">        return ret;</span>
+    }
+    
+    /**
+     * Set a value v into a position index of a vector
+     * @param index position where the new value is about to be set
+     * @param v value that is going to be set on the index position of the vector
+     * @throws Exception 
+     */
+    public void set(int index, Object v) throws Exception {       
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if(index &lt; this.dim ){</span>
+<span class="fc" id="L83">            this.values[index] = v;</span>
+        }
+        else {
+<span class="nc" id="L86">            throw new Exception(&quot;Index is outside vector dimensions, set:&quot; + index + &quot; and max:&quot; + dim);</span>
+        }
+<span class="fc" id="L88">    }</span>
+    
+    /**
+     * Sums the current vector with an other vector and sets the result to the current
+     * vector
+     * @param v vector v is summed with the current vector
+     */
+    public void sumFrom(Vector v) {
+        try{
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            for(int i = 0;i&lt;v.getDim();i++){</span>
+<span class="nc" id="L98">                set(i, v.getPositionValue(i)+ v.getPositionValue(i));                </span>
+            }
+        }
+<span class="nc" id="L101">        catch(Exception e){</span>
+<span class="nc" id="L102">            System.out.println(e.getMessage());</span>
+<span class="nc" id="L103">        }</span>
+<span class="nc" id="L104">    }</span>
+    
+    /**
+     * Sums the current vector with an other vector and returns the output vector
+     * @param v vector v is summed with the current vector
+     * @return the resulting vector is returned
+     * @throws Exception 
+     */
+    public Vector sumWith(Vector v) throws Exception {
+<span class="nc" id="L113">        Vector s = new Vector(this.dim);</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if( v.getDim() == this.dim){           </span>
+            try{
+<span class="nc bnc" id="L116" title="All 2 branches missed.">                for(int i = 0;i&lt;v.getDim();i++)</span>
+<span class="nc" id="L117">                    s.set(i, (double)getPositionValue(i)+(double)v.getPositionValue(i));</span>
+            }
+<span class="nc" id="L119">            catch(Exception e){</span>
+<span class="nc" id="L120">                System.out.println(e.getMessage());</span>
+<span class="nc" id="L121">            }</span>
+        }
+        else {
+<span class="nc" id="L124">            throw new Exception(&quot;Vector indices are not equals, sumWith&quot;);            </span>
+        }
+<span class="nc" id="L126">        return s;</span>
+    }
+    
+    /**
+     * Multiplies the current vector by another vector
+     * @param v current vector is multiplied by vector v
+     * @return
+     * @throws Exception 
+     */
+    public Vector multiplyWith(Vector v) throws Exception{
+<span class="nc" id="L136">        Vector m = new Vector(this.dim);</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">        if( v.getDim() == this.dim){ </span>
+            try{
+<span class="nc bnc" id="L139" title="All 2 branches missed.">                for(int i = 0;i&lt;v.getDim();i++){</span>
+<span class="nc" id="L140">                    m.set(i, (double)getPositionValue(i)*(double)v.getPositionValue(i));</span>
+                }
+            }
+<span class="nc" id="L143">            catch(Exception e){</span>
+<span class="nc" id="L144">                System.out.println(e.getMessage());</span>
+<span class="nc" id="L145">            }</span>
+        }
+        else {
+<span class="nc" id="L148">            throw new Exception(&quot;Vector indices are not equals, multiplyWith&quot;);</span>
+        }
+<span class="nc" id="L150">        return m;</span>
+    }
+    
+    /**
+     * Multiplies the vector by a scalar
+     * @param d scalar that multiplies each vector value
+     */
+    public void multiply(double d) {
+        try{
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            for(int i = 0; i&lt;this.dim; i++){</span>
+<span class="nc" id="L160">                this.set(i, (double)this.values[i] * d); </span>
+            }            
+        }
+<span class="nc" id="L163">        catch(Exception e){</span>
+<span class="nc" id="L164">            System.out.println(e.getMessage());</span>
+<span class="nc" id="L165">        }</span>
+<span class="nc" id="L166">    }</span>
+    
+    /**
+     * Prints  the vector values
+     */
+    public void print() {
+<span class="nc bnc" id="L172" title="All 2 branches missed.">        for(int i = 0; i &lt; this.dim ; i++){</span>
+<span class="nc" id="L173">            System.out.println(this.values[i]);    </span>
+         }        
+<span class="nc" id="L175">    }</span>
+    
+    /**
+     * Sets a vector as a 3D vector
+     * @param i
+     * @param j
+     * @param k 
+     */
+    public void set3D (Object i, Object j, Object k){
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        if(this.dim == 3){</span>
+<span class="nc" id="L185">            this.values[0] = i;</span>
+<span class="nc" id="L186">            this.values[1] = j;</span>
+<span class="nc" id="L187">            this.values[2] = k;</span>
+        }
+        else{
+<span class="nc" id="L190">            System.out.println(&quot;Vector size does not match, set3D&quot;);</span>
+        }
+<span class="nc" id="L192">    }</span>
+    
+    /**
+     * Multiplies the current vector by a matrix
+     * @param m matrix that is going to be multiplied by the current vector
+     * @throws Exception 
+     */
+    public void multiplyMat(Matrix m) throws Exception{
+        Vector rowVector;
+        try{
+<span class="nc" id="L202">            Vector tempVec = new Vector (this.dim);</span>
+<span class="nc bnc" id="L203" title="All 6 branches missed.">            if(this.dim == 3 &amp;&amp; m.getColumns() == 3 &amp;&amp; m.getRows() == 3){</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">                for (Integer i = 0; i &lt; this.dim; i++){</span>
+<span class="nc" id="L205">                   double value = 0.0; </span>
+<span class="nc" id="L206">                   rowVector = m.getRowVector(i);</span>
+<span class="nc bnc" id="L207" title="All 2 branches missed.">                   for(Integer j = 0; j &lt; m.getRows(); j++){</span>
+<span class="nc" id="L208">                       value = value + (double)rowVector.getArray()[j] * (double)this.values[j];            </span>
+                   }
+<span class="nc" id="L210">                   tempVec.set(i,value);</span>
+                }
+<span class="nc" id="L212">                this.values = tempVec.getArray();</span>
+            }            
+        }
+<span class="nc" id="L215">        catch(Exception e){</span>
+            // throw new Exception(&quot;Matrix dimensions not correct, multiplyMat&quot;);
+<span class="nc" id="L217">            throw e;</span>
+<span class="nc" id="L218">        }       </span>
+<span class="nc" id="L219">    } </span>
+    
+    /**
+     * Increases dim by 1
+     * @throws Exception 
+     */
+    public void addDim(){
+<span class="nc" id="L226">       this.dim++;</span>
+<span class="nc" id="L227">    }</span>
+    /**
+     * Sets dim to d
+     * @param m will be the new dim
+     * @throws Exception 
+     */
+    public void newDim(int d) throws Exception {
+<span class="nc" id="L234">       int diff = d - this.dim;</span>
+<span class="nc bnc" id="L235" title="All 2 branches missed.">       if(diff != 0)</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">           if(diff &gt; 0)</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">               for(int i = 0;i &lt; diff;i++)</span>
+<span class="nc" id="L238">                   addDim();</span>
+           else
+<span class="nc bnc" id="L240" title="All 2 branches missed.">               for(int i = 0;i &lt; -diff;i++)</span>
+<span class="nc" id="L241">                   removeDim();</span>
+           
+<span class="nc" id="L243">    }</span>
+    
+    /**
+     * Decreases dim by 1 and sets the current dim position to 0
+     * @throws Exception 
+     */
+    public void removeDim() throws Exception {
+<span class="nc" id="L250">       this.set(--this.dim, 0);</span>
+<span class="nc" id="L251">    }</span>
+    /**
+     * Sets to zero all values on a vector
+     */
+   public final void zero() {
+<span class="fc bfc" id="L256" title="All 2 branches covered.">        for(Integer i = 0; i &lt; this.values.length; i++ ){</span>
+<span class="fc" id="L257">            this.values[i] = 0.0;</span>
+        }
+<span class="fc" id="L259">    }</span>
+    public Boolean isZero() throws Exception {
+<span class="fc" id="L261">        Boolean is = true;</span>
+<span class="fc bfc" id="L262" title="All 2 branches covered.">        for(Object o : this.values ) {</span>
+<span class="fc bfc" id="L263" title="All 2 branches covered.">            is = ((double)o == 0);</span>
+<span class="fc bfc" id="L264" title="All 2 branches covered.">            if(!is) break;</span>
+        }
+<span class="fc" id="L266">        return is;</span>
+    }
+    public Boolean doubleEquals(Vector v) {
+<span class="pc bpc" id="L269" title="1 of 2 branches missed.">        if(this.dim != v.dim) {</span>
+<span class="nc" id="L270">            System.out.println(&quot;doubleEquals: size diference&quot;);</span>
+<span class="nc" id="L271">            return false;</span>
+        }
+        else {
+<span class="fc" id="L274">            Boolean e = true;</span>
+<span class="fc" id="L275">            Object[] o1 = v.getArray();</span>
+<span class="fc" id="L276">            Object[] o2 = this.getArray();</span>
+<span class="fc bfc" id="L277" title="All 2 branches covered.">            for(int i = 0;i &lt; v.dim;i++) {</span>
+<span class="pc bpc" id="L278" title="1 of 2 branches missed.">                if((double)o1[i] != (double)o2[i]) {</span>
+<span class="nc" id="L279">                    e = false;</span>
+<span class="nc" id="L280">                    System.out.println(&quot;doubleEquals: one element differs&quot;);</span>
+<span class="nc" id="L281">                    break;</span>
+                }
+            }
+<span class="fc" id="L284">            return e;</span>
+        }
+        
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
