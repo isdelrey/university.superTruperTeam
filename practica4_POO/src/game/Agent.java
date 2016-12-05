@@ -6,13 +6,9 @@ import java.awt.Polygon;
 
 public class Agent extends MovingEntity {
 
-    private Vec2D speed;
 
-    private Vec2D maxSpeed;
 
-    private Vec2D pos;
 
-    private Vec2D dir;
 
     private Vec2D obj;
 
@@ -29,11 +25,7 @@ public class Agent extends MovingEntity {
         this.obj = wi.randomPointInsideWorld();
         this.radius = radius;
         this.id = id;
-        this.speed = new Vec2D(1, 1);
         this.weight = this.radius * 2;
-        this.maxSpeed = new Vec2D(2, 2);
-        this.dir = wi.randomPointInsideWorld();
-        this.pos = wi.randomPointInsideWorld();
     }
 
     public int getID() {
@@ -44,13 +36,7 @@ public class Agent extends MovingEntity {
         return this.radius;
     }
 
-    public Vec2D getPos() {
-        return this.pos;
-    }
 
-    public Vec2D getDir() {
-        return this.dir;
-    }
 
     public Vec2D getObj() {
         return this.obj;
@@ -91,7 +77,8 @@ public class Agent extends MovingEntity {
         if((int) (Math.random() * 100) == 0) {
             addProjectile(this);
         }
-        this.dir.turnTo(this.getDirToObj());
+        this.getDir().turnTo(this.getDirToObj());
+        //System.out.println(this.dir.getX());
         super.update();
         
     }
@@ -115,10 +102,12 @@ public class Agent extends MovingEntity {
     
     public MyPolygon getShape(){
         MyPolygon polygon = new MyPolygon();
-        polygon.Triangle(this.dir);
+        polygon.Triangle(this.getDir());
         polygon.center();
         return polygon;        
     }
+    
+    @Override
     public void draw(Graphics g) {
         if(this.bCollides){
             g.setColor(Color.RED);

@@ -58,4 +58,9 @@ public class Vec2D {
        y += (v.y-y) / 50.0;
 
    }
+    public void rotate( double angle ) {
+       double old_x = x, old_y = y;
+       x = old_x * Math.cos( angle ) - old_y * Math.sin( angle );
+       y = old_x * Math.sin( angle ) - old_y * Math.cos( angle );
+   }
 }

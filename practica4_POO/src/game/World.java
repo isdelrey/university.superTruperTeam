@@ -56,10 +56,25 @@ public class World implements Drawable {
               Entity ei = (Entity) entities.get(i);
               ei.setCollides(false);
               for(int j=0; j<N; j++) {  
-                  if(i == j) continue;
+                  if(i == j){
+                      continue;
+                  }
                   Entity ej = (Entity) entities.get(j);
                   if(ei.collides(ej)) {
-                      ei.setCollides(true);
+                    ei.setCollides(true);
+                    if(ei instanceof Agent) {
+                    Agent a = (Agent) ei;
+                    Vec2D av = a.getDir();
+                    Vec2D bv = a.getDir();
+
+                    // Rotation
+                    int aAngleCoeff = (av.angle(bv)>bv.angle(bv))?-1:1;
+                    double aRadiusCoeff = (a.getRadius());
+                    double angle = (av.angle(bv)+bv.angle(bv))/2;
+                    av.rotate(aAngleCoeff*(angle*aRadiusCoeff+180));
+                    bv.rotate((-1*aAngleCoeff)*(aRadiusCoeff+180));
+                    }
+
                   }
               }
           }

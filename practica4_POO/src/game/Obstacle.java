@@ -22,6 +22,7 @@ public class Obstacle extends Entity {
     public void update() {
         super.update();
     }
+    @Override
     public void draw(Graphics g) {
         if(this.bCollides){
             g.setColor(Color.RED);

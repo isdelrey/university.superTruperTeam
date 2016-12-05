@@ -32,6 +32,7 @@ public class MovingEntity extends Entity {
         return this.speed;
     }
 
+    @Override
     public void update() {
         System.out.println(this.dir.getX());
         this.pos.setX(this.speed * this.dir.getX() + this.pos.getX());
