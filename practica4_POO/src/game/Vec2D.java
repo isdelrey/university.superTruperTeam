@@ -1,3 +1,5 @@
+package game;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -11,37 +13,37 @@ public class Vec2D {
    private double x; 
    private double y;
    
-   Vec2D(double x_, double y_) { x = x_; y = y_; }
-   void setX( double x_ ) { x = x_;}
-   void setY( double y_ ) { y = y_;}
-   double getX() { return x;}
-   double getY() { return y;}   
+   public Vec2D(double x_, double y_) { x = x_; y = y_; }
+   public void setX( double x_ ) { x = x_;}
+   public void setY( double y_ ) { y = y_;}
+   public double getX() { return x;}
+   public double getY() { return y;}   
    
-   void sum(Vec2D v) { x += v.getX(); y += v.getY(); }
-   void minus(Vec2D v) { x -= v.getX(); y -= v.getY(); }
+   public void sum(Vec2D v) { x += v.getX(); y += v.getY(); }
+   public void minus(Vec2D v) { x -= v.getX(); y -= v.getY(); }
    
-   double dist(Vec2D v) { 
+   public double dist(Vec2D v) { 
        return Math.sqrt((x - v.getX())*(x - v.getX()) + (y - v.getY())*(y - v.getY())); 
    }
    
-   void normalize() {
+   public void normalize() {
        double old_x = x, old_y = y;
        x = old_x / Math.sqrt(old_x*old_x + old_y*old_y);
        y = old_y / Math.sqrt(old_x*old_x + old_y*old_y);
    }
    
    
-   void turn( double angle ) {
+   public void turn( double angle ) {
        double old_x = x, old_y = y;
        x = old_x * Math.cos( angle ) - old_y * Math.sin( angle );
        y = old_x * Math.sin( angle ) - old_y * Math.cos( angle );
    }
 
-   double angle( Vec2D v ) {
+   public double angle( Vec2D v ) {
        return Math.atan2( v.getY(), v.getX() ) - Math.atan2( y , x );
    }
    
-   void turnTo( Vec2D v ) {
+   public void turnTo( Vec2D v ) {
        x += (v.getX()-x) / 30.0;
        y += (v.getY()-y) / 30.0;
 
@@ -49,5 +51,11 @@ public class Vec2D {
    
    public String toString() {
        return "(" + x + " " + y + ")";
+   }
+   
+   public void rotateInDirectionOf( Vec2D v ) {
+       x += (v.x-x) / 50.0;
+       y += (v.y-y) / 50.0;
+
    }
 }

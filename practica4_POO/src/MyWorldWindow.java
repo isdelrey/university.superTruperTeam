@@ -1,20 +1,25 @@
-
+ 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon; 
 import java.awt.image.BufferedImage;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.ColorUIResource;
-import world.Agent;
-import world.Vec2D;
-import world.World;
+import game.Agent;
+import game.Vec2D;
+import game.World;
+import game.Obstacle;
+import game.MovingEntity;
+import game.MyPolygon;
 
 /*
 ┌──────────────────────────────────────────────────────────────────────────────────┐
-│                  Pràctica 2 - Programació Orientada a Objectes                   │
+│                  Pràctica 4 - Programació Orientada a Objectes                   │
 └──────────────────────────────────────────────────────────────────────────────────┘
 
 Paula Bassagañas Odena, NIA: 158710
@@ -32,6 +37,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
      * Creates new form MyWorldWindow
      */
     World w;
+    MyPolygon p;
     Boolean running;
     int worldWidth = 800,worldHeight = 600, worldNAgents = 20,animationSpeed=3,animationLatencyRate=30;
     public MyWorldWindow() {
@@ -39,41 +45,54 @@ public class MyWorldWindow extends javax.swing.JFrame {
         //UIManager.put("nimbusOrange",colorResource);
         initComponents();
         initWorld();
+        
+        p = new MyPolygon();
+        p.randomPolygon(); 
+        p.translate(400,300);
     }
     public void initWorld() {
         running=false;
-        w = new World(worldNAgents,worldWidth,worldHeight);
+        w = new World();
         setSize(w.getW(),w.getH()+100);
         repaint();
     }
     @Override
-    public void paint ( Graphics g){
+    public void paint ( Graphics g){        
         super.paint(g);
-        BufferedImage image = new BufferedImage (w.getW(), w.getH(),BufferedImage.TYPE_INT_ARGB);
-        Graphics b = image.getGraphics();
-        float colorStep = 1f/w.getNumAgents();
-        float color = 0;
-        for(int i = 0; i < w.getNumAgents(); i++){
-            Agent a = w.getAgent(i);
-            Vec2D position = a.getPos();
-            Vec2D obj = a.getObj();
-            int radius = (int)a.getRadius();
-            int x = (int)(position.getX()-radius);
-            int y = (int)(position.getY()-radius);
-            
-            b.setColor(Color.getHSBColor(color, 1f, 0.8f));
-            a.setCollided(false);
-            
-            b.drawOval((int)(obj.getX() -10),(int)(obj.getY() - 10),2*radius, 2*radius);
-            
-            //if(agent1.getCollided()) g.setColor (Color.BLUE);
-            b.fillOval(x,y, 2*radius, 2*radius);
-            color+=colorStep;
-        }
-        g.drawImage(image, 0, 100, null);
-        
-        
-        
+        w.run(50);
+        w.draw(g);
+//        BufferedImage image = new BufferedImage (w.getW(), w.getH(),BufferedImage.TYPE_INT_ARGB);
+//        Graphics b = image.getGraphics();
+//        float colorStep = 1f/w.getN();
+//        float color = 0;
+//        for(int i = 0; i < w.getN(); i++){
+//            if(w.getEntity(i) instanceof Agent){
+//                Agent a = (Agent)w.getEntity(i);
+//                Vec2D position = a.getPos();
+//                Vec2D obj = a.getObj();
+//                int radius = (int)a.getRadius();
+//                int x = (int)(position.getX()-radius);
+//                int y = (int)(position.getY()-radius);
+//            
+//                b.setColor(Color.getHSBColor(color, 1f, 0.8f));
+//                a.setCollided(false);
+//
+//                b.drawOval((int)(obj.getX() -10),(int)(obj.getY() - 10),2*radius, 2*radius);
+//
+//                if(a.getCollided()) g.setColor (Color.BLUE);
+//                b.fillOval(x,y, 2*radius, 2*radius);
+//                color+=colorStep;  
+//            }
+//            if(w.getEntity(i) instanceof Obstacle){
+//                Obstacle o = (Obstacle) w.getEntity(i);
+//                b.setColor(Color.getHSBColor(color, 1f, 0.8f));
+//                o.draw(g);
+//                color+=colorStep;  
+//            }
+//            
+//        }
+//        g.drawImage(image, 0, 100, null);
+      
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -271,7 +290,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
             public void run() {
                 while(running) {
                     w.run(10*animationSpeed);
-                    collisionsBar.setValue(w.processCollisions());
+                    //collisionsBar.setValue(w.processCollisions());
                     repaint();
                     try {
                         Thread.sleep(1000/animationLatencyRate);
@@ -288,7 +307,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         w.run(50);
-        collisionsBar.setValue(w.processCollisions());
+        //collisionsBar.setValue(w.processCollisions());
         repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
