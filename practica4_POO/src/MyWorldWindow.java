@@ -45,10 +45,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
         //UIManager.put("nimbusOrange",colorResource);
         initComponents();
         initWorld();
-        
-        p = new MyPolygon();
-        p.randomPolygon(); 
-        p.translate(400,300);
+
     }
     public void initWorld() {
         running=false;
@@ -59,39 +56,25 @@ public class MyWorldWindow extends javax.swing.JFrame {
     @Override
     public void paint ( Graphics g){        
         super.paint(g);
-        w.run(50);
-        w.draw(g);
-//        BufferedImage image = new BufferedImage (w.getW(), w.getH(),BufferedImage.TYPE_INT_ARGB);
-//        Graphics b = image.getGraphics();
-//        float colorStep = 1f/w.getN();
-//        float color = 0;
-//        for(int i = 0; i < w.getN(); i++){
-//            if(w.getEntity(i) instanceof Agent){
-//                Agent a = (Agent)w.getEntity(i);
-//                Vec2D position = a.getPos();
-//                Vec2D obj = a.getObj();
-//                int radius = (int)a.getRadius();
-//                int x = (int)(position.getX()-radius);
-//                int y = (int)(position.getY()-radius);
-//            
-//                b.setColor(Color.getHSBColor(color, 1f, 0.8f));
-//                a.setCollided(false);
-//
-//                b.drawOval((int)(obj.getX() -10),(int)(obj.getY() - 10),2*radius, 2*radius);
-//
-//                if(a.getCollided()) g.setColor (Color.BLUE);
-//                b.fillOval(x,y, 2*radius, 2*radius);
-//                color+=colorStep;  
-//            }
-//            if(w.getEntity(i) instanceof Obstacle){
-//                Obstacle o = (Obstacle) w.getEntity(i);
-//                b.setColor(Color.getHSBColor(color, 1f, 0.8f));
-//                o.draw(g);
-//                color+=colorStep;  
-//            }
-//            
-//        }
-//        g.drawImage(image, 0, 100, null);
+//        w.run(50);
+//        w.draw(g);
+        BufferedImage image = new BufferedImage (w.getW(), w.getH(),BufferedImage.TYPE_INT_ARGB);
+        Graphics b = image.getGraphics();
+        float colorStep = 1f/w.getN();
+        float color = 0;
+        for(int i = 0; i < w.getN(); i++){
+            if(w.getEntity(i) instanceof Agent){
+                Agent a = (Agent)w.getEntity(i);
+                a.update();
+                a.draw(g);
+            }
+            if(w.getEntity(i) instanceof Obstacle){
+                Obstacle o = (Obstacle) w.getEntity(i);
+                o.draw(g);
+            }
+            
+        }
+        g.drawImage(image, 0, 100, null);
       
     }
     /**
