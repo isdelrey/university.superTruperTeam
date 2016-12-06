@@ -19,9 +19,10 @@ public class World implements Drawable {
         
         entities = new LinkedList();
         
+        Random r = new Random();
         N = 10;            
         for(int i=0; i<N/2; i++) {            
-            Entity e = new Agent( randomPointInsideWorld(), randomPointInsideWorld(), 5, 6, this );
+            Entity e = new Agent( randomPointInsideWorld(), randomPointInsideWorld(), r.nextInt(30)+10, 6, this );
             entities.add( e );
         }
         for(int i=N/2; i<N; i++) {            
@@ -37,9 +38,10 @@ public class World implements Drawable {
         
         entities = new LinkedList();
         
+        Random r = new Random();
         N = a;            
         for(int i=0; i<N/2; i++) {            
-            Entity e = new Agent( randomPointInsideWorld(), randomPointInsideWorld(), 5, 6, this );
+            Entity e = new Agent( randomPointInsideWorld(), randomPointInsideWorld(), r.nextInt(30)+5, 6, this );
             entities.add( e );
         }
         for(int i=N/2; i<N; i++) {            
@@ -50,7 +52,7 @@ public class World implements Drawable {
     }
     public int getW() { return W; }
     public int getH() { return H; }
-    public int getN() { return this.N;}
+    public int getN() { return N;}
     
     public Entity getEntity(int i) {
         return (Entity) this.entities.get(i);

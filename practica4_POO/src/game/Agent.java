@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon; 
+import java.util.Random;
 
 public class Agent extends MovingEntity {
 
@@ -12,7 +13,7 @@ public class Agent extends MovingEntity {
 
     private Vec2D obj;
 
-    private double radius;
+    private int radius;
 
     private double weight;
 
@@ -20,7 +21,7 @@ public class Agent extends MovingEntity {
 
     private boolean collided = false;
 
-    public Agent(Vec2D pos, Vec2D obj, double radius, int id, World wi) {
+    public Agent(Vec2D pos, Vec2D obj, int radius, int id, World wi) {
         super(pos, wi);
         this.obj = wi.randomPointInsideWorld();
         this.radius = radius;
@@ -115,9 +116,8 @@ public class Agent extends MovingEntity {
         else{
             g.setColor(Color.BLUE);
         }
-        g.drawPolygon(this.getShape());
         g.setColor(Color.BLUE);
-        g.fillOval((int)(pos.getX()-2), (int)(pos.getY()-2), 4, 4);
+        g.fillOval((int)(pos.getX()-2), (int)(pos.getY()-2), radius, radius);
     }
     
     @Override 

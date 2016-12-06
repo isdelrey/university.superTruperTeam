@@ -1,9 +1,10 @@
-
 import game.Agent;
 import game.Obstacle;
 import game.World;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
@@ -22,10 +23,9 @@ public class Panel extends JPanel {
     private World w;
     private Timer timer;
     private TimerTask painter;
+    private Boolean painting = false;
     public void initWorld(int wi, int he, int ag) {
         w = new World(wi, he, ag);
-        this.setSize(wi, he);
-        
     }
     public World getWorld() {
         return w;
@@ -35,17 +35,22 @@ public class Panel extends JPanel {
         repaint();
     }
     public void autoPaint(int animationSpeed, int rate) {
+        painting = true;
         painter = new TimerTask() {
             @Override
             public void run() {
-                w.run(10*animationSpeed);
-                repaint();
+                if(painting) {
+                    w.run(10*animationSpeed);
+                    repaint();
+                }
             }
         };
         timer = new Timer(true);
         timer.scheduleAtFixedRate(painter, 0, rate);
     }
     public void cancelAutoPaint() {
+        painting = false;
+        timer.cancel();
         painter.cancel();
     }
     @Override
@@ -67,7 +72,7 @@ public class Panel extends JPanel {
                 }
 
             }
-            g.drawImage(image, 0, 100, null);
+            g.drawImage(image, 0, 0, null);
         }
     }
 }
