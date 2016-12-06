@@ -19,6 +19,7 @@ public class Obstacle extends Entity {
         return this.p;
     }
 
+    @Override
     public void update() {
         super.update();
     }

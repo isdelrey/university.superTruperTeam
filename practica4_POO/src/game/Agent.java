@@ -75,13 +75,12 @@ public class Agent extends MovingEntity {
     }
     @Override
     public void update() {
+        super.update();
         if((int) (Math.random() * 100) == 0) {
             addProjectile(this);
         }
         this.getDir().turnTo(this.getDirToObj());
-        //System.out.println(this.dir.getX());
-        super.update();
-        
+        //System.out.println(this.dir.getX());        
     }
 
     public boolean isLessThanXPixelsAway(Agent a, int X) {
@@ -105,6 +104,7 @@ public class Agent extends MovingEntity {
         MyPolygon polygon = new MyPolygon();
         polygon.Triangle(this.getDir());
         polygon.center();
+        polygon.translate((int)(pos.getX()-2), (int)(pos.getY()-2));
         return polygon;        
     }
     
@@ -116,8 +116,9 @@ public class Agent extends MovingEntity {
         else{
             g.setColor(Color.BLUE);
         }
-        g.setColor(Color.BLUE);
-        g.fillOval((int)(pos.getX()-2), (int)(pos.getY()-2), radius, radius);
+        //g.setColor(Color.BLUE);
+        //g.fillOval((int)(pos.getX()-2), (int)(pos.getY()-2), radius, radius);
+        g.fillPolygon(this.getShape());
     }
     
     @Override 

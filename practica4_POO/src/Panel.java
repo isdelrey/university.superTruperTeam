@@ -1,4 +1,5 @@
 import game.Agent;
+import game.MovingEntity;
 import game.Obstacle;
 import game.World;
 import java.awt.Dimension;
@@ -17,7 +18,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author ivo
+ * @author ivo && bassagap
  */
 public class Panel extends JPanel {
     private World w;
@@ -69,6 +70,12 @@ public class Panel extends JPanel {
                 if(w.getEntity(i) instanceof Obstacle){
                     Obstacle o = (Obstacle) w.getEntity(i);
                     o.draw(g);
+                }
+                if(w.getEntity(i) instanceof MovingEntity) {
+                    MovingEntity me = (MovingEntity) w.getEntity(i);
+                    System.out.println(me.getPos().getX());
+                    me.update();
+                    me.draw(g);
                 }
 
             }

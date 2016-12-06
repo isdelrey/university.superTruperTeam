@@ -15,7 +15,7 @@ Ivo Sequeros del Rey, NIA: 183711
 
 /**
  *
- * @author bassagap
+ * @author bassagap && ivo
  */
 public class MyWorldWindow extends javax.swing.JFrame {
 
