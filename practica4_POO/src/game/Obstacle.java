@@ -30,6 +30,6 @@ public class Obstacle extends Entity {
         else{
             g.setColor(Color.ORANGE);
         }
-        g.drawPolygon(this.p);
+        g.fillPolygon(this.p);
     }
 }
