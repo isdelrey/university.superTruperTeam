@@ -34,7 +34,6 @@ public class MovingEntity extends Entity {
 
     @Override
     public void update() {
-        System.out.println(this.dir.getX());
         this.pos.setX(this.speed * this.dir.getX() + this.pos.getX());
         this.pos.setY(this.speed * this.dir.getY() + this.pos.getY());
     }

@@ -30,7 +30,24 @@ public class World implements Drawable {
         }
         
     }
-    
+    public World(int w, int h, int a) {
+        W = w;
+        H = h;
+        margin = 50;
+        
+        entities = new LinkedList();
+        
+        N = a;            
+        for(int i=0; i<N/2; i++) {            
+            Entity e = new Agent( randomPointInsideWorld(), randomPointInsideWorld(), 5, 6, this );
+            entities.add( e );
+        }
+        for(int i=N/2; i<N; i++) {            
+            Entity e = new Obstacle( randomPointInsideWorld(), this );
+            entities.add( e );
+        }
+        
+    }
     public int getW() { return W; }
     public int getH() { return H; }
     public int getN() { return this.N;}

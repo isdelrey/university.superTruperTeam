@@ -1,20 +1,4 @@
- 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Polygon; 
-import java.awt.image.BufferedImage;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.plaf.ColorUIResource;
-import game.Agent;
-import game.Vec2D;
-import game.World;
-import game.Obstacle;
-import game.MovingEntity;
 import game.MyPolygon;
 
 /*
@@ -36,46 +20,13 @@ public class MyWorldWindow extends javax.swing.JFrame {
     /**
      * Creates new form MyWorldWindow
      */
-    World w;
     MyPolygon p;
-    Boolean running;
-    int worldWidth = 800,worldHeight = 600, worldNAgents = 20,animationSpeed=3,animationLatencyRate=30;
+    int worldWidth = 800,worldHeight = 600, worldNAgents = 20,animationSpeed=3,animationLatencyRate=25;
     public MyWorldWindow() {
-        //ColorUIResource colorResource = new ColorUIResource(Color.black);
-        //UIManager.put("nimbusOrange",colorResource);
         initComponents();
-        initWorld();
+        setResizable(false);
+        panel1.initWorld(worldHeight,worldWidth,worldNAgents);
 
-    }
-    public void initWorld() {
-        running=false;
-        w = new World();
-        setSize(w.getW(),w.getH()+100);
-        repaint();
-    }
-    @Override
-    public void paint ( Graphics g){        
-        super.paint(g);
-//        w.run(50);
-//        w.draw(g);
-        BufferedImage image = new BufferedImage (w.getW(), w.getH(),BufferedImage.TYPE_INT_ARGB);
-        Graphics b = image.getGraphics();
-        float colorStep = 1f/w.getN();
-        float color = 0;
-        for(int i = 0; i < w.getN(); i++){
-            if(w.getEntity(i) instanceof Agent){
-                Agent a = (Agent)w.getEntity(i);
-                a.update();
-                a.draw(g);
-            }
-            if(w.getEntity(i) instanceof Obstacle){
-                Obstacle o = (Obstacle) w.getEntity(i);
-                o.draw(g);
-            }
-            
-        }
-        g.drawImage(image, 0, 100, null);
-      
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,6 +44,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        panel1 = new Panel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -138,6 +90,8 @@ public class MyWorldWindow extends javax.swing.JFrame {
             }
         });
 
+        panel1.setLayout(new java.awt.GridLayout());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,13 +101,17 @@ public class MyWorldWindow extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(collisionsBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addGap(30, 30, 30))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,7 +125,9 @@ public class MyWorldWindow extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(collisionsBar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenu1.setText("World Settings");
@@ -260,61 +220,27 @@ public class MyWorldWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        running=false;
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        running=true;
-        Runnable painter = new Runnable() {
-            @Override
-            public void run() {
-                while(running) {
-                    w.run(10*animationSpeed);
-                    //collisionsBar.setValue(w.processCollisions());
-                    repaint();
-                    try {
-                        Thread.sleep(1000/animationLatencyRate);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(MyWorldWindow.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        };
-        Thread painterThread = new Thread(painter);
-        painterThread.start();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        w.run(50);
-        //collisionsBar.setValue(w.processCollisions());
-        repaint();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         worldNAgents = Integer.parseInt(JOptionPane.showInputDialog("Number of Agents:",worldNAgents));
-        initWorld();
+        panel1.initWorld(worldHeight,worldWidth,worldNAgents);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        initWorld();
+        panel1.initWorld(worldHeight,worldWidth,worldNAgents);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         worldWidth = Integer.parseInt(JOptionPane.showInputDialog("Width:",worldWidth));
-        initWorld();
+        panel1.initWorld(worldHeight,worldWidth,worldNAgents);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         worldHeight = Integer.parseInt(JOptionPane.showInputDialog("Height:",worldHeight));
-        initWorld();
+        panel1.initWorld(worldHeight,worldWidth,worldNAgents);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -322,7 +248,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
         worldHeight=600;
         worldWidth=800;
         worldNAgents=20;
-        initWorld();
+        panel1.initWorld(worldHeight,worldWidth,worldNAgents);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -341,6 +267,21 @@ public class MyWorldWindow extends javax.swing.JFrame {
         animationLatencyRate=30;
         animationSpeed=3;
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        panel1.cancelAutoPaint();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        panel1.autoPaint(animationSpeed,animationLatencyRate);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        panel1.step();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -401,5 +342,6 @@ public class MyWorldWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
+    private Panel panel1;
     // End of variables declaration//GEN-END:variables
 }
