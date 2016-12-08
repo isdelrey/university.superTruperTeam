@@ -2,6 +2,7 @@ import game.Agent;
 import game.MovingEntity;
 import game.Obstacle;
 import game.World;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -9,7 +10,6 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JPanel;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -59,24 +59,27 @@ public class Panel extends JPanel {
         if(w != null) {
             BufferedImage image = new BufferedImage (w.getW(), w.getH(),BufferedImage.TYPE_INT_ARGB);
             Graphics b = image.getGraphics();
+            b.setColor(Color.yellow);
+            b.fillRect(0, 0, w.getW(), w.getH());
             float colorStep = 1f/w.getN();
             float color = 0;
             for(int i = 0; i < w.getN(); i++){
                 if(w.getEntity(i) instanceof Agent){
                     Agent a = (Agent)w.getEntity(i);
                     a.update();
-                    a.draw(g);
+                    a.draw(b, Color.getHSBColor(colorStep*i, 1f, 1.5f));
                 }
-                if(w.getEntity(i) instanceof Obstacle){
-                    Obstacle o = (Obstacle) w.getEntity(i);
-                    o.draw(g);
-                }
-                if(w.getEntity(i) instanceof MovingEntity) {
-                    MovingEntity me = (MovingEntity) w.getEntity(i);
-                    System.out.println(me.getPos().getX());
-                    me.update();
-                    me.draw(g);
-                }
+                else
+                    if(w.getEntity(i) instanceof Obstacle){
+                        Obstacle o = (Obstacle) w.getEntity(i);
+                        o.draw(b);
+                    }
+                    else
+                    {
+                        MovingEntity me = (MovingEntity) w.getEntity(i);
+                        me.update();
+                        me.draw(b);
+                    }
 
             }
             g.drawImage(image, 0, 0, null);

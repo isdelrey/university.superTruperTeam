@@ -48,7 +48,15 @@ public class MovingEntity extends Entity {
         }
         g.fillOval((int)(pos.getX()-3), (int)(pos.getY()-3), 6, 6);
     }
-    
+    public void draw(Graphics g, Color c) {
+        if(this.bCollides){
+            g.setColor(Color.RED);
+        }
+        else {
+            g.setColor(c);
+        }
+        g.fillOval((int)(pos.getX()-3), (int)(pos.getY()-3), 6, 6);
+    }
     public void addProjectile(Agent a) {
         MovingEntity m = new MovingEntity(this.dir, this.w);
         m.setSpeed(this.speed * 2);

@@ -33,4 +33,13 @@ public class Obstacle extends Entity {
         }
         g.fillPolygon(this.p);
     }
+    public void draw(Graphics g, Color c) {
+        if(this.bCollides){
+            g.setColor(Color.RED);
+        }
+        else {
+            g.setColor(c);
+        }
+        g.fillPolygon(this.p);
+    }
 }

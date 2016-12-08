@@ -120,7 +120,15 @@ public class Agent extends MovingEntity {
         //g.fillOval((int)(pos.getX()-2), (int)(pos.getY()-2), radius, radius);
         g.fillPolygon(this.getShape());
     }
-    
+    public void draw(Graphics g, Color c) {
+        if(this.bCollides){
+            g.setColor(Color.RED);
+        }
+        else {
+            g.setColor(c);
+        }
+        g.fillPolygon(this.getShape());
+    }
     @Override 
     public boolean collides(Entity ei){
         if(ei instanceof Obstacle){
