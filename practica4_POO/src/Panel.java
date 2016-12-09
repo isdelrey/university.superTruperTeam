@@ -41,7 +41,7 @@ public class Panel extends JPanel {
             @Override
             public void run() {
                 if(painting) {
-                    w.run(10*animationSpeed);
+                    w.run(5*animationSpeed);
                     repaint();
                 }
             }

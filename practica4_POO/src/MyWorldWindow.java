@@ -34,7 +34,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
      * Creates new form MyWorldWindow
      */
     MyPolygon p;
-    int worldWidth = 800,worldHeight = 600, worldNAgents = 20,animationSpeed=3,animationLatencyRate=25;
+    int worldWidth = 800,worldHeight = 600, worldNAgents = 20,animationSpeed=1,animationLatencyRate=25;
     public MyWorldWindow() {
         initComponents();
         this.setResizable(false);
@@ -343,7 +343,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
         animationLatencyRate=30;
-        animationSpeed=3;
+        animationSpeed=1;
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void panelResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_panelResized

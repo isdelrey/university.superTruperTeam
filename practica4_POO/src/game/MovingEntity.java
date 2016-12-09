@@ -57,11 +57,4 @@ public class MovingEntity extends Entity {
         }
         g.fillOval((int)(pos.getX()-3), (int)(pos.getY()-3), 6, 6);
     }
-    public void addProjectile(Agent a) {
-        MovingEntity m = new MovingEntity(this.dir, this.w);
-        m.setSpeed(this.speed * 2);
-        this.w.entities.add(m);
-        this.w.N = this.w.entities.size(); 
-        
-    }
 }

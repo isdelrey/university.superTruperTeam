@@ -76,8 +76,8 @@ public class Agent extends MovingEntity {
     @Override
     public void update() {
         super.update();
-        if((int) (Math.random() * 100) == 0) {
-            addProjectile(this);
+        if(Math.random() < 0.001) {
+            fireProjectile();
         }
         this.getDir().turnTo(this.getDirToObj());
         //System.out.println(this.dir.getX());        
@@ -140,5 +140,12 @@ public class Agent extends MovingEntity {
             
         }
         return super.collides(ei);
+    }
+    public void fireProjectile() {
+        MovingEntity m = new MovingEntity(this.getDir(), this.w);
+        m.setSpeed(0.002);
+        m.setPos(this.getPos());
+        this.w.entities.add(m);
+        this.w.N = this.w.entities.size();
     }
 }
