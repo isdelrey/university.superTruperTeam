@@ -67,7 +67,7 @@ public class Panel extends JPanel {
                 if(w.getEntity(i) instanceof Agent){
                     Agent a = (Agent)w.getEntity(i);
                     a.update();
-                    a.draw(b, Color.getHSBColor(colorStep*i, 1f, 1.5f));
+                    a.draw(b, Color.getHSBColor(colorStep*i, 1f, 1.5f),false);
                 }
                 else
                     if(w.getEntity(i) instanceof Obstacle){

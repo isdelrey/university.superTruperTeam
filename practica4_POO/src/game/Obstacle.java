@@ -2,7 +2,6 @@ package game;
  
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Polygon; 
 
 public class Obstacle extends Entity {
 
@@ -13,9 +12,11 @@ public class Obstacle extends Entity {
         this.p.randomPolygon();
         this.p.center();
         this.p.translate((int)pos.getX(), (int)pos.getY());
+        this.energy = 0;
+        this.hasEnergy = false;
     }
 
-    public MyPolygon getObstacle() {
+    public MyPolygon getPolygon() {
         return this.p;
     }
 
@@ -25,16 +26,11 @@ public class Obstacle extends Entity {
     }
     @Override
     public void draw(Graphics g) {
-        if(this.bCollides){
-            g.setColor(Color.RED);
-        }
-        else{
-            g.setColor(Color.ORANGE);
-        }
+        g.setColor(Color.ORANGE);
         g.fillPolygon(this.p);
     }
-    public void draw(Graphics g, Color c) {
-        if(this.bCollides){
+    public void draw(Graphics g, Color c, boolean collides) {
+        if(collides){
             g.setColor(Color.RED);
         }
         else {

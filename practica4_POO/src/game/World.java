@@ -7,8 +7,7 @@ import java.awt.Color;
 public class World implements Drawable {
     int W,H;
     int margin;
-    
-    int N;
+    int process;
 
     LinkedList entities;
         
@@ -16,11 +15,11 @@ public class World implements Drawable {
         W = 800;
         H = 600;
         margin = 50;
-        
+        process = 0;
         entities = new LinkedList();
         
         Random r = new Random();
-        N = 10;            
+        int N = 10;            
         for(int i=0; i<N/2; i++) {            
             Entity e = new Agent( randomPointInsideWorld(), randomPointInsideWorld(), r.nextInt(30)+10, 6, this );
             entities.add( e );
@@ -35,11 +34,11 @@ public class World implements Drawable {
         W = w;
         H = h;
         margin = 50;
-        
+        process = 0;
         entities = new LinkedList();
         
         Random r = new Random();
-        N = a;            
+        int N = a;            
         for(int i=0; i<N/2; i++) {            
             Entity e = new Agent( randomPointInsideWorld(), randomPointInsideWorld(), r.nextInt(30)+5, 6, this );
             entities.add( e );
@@ -52,7 +51,7 @@ public class World implements Drawable {
     }
     public int getW() { return W; }
     public int getH() { return H; }
-    public int getN() { return N;}
+    public int getN() { return entities.size();}
     
     public Entity getEntity(int i) {
         return (Entity) this.entities.get(i);
@@ -64,39 +63,46 @@ public class World implements Drawable {
         Vec2D p = new Vec2D(x,y);
         return p;
     }
-    
-    public void processCollisions() {        
-          for(int i=0; i<N; i++) {
-              Entity ei = (Entity) entities.get(i);
-              ei.setCollides(false);
-          }
-          
-          for(int i=0; i<N; i++) {
-              Entity ei = (Entity) entities.get(i);
-              ei.setCollides(false);
-              for(int j=0; j<N; j++) {  
-                  if(i == j){
-                      continue;
-                  }
-                  Entity ej = (Entity) entities.get(j);
-                  if(ei.collides(ej)) {
-                    ei.setCollides(true);
-                    if(ei instanceof Agent) {
-                    Agent a = (Agent) ei;
+    public void removeEntity(Entity e) {
+        entities.remove(e);
+    }
+    public void processCollisions() {
+        process++;
+        for(int i = 0; i < getN(); i++) {
+            Entity ei = (Entity)entities.get(i);
+            if(process < ei.getCollision() + 25) continue;
+            int energyi = ei.getEnergy();
+            for(int j = 0; j < getN(); j++) {  
+                if(i == j) continue;
+                Entity ej = (Entity)entities.get(j);
+                if(!ei.collides(ej)) continue;
+                
+                ei.setCollision(process);
+                ej.setCollision(process);
+                ei.setAnimationStage(15);
+                
+                
+                int energyj = ej.getEnergy();
+                if(ei.hasEnergy()) ei.substractEnergy(1);
+                if(ej.hasEnergy()) ej.substractEnergy(1);
+                if(ei instanceof MovingEntity) {
+                    MovingEntity a = (MovingEntity) ei;
                     Vec2D av = a.getDir();
                     Vec2D bv = a.getDir();
-
                     // Rotation
                     int aAngleCoeff = (av.angle(bv)>bv.angle(bv))?-1:1;
-                    double aRadiusCoeff = (a.getRadius());
                     double angle = (av.angle(bv)+bv.angle(bv))/2;
-                    av.rotate(aAngleCoeff*(angle*aRadiusCoeff+180));
-                    bv.rotate((-1*aAngleCoeff)*(aRadiusCoeff+180));
-                    }
-
-                  }
-              }
-          }
+                    av.rotate(180+(Math.random()-0.5)*90);
+                    bv.rotate(180+(Math.random()-0.5)*90);
+                }
+            }
+        }
+        int length = entities.size();
+        int i = 0;
+        while(i < length) {
+            length += ((Entity)entities.get(i)).liveOrDie();
+            i++;
+        }
     }
     
     
@@ -111,14 +117,13 @@ public class World implements Drawable {
                 entities.remove(ei);
             }
         }
-        N = entities.size();
     }
     
     
     public void update() {              
         removeOutsiders();
         processCollisions();       
-        for(int i=0; i<N; i++) {
+        for(int i=0; i<getN(); i++) {
             Entity ei = (Entity) entities.get(i);
             ei.update();
             if(ei instanceof Agent){
@@ -134,7 +139,7 @@ public class World implements Drawable {
     }
     
     public void draw( java.awt.Graphics g ) {
-         for(int i=0; i<N; i++) {
+         for(int i=0; i<getN(); i++) {
             Entity ei = (Entity) entities.get(i);
             Vec2D p = ei.getPos();
             ei.draw(g);

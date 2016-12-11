@@ -2,7 +2,6 @@ package game;
  
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Polygon; 
 
 public class MovingEntity extends Entity {
 
@@ -13,7 +12,8 @@ public class MovingEntity extends Entity {
     public MovingEntity(Vec2D p, World wi) {
         super(p, wi);
         this.speed = 1; 
-        this.dir = wi.randomPointInsideWorld();       
+        this.dir = wi.randomPointInsideWorld();
+        this.energy = 1;
     }
 
     public void setDir(Vec2D dir) {
@@ -40,16 +40,11 @@ public class MovingEntity extends Entity {
     
     @Override
     public void draw(Graphics g) {
-        if(this.bCollides){
-            g.setColor(Color.RED);
-        }
-        else{
-            g.setColor(Color.BLACK);
-        }
+        g.setColor(Color.BLACK);
         g.fillOval((int)(pos.getX()-3), (int)(pos.getY()-3), 6, 6);
     }
-    public void draw(Graphics g, Color c) {
-        if(this.bCollides){
+    public void draw(Graphics g, Color c, boolean collides) {
+        if(collides){
             g.setColor(Color.RED);
         }
         else {
