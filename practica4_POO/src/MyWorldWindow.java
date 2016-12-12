@@ -24,10 +24,6 @@ Ivo Sequeros del Rey, NIA: 183711
 
  */
 
-/**
- *
- * @author bassagap && ivo
- */
 public class MyWorldWindow extends javax.swing.JFrame {
 
     /**
@@ -35,16 +31,20 @@ public class MyWorldWindow extends javax.swing.JFrame {
      */
     MyPolygon p;
     int worldWidth = 800,worldHeight = 600, worldNAgents = 20,animationSpeed=1,animationLatencyRate=25;
+    Color background;
     public MyWorldWindow() {
         initComponents();
+        background = Color.lightGray;
+        
         this.setResizable(false);
         Dimension d = new Dimension(worldWidth,worldHeight+100);
         this.setSize(d);
-        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents);
+        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents,background);
+        jPanel1.setBackground(background);
         jMenuBar1.setLayout(new GridBagLayout());
         jMenuBar1.setUI ( new BasicMenuBarUI (){
             public void paint ( Graphics g, JComponent c ){
-               g.setColor ( Color.yellow );
+               g.setColor ( background );
                g.fillRect ( 0, 0, c.getWidth (), c.getHeight () );
             }
         });
@@ -95,8 +95,6 @@ public class MyWorldWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusTraversalKeysEnabled(false);
         setSize(new java.awt.Dimension(800, 650));
-
-        jPanel1.setBackground(java.awt.Color.yellow);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -295,12 +293,12 @@ public class MyWorldWindow extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         worldNAgents = Integer.parseInt(JOptionPane.showInputDialog("Number of Agents:",worldNAgents));
-        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents);
+        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents,background);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents);
+        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents,background);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -308,7 +306,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
         worldWidth = Integer.parseInt(JOptionPane.showInputDialog("Width:",worldWidth));
         Dimension d = new Dimension(worldWidth,worldHeight+100);
         this.setSize(d);
-        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents);
+        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents,background);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -316,7 +314,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
         worldHeight = Integer.parseInt(JOptionPane.showInputDialog("Height:",worldHeight));
         Dimension d = new Dimension(worldWidth,worldHeight+100);
         this.setSize(d);
-        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents);
+        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents,background);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -326,7 +324,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
         worldNAgents=20;
         Dimension d = new Dimension(this.getWidth(),this.getHeight()+100);
         this.setSize(d);
-        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents);
+        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents,background);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -395,7 +393,7 @@ public class MyWorldWindow extends javax.swing.JFrame {
             jMenuItem3.setEnabled(true);
             d.setFullScreenWindow(null);
         }
-        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents);
+        panel1.initWorld(this.getWidth(), this.getHeight() - 100,worldNAgents,background);
         Dimension dim = new Dimension(this.getWidth(),this.getHeight()+100);
         this.setSize(dim);
     }//GEN-LAST:event_jCheckBoxMenuItem1ActionPerformed

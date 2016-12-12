@@ -9,10 +9,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Polygon; 
 
-/**
- *
- * @author bassagap && ivo
- */
 public interface Drawable {
     public void draw(Graphics g);
 }

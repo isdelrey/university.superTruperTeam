@@ -10,7 +10,9 @@ public class World implements Drawable {
     int process;
 
     LinkedList entities;
-        
+    /**
+     * Sets up the world with default settings: height = 600, width = 800, entities = 10
+     */
     public World() {
         W = 800;
         H = 600;
@@ -30,6 +32,12 @@ public class World implements Drawable {
         }
         
     }
+    /**
+     * Sets up the world: sets height, width and generates entities
+     * @param w width
+     * @param h height
+     * @param a entities
+     */
     public World(int w, int h, int a) {
         W = w;
         H = h;
@@ -49,23 +57,46 @@ public class World implements Drawable {
         }
         
     }
+    /**
+     * @return width
+     */
     public int getW() { return W; }
+    /**
+     * @return height
+     */
     public int getH() { return H; }
+    /**
+     * @return number of entities
+     */
     public int getN() { return entities.size();}
-    
+    /**
+     * Returns an entity in the world
+     * @param i entity index
+     * @return entity
+     */
     public Entity getEntity(int i) {
         return (Entity) this.entities.get(i);
     }
-    
+    /**
+     * Returns a random point in the world
+     * @return random point
+     */
     public Vec2D randomPointInsideWorld() {        
         double x = margin + Math.random() * (W - 2*margin);
         double y = margin + Math.random() * (H - 2*margin); 
         Vec2D p = new Vec2D(x,y);
         return p;
     }
+    /**
+     * Removes an entity from the world
+     * @param e entity index
+     */
     public void removeEntity(Entity e) {
         entities.remove(e);
     }
+    /**
+     * Processes all collisions between entities
+     */
     public void processCollisions() {
         process++;
         for(int i = 0; i < getN(); i++) {
@@ -104,8 +135,9 @@ public class World implements Drawable {
             i++;
         }
     }
-    
-    
+    /**
+     * Removes all entities moving off-limits
+     */
     public void removeOutsiders() {
         for(int i=0; i<entities.size(); i++) {
             Entity ei = (Entity) entities.get(i);            
@@ -119,7 +151,9 @@ public class World implements Drawable {
         }
     }
     
-    
+    /**
+     * Updates the position of all entities, makes them move.
+     */
     public void update() {              
         removeOutsiders();
         processCollisions();       
@@ -133,11 +167,18 @@ public class World implements Drawable {
             }
         }
     }
-        
+    /**
+     * Performs multiple updates
+     * @param steps number of updates
+     */
     public void run(int steps) {
         for(int i = 0; i<steps; i++) update();
     }
-    
+    /**
+     * Draws all entities basically
+     * @param g Graphics
+     */
+    @Override
     public void draw( java.awt.Graphics g ) {
          for(int i=0; i<getN(); i++) {
             Entity ei = (Entity) entities.get(i);

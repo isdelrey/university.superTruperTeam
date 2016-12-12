@@ -16,17 +16,15 @@ import javax.swing.JPanel;
  * and open the template in the editor.
  */
 
-/**
- *
- * @author ivo && bassagap
- */
 public class Panel extends JPanel {
     private World w;
     private Timer timer;
     private TimerTask painter;
     private Boolean painting = false;
-    public void initWorld(int wi, int he, int ag) {
+    private Color background;
+    public void initWorld(int wi, int he, int ag, Color bg) {
         w = new World(wi, he, ag);
+        background = bg;
     }
     public World getWorld() {
         return w;
@@ -59,10 +57,9 @@ public class Panel extends JPanel {
         if(w != null) {
             BufferedImage image = new BufferedImage (w.getW(), w.getH(),BufferedImage.TYPE_INT_ARGB);
             Graphics b = image.getGraphics();
-            b.setColor(Color.yellow);
+            b.setColor(background);
             b.fillRect(0, 0, w.getW(), w.getH());
             float colorStep = 1f/w.getN();
-            float color = 0;
             for(int i = 0; i < w.getN(); i++){
                 if(w.getEntity(i) instanceof Agent){
                     Agent a = (Agent)w.getEntity(i);

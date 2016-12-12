@@ -18,7 +18,14 @@ public class Agent extends MovingEntity {
     private int id;
 
     private int collision = 0;
-
+    /**
+     * Sets up an agent given a position, objective, radius, agent id and world.
+     * @param pos position
+     * @param obj objective
+     * @param radius radius
+     * @param id agent id
+     * @param wi world
+     */
     public Agent(Vec2D pos, Vec2D obj, int radius, int id, World wi) {
         super(pos, wi);
         this.obj = wi.randomPointInsideWorld();
@@ -27,44 +34,70 @@ public class Agent extends MovingEntity {
         this.weight = this.radius * 2;
         this.energy = (int) Math.round(500*Math.random());
     }
-
+    /**
+     * Returns agent's id
+     * @return agent id
+     */
     public int getID() {
         return this.id;
     }
-
+    /**
+     * Returns agent's radius
+     * @return radius
+     */
     public double getRadius() {
         return this.radius;
     }
-
-
-
+    /**
+     * Returns agent's objective
+     * @return objective
+     */
     public Vec2D getObj() {
         return this.obj;
     }
-
+    /**
+     * Returns direction to the objective
+     * @return direction to objective
+     */
     public Vec2D getDirToObj() {
         Vec2D vector = new Vec2D(this.getObj().getX(), this.getObj().getY());
         vector.minus(this.pos);
         vector.normalize();
         return vector;
     }
-
+    /**
+     * Directs Agent towards objective
+     */
     public void dirToObj() {
         this.getDir().rotateInDirectionOf(this.getDirToObj());
     }
-
+    /**
+     * Returns last loop iteration where the Agent collided - used in World's processCollisions
+     * @return last loop iteration number
+     */
     public int getCollision() {
         return this.collision;
     }
-
+    /**
+     * Sets the agent's position
+     * @param vector position
+     */
+    @Override
     public void setPos(Vec2D vector) {
         this.pos = vector;
     }
-
+    /**
+     * Sets the agent's objective
+     * @param vector objective
+     */
     public void setObj(Vec2D vector) {
         this.obj = vector;
     }
-
+    /**
+     * Sets last loop iteration where the Agent collided - used in World's processCollisions
+     * @param process last loop iteration number
+     */
+    @Override
     public void setCollision(int process) {
         this.collision = process;
     }
@@ -75,7 +108,7 @@ public class Agent extends MovingEntity {
     @Override
     public void update() {
         super.update();
-        if(Math.random() < 0.001) {
+        if(Math.random() < 0.007) {
             fireProjectile();
         }
         this.getDir().turnTo(this.getDirToObj());
@@ -146,7 +179,7 @@ public class Agent extends MovingEntity {
     }
     public void fireProjectile() {
         MovingEntity m = new MovingEntity(this.getDir(), this.w);
-        m.setSpeed(0.001);
+        m.setSpeed(0.005);
         m.setPos(this.getPos());
         this.w.entities.add(m);
     }
