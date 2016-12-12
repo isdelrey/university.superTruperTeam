@@ -11,13 +11,13 @@ public class Agent extends MovingEntity {
 
     private Vec2D obj;
 
-    private int radius;
+    private final int radius;
 
-    private double weight;
+    private final double weight;
 
-    private int id;
+    private final int id;
 
-    private int collision = 0;
+    private int collision;
     /**
      * Sets up an agent given a position, objective, radius, agent id and world.
      * @param pos position
@@ -28,6 +28,7 @@ public class Agent extends MovingEntity {
      */
     public Agent(Vec2D pos, Vec2D obj, int radius, int id, World wi) {
         super(pos, wi);
+        this.collision = 0;
         this.obj = wi.randomPointInsideWorld();
         this.radius = radius;
         this.id = id;
@@ -101,10 +102,16 @@ public class Agent extends MovingEntity {
     public void setCollision(int process) {
         this.collision = process;
     }
-
+    /**
+     * Returns whether the Agent's objective has been reached
+     * @return whether it has been reached
+     */
     public Boolean objReached() {
         return (obj.dist(pos) < 10);
     }
+    /**
+     * Turns Agent towards its objective, maybe fires a projectile
+     */
     @Override
     public void update() {
         super.update();
@@ -114,15 +121,31 @@ public class Agent extends MovingEntity {
         this.getDir().turnTo(this.getDirToObj());
         //System.out.println(this.dir.getX());        
     }
+    /**
+     * Checks if an Agent is more than X pixels away from this Agent
+     * @param a Agent
+     * @param X distance in pixels
+     * @return whether they are more than X pixels away
+     */
     public boolean isMoreThanXPixelsAway(Agent a, int X) {
         double sum = this.radius + a.getRadius() + X;
         return (this.pos.dist(a.pos) > sum);
     }
+    /**
+     * Checks if an Agent is less than X pixels away from this Agent
+     * @param a Agent
+     * @param X distance in pixels
+     * @return whether they are less than X pixels away
+     */
     public boolean isLessThanXPixelsAway(Agent a, int X) {
         double sum = this.radius + a.getRadius() + X;
         return (this.pos.dist(a.pos) < sum);
     }
-
+    /**
+     * Checks if an Agent collides with another Agent
+     * @param a Agent
+     * @return whether they collide
+     */
     public boolean collisionWith(Agent a) {
         Boolean collided = false;
         if (isLessThanXPixelsAway(a, 1) && isMoreThanXPixelsAway(a,0)) {
@@ -130,11 +153,17 @@ public class Agent extends MovingEntity {
         }
         return collided;
     }
-
+    /**
+     * Returns a String with a quick overview of the main properties of the Agent
+     * @return main properties
+     */
     public String toString() {
         return "Agent { id: " + id + ", position: {" + pos.getX() + "," + pos.getY() + "}, objective: {" + obj.getX() + "," + obj.getY() + "}";
     }
-    
+    /**
+     * Gets the Agent polygonal shape
+     * @return polygon
+     */
     public MyPolygon getPolygon(){
         MyPolygon polygon = new MyPolygon();
         polygon.Triangle(this.getDir());
@@ -142,14 +171,22 @@ public class Agent extends MovingEntity {
         polygon.translate((int)(pos.getX()-2), (int)(pos.getY()-2));
         return polygon;        
     }
-    
+    /**
+     * Basic Agent drawing
+     * @param g Graphics
+     */
     @Override
     public void draw(Graphics g) {
         g.setColor(Color.BLUE);
-        //g.setColor(Color.BLUE);
-        //g.fillOval((int)(pos.getX()-2), (int)(pos.getY()-2), radius, radius);
         g.fillPolygon(this.getPolygon());
     }
+    /**
+     * Customizable Agent drawing
+     * @param g Graphics
+     * @param c Agent color
+     * @param collides whether it collides
+     */
+    @Override
     public void draw(Graphics g, Color c, boolean collides) {
         if(collides){
             g.setColor(Color.RED);
@@ -164,6 +201,11 @@ public class Agent extends MovingEntity {
         this.animationStageDecrease();
         g.drawOval((int)center.getX()-effectRadius/2, (int)center.getY()-effectRadius/2, effectRadius, effectRadius);
     }
+    /**
+     * Check if Agent collides with an Entity
+     * @param ei Entity
+     * @return whether it collides
+     */
     @Override 
     public boolean collides(Entity ei){
         if(ei instanceof Obstacle) {
@@ -177,6 +219,9 @@ public class Agent extends MovingEntity {
              }
              else return ei.collides(this);
     }
+    /**
+     * Fire a projectile - add it to the World
+     */
     public void fireProjectile() {
         MovingEntity m = new MovingEntity(this.getDir(), this.w);
         m.setSpeed(0.005);

@@ -1,19 +1,17 @@
 package game;
 
 import java.awt.Polygon;
-import java.awt.Shape;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import java.util.*;
 
 public class MyPolygon extends Polygon {
     public MyPolygon() {
        super();
     }
-    
+    /**
+     * Turn Polygon into a Triangle
+     * @param din 
+     */
     public void Triangle(Vec2D din) {
        din.normalize();
        Vec2D d = new Vec2D(15*din.getX(),15*din.getY());
@@ -22,8 +20,9 @@ public class MyPolygon extends Polygon {
        addPoint((int) (-d.getX() - d90.getX()),(int) (-d.getY() - d90.getY()));
        addPoint((int) (d.getX()*2),(int) (d.getY()*2) );
     }
-     
-    
+    /**
+     * Turns the Polygon into a random Polygon
+     */
     public void randomPolygon() {
         int sides = (int) (3 + Math.random() * 9) ;
         AffineTransform trans = new AffineTransform();        
@@ -40,8 +39,10 @@ public class MyPolygon extends Polygon {
           }
         }
     }
-
-    
+    /**
+     * Returns the Polygon centroid
+     * @return centroid
+     */
     public Vec2D getCentroid() {
         Vec2D p = new Vec2D(0,0);
         for(int i=0;i<npoints;i++) {
@@ -52,7 +53,9 @@ public class MyPolygon extends Polygon {
         p.setY( p.getY() / npoints );
         return p;
     }
-    
+    /**
+     * Centers the Polygon
+     */
     public void center() {
         Vec2D c = getCentroid();
         translate((int) -c.getX(), (int) -c.getY());

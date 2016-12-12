@@ -10,5 +10,9 @@ import java.awt.Graphics;
 import java.awt.Polygon; 
 
 public interface Drawable {
+    /**
+     * Basic drawing
+     * @param g Graphics
+     */
     public void draw(Graphics g);
 }
